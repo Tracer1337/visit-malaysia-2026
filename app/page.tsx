@@ -1,6 +1,7 @@
 import ActivityShowcase from './_components/ActivityShowcase';
 import Adverts from './_components/Adverts';
 import AIGuide from './_components/AIGuide';
+import TravelPlan from './_components/TravelPlan';
 import TravelRecommendations from './_components/TravelRecommendations';
 import Button from './_components/ui/Button';
 
@@ -35,6 +36,11 @@ export default function LandingPage() {
       <section className="bg-[#F7F9FA] py-[80px]">
         <div className="container mx-auto">
           <ActivityShowcase />
+        </div>
+      </section>
+      <section className="bg-[#0A1B74] py-[80px]">
+        <div className="container mx-auto">
+          <TravelPlan />
         </div>
       </section>
     </main>
