@@ -4,6 +4,7 @@ import AIGuide from './_components/AIGuide';
 import TravelPlan from './_components/TravelPlan';
 import TravelRecommendations from './_components/TravelRecommendations';
 import Button from './_components/ui/Button';
+import UpcomingEvents from './_components/UpcomingEvents';
 
 export default function LandingPage() {
   return (
@@ -41,6 +42,11 @@ export default function LandingPage() {
       <section className="bg-[#0A1B74] py-[80px]">
         <div className="container mx-auto">
           <TravelPlan />
+        </div>
+      </section>
+      <section className="bg-[#F7F9FA] pt-[108px] pb-[50px]">
+        <div className="container mx-auto">
+          <UpcomingEvents />
         </div>
       </section>
     </main>
