@@ -1,3 +1,4 @@
+import ActivityShowcase from './_components/ActivityShowcase';
 import Adverts from './_components/Adverts';
 import AIGuide from './_components/AIGuide';
 import TravelRecommendations from './_components/TravelRecommendations';
@@ -29,6 +30,11 @@ export default function LandingPage() {
         />
         <div className="flex justify-center">
           <Button>Load More</Button>
+        </div>
+      </section>
+      <section className="bg-[#F7F9FA] py-[80px]">
+        <div className="container mx-auto">
+          <ActivityShowcase />
         </div>
       </section>
     </main>
