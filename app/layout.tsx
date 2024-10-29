@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Inter, DM_Sans } from 'next/font/google';
 import Navigation from './_components/Navigation/Navigation';
-import AIGuide from './_components/AIGuide';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,11 +33,6 @@ export default function RootLayout({
           <div className="container mx-auto">
             <Navigation />
             <div className="h-[calc(573px+24px)] pt-[72px] pb-[55px]"></div>
-          </div>
-        </div>
-        <div className="bg-[#F7F9FA] flex justify-center rounded-t-3xl -mt-6">
-          <div className="my-20 max-w-[715px] w-full">
-            <AIGuide />
           </div>
         </div>
         {children}

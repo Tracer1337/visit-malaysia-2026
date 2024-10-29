@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Placeholder from '../ui/Placeholder';
 
 const links: {
   title: string;
@@ -21,13 +22,13 @@ const links: {
 export default function AIGuide() {
   return (
     <div className="flex flex-col items-center">
-      <div className="w-[65px] h-[65px] bg-slate-700 mb-3"></div>
+      <Placeholder width={65} height={65} />
       <h2 className="font-heading font-bold text-[38px] text-[#0A1B74] text-center">
         Discover Malaysia&apos;s Wonders
         <br />
         With Our AI Guide
       </h2>
-      <div className="my-7 h-[59px] bg-slate-700 w-full"></div>
+      <div className="my-7 h-[59px] bg-gray-700 w-full"></div>
       <span className="font-semibold text-lg mb-6">
         Most people ask for travel plan
       </span>

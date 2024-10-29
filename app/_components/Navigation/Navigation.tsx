@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import Button from '@/_components/Button';
+import Button from '@/_components/ui/Button';
+import Placeholder from '../ui/Placeholder';
 
 const links: {
   title: string;
@@ -31,7 +32,7 @@ export default function Navigation() {
   return (
     <nav className="flex justify-between">
       <div className="flex">
-        <div className="w-[153px] h-[51px] bg-gray-700 mr-9"></div>
+        <Placeholder width={153} height={51} className="mr-9" />
         <div className="flex items-center">
           {links.map((link, i) => (
             <Link
