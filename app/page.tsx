@@ -7,6 +7,7 @@ import DestinationCarousel from './_components/DestinationCarousel';
 import Button from './_components/ui/Button';
 import EventCarousel from './_components/EventCarousel';
 import ReviewCarousel from './_components/ReviewCarousel';
+import PressShowcase from './_components/PressShowcase';
 
 export default function LandingPage() {
   return (
@@ -59,6 +60,11 @@ export default function LandingPage() {
       <section className="bg-[#F7F9FA] pt-[90px]">
         <div className="container mx-auto">
           <ReviewCarousel />
+        </div>
+      </section>
+      <section className="bg-[#F7F9FA] pt-[100px] pb-[50px]">
+        <div className="container mx-auto">
+          <PressShowcase />
         </div>
       </section>
     </main>
