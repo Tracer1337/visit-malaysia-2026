@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Placeholder from '../ui/Placeholder';
+import Typography from '../ui/Typography/Typography';
 
 const links: {
   title: string;
@@ -23,23 +24,28 @@ export default function AIGuide() {
   return (
     <div className="flex flex-col items-center">
       <Placeholder width={65} height={65} />
-      <h2 className="font-heading font-bold text-[38px] text-[#0A1B74] text-center">
+      <Typography variant="h2" className="text-[#0A1B74] text-center mt-3">
         Discover Malaysia&apos;s Wonders
         <br />
         With Our AI Guide
-      </h2>
+      </Typography>
       <div className="my-7 h-[59px] bg-gray-700 w-full"></div>
-      <span className="font-semibold text-lg mb-6">
+      <Typography variant="body1" className="font-semibold mb-6">
         Most people ask for travel plan
-      </span>
+      </Typography>
       <div className="flex justify-center flex-wrap gap-4">
         {links.map((link, i) => (
           <Link
             href={link.href}
             key={i}
-            className="text-[#A1A1A1] bg-[#F5F5F5] px-4 py-3 rounded-xl"
+            className="bg-[#F5F5F5] px-4 py-3 rounded-xl"
           >
-            {link.title}
+            <Typography
+              variant="body2"
+              className="font-semibold text-[#A1A1A1]"
+            >
+              {link.title}
+            </Typography>
           </Link>
         ))}
       </div>

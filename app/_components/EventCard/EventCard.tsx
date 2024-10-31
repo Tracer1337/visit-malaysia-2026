@@ -1,4 +1,5 @@
 import Placeholder from '../ui/Placeholder';
+import Typography from '../ui/Typography/Typography';
 
 export default function EventCard() {
   return (
@@ -8,23 +9,25 @@ export default function EventCard() {
         <div className="pl-6">
           <div className="flex items-center">
             <Placeholder width={18} height={18} className="mr-1" />
-            <span className="font-semibold opacity-75">Kuala Lumpur</span>
+            <Typography variant="body2" className="font-semibold opacity-75">
+              Kuala Lumpur
+            </Typography>
           </div>
-          <p className="text-sm leading-[18px] opacity-75 mt-1">
+          <Typography variant="body3" className="opacity-75 mt-1" element="p">
             29 October 2024
-          </p>
-          <p className="font-semibold text-lg leading-[24px] mt-1">
-            Buka Puasa
-          </p>
-          <p className="opacity-75 leading-[20px]">
+          </Typography>
+          <Typography variant="body1" className="font-semibold mt-" element="p">
+            Buka Pusa
+          </Typography>
+          <Typography variant="body2" className="opacity-75" element="p">
             Breakfast Together in KLCC Club
-          </p>
+          </Typography>
         </div>
       </div>
-      <p className="text-sm leading-[18px] oapcity-75 mt-3">
+      <Typography variant="body3" className="mt-3 opacity-75" element="p">
         More than 2000 communities join in a huge break-fast at the Royal Palace
         .....
-      </p>
+      </Typography>
     </div>
   );
 }

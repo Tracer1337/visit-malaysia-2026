@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import DestinationCard from '../DestinationCard';
+import Typography from '../ui/Typography/Typography';
 
 const destinations = new Array(3).fill(0);
 
@@ -13,7 +14,7 @@ export default function TravelRecommendations({
   return (
     <>
       <div className="flex justify-between">
-        <h3 className="font-heading font-bold text-3xl">{title}</h3>
+        <Typography variant="h3">{title}</Typography>
         <Link
           href="/"
           className="text-heading font-semibold text-xl leading-[24px] text-[#2A3075]"
@@ -21,7 +22,9 @@ export default function TravelRecommendations({
           See More
         </Link>
       </div>
-      <h5 className="font-heading text-xl opacity-70">{subtitle}</h5>
+      <Typography variant="h5" className="opacity-70 mt-2">
+        {subtitle}
+      </Typography>
       <div className="mt-6 flex gap-6">
         {destinations.map((_, i) => (
           <DestinationCard key={i} />
