@@ -8,10 +8,12 @@ import Button from './_components/ui/Button';
 import EventCarousel from './_components/EventCarousel';
 import ReviewCarousel from './_components/ReviewCarousel';
 import PressShowcase from './_components/PressShowcase';
+import HeroSection from './_components/HeroSection';
 
 export default function LandingPage() {
   return (
     <main>
+      <HeroSection />
       <div className="bg-[#F7F9FA] flex justify-center rounded-t-3xl -mt-6">
         <section className="my-20 max-w-[715px] w-full">
           <AIGuide />

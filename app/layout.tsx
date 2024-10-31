@@ -28,11 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${dm_sans.variable} antialiased`}>
-        <div className="bg-slate-500 pt-4">
-          <div className="container mx-auto">
-            <Navigation />
-            <div className="h-[calc(573px+24px)] pt-[72px] pb-[55px]"></div>
-          </div>
+        <div className="container mx-auto pt-4">
+          <Navigation />
         </div>
         {children}
         <Footer />
