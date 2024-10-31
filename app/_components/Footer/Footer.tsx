@@ -6,18 +6,19 @@ export function Footer() {
   return (
     <footer className="bg-black py-[60px]">
       <div className="container mx-auto">
-        <div className="flex">
-          <div className="mr-[100px]">
+        <div className="flex flex-col xl:flex-row">
+          <div className="xl:mr-[100px] max-xl:flex max-xl:justify-center max-xl:flex-wrap max-xl:mb-6">
             <Placeholder width={153} height={51} />
+
             <div className="flex gap-3 mt-8">
               <Placeholder width={181} height={54} />
               <Placeholder width={181} height={54} />
             </div>
           </div>
-          <div className="w-[176px] mr-8">
-            <h6 className="font-bold text-[24px] leading-[32px] text-[#EDE9FE] mb-6">
+          <div className="max-xl:mt-6 xl:w-[176px] xl:mr-8">
+            <Typography variant="h4" className="text-[#EDE9FE] mb-6">
               Mobile App
-            </h6>
+            </Typography>
             <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li]:mb-3 [&>li:last-child]:mb-0">
               <li>
                 <Link href="/">Features</Link>
@@ -30,10 +31,10 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div className="w-[176px] mr-8">
-            <h6 className="font-bold text-[24px] leading-[32px] text-[#EDE9FE] mb-6">
+          <div className="max-xl:mt-6 xl:w-[176px] xl:mr-8">
+            <Typography variant="h4" className="text-[#EDE9FE] mb-6">
               Community
-            </h6>
+            </Typography>
             <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li]:mb-3 [&>li:last-child]:mb-0">
               <li>
                 <Link href="/">Featured Experience</Link>
@@ -46,10 +47,10 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          <div className="w-[176px] mr-8">
-            <h6 className="font-bold text-[24px] leading-[32px] text-[#EDE9FE] mb-6">
+          <div className="max-xl:mt-6 xl:w-[176px] xl:mr-8">
+            <Typography variant="h4" className="text-[#EDE9FE] mb-6">
               Company
-            </h6>
+            </Typography>
             <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li]:mb-3 [&>li:last-child]:mb-0">
               <li>
                 <Link href="/">About us</Link>

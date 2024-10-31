@@ -23,13 +23,17 @@ const links: {
 export function AIGuide() {
   return (
     <div className="flex flex-col items-center">
-      <Placeholder width={65} height={65} />
+      <Placeholder
+        width={65}
+        height={65}
+        className="w-10 h-10 xl:w-16 xl:h-16"
+      />
       <Typography variant="h2" className="text-[#0A1B74] text-center mt-3">
         Discover Malaysia&apos;s Wonders
         <br />
         With Our AI Guide
       </Typography>
-      <div className="my-7 h-[59px] bg-gray-700 w-full"></div>
+      <div className="my-7 h-[120px] xl:h-[59px] bg-gray-700 w-full"></div>
       <Typography variant="body1" className="font-semibold mb-6">
         Most people ask for travel plan
       </Typography>

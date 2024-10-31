@@ -4,14 +4,14 @@ import Typography from '../ui/Typography';
 export function LocationDetails() {
   return (
     <>
-      <div className="-mt-[67px] h-[661px] bg-slate-500">
-        <div className="container mx-auto pt-[230px]">
-          <Typography variant="h1" className="text-white max-w-[60%]">
+      <div className="mt-4 xl:-mt-[67px] h-[396px] xl:h-[661px] bg-slate-500">
+        <div className="container mx-auto pt-[60px] xl:pt-[230px]">
+          <Typography variant="h1" className="text-white xl:max-w-[60%]">
             Sarawak Charm Heartbeat of our 130 billion year-old
           </Typography>
         </div>
       </div>
-      <div className="container mx-auto flex gap-[42px] mt-[46px]">
+      <div className="container mx-auto mt-4 xl:flex xl:gap-[42px] xl:mt-[46px]">
         <div>
           Wonders in Malaysia Our 150 billion years of secrets This is where the
           generic intro text or the state comes in. Sarawak is the largest state
@@ -53,14 +53,8 @@ export function LocationDetails() {
           rituals of Sarawak's indigenous tribes, offering an immersive
           experience into the heritage of the region
         </div>
-        <div>
+        <div className="max-xl:mt-[42px]">
           <Typography variant="h3">Top Recommend Itineraries</Typography>
-          <div className="mt-6">
-            <LocationCard />
-          </div>
-          <div className="mt-6">
-            <LocationCard />
-          </div>
           <div className="mt-6">
             <LocationCard />
           </div>

@@ -14,15 +14,15 @@ export default function LandingPage() {
   return (
     <main>
       <HeroSection />
-      <div className="bg-[#F7F9FA] flex justify-center rounded-t-3xl -mt-6">
-        <section className="my-20 max-w-[715px] w-full">
+      <div className="bg-[#F7F9FA] flex justify-center rounded-t-3xl xl:-mt-6">
+        <section className="mt-[26px] mb-3 xl:my-20 container xl:p-0 xl:max-w-[715px] w-full">
           <AIGuide />
         </section>
       </div>
-      <section className="container mt-20 mx-auto">
+      <section className="container mx-auto mt-6 xl:mt-20">
         <Adverts />
       </section>
-      <section className="container mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
+      <section className="container mt-[50px] xl:mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
         <LocationCarousel
           title="Top Recommend Itineraries"
           subtitle="Unique travel plans and experiences shared by guides and travellers"
@@ -39,32 +39,32 @@ export default function LandingPage() {
           <Button>Load More</Button>
         </div>
       </section>
-      <section className="bg-[#F7F9FA] py-[80px]">
+      <section className="bg-[#F7F9FA] py-6 xl:py-[80px]">
         <div className="container mx-auto">
           <ActivityShowcase />
         </div>
       </section>
-      <section className="bg-[#0A1B74] py-[80px]">
+      <section className="bg-[#0A1B74] py-[50px] xl:py-[80px]">
         <div className="container mx-auto">
           <TravelPlanShowcase />
         </div>
       </section>
-      <section className="bg-[#F7F9FA] pt-[108px]">
+      <section className="bg-[#F7F9FA] pt-6 xl:pt-[108px]">
         <div className="container mx-auto">
           <EventCarousel />
         </div>
       </section>
-      <section className="bg-[#F7F9FA] pt-[50px]">
+      <section className="bg-[#F7F9FA] pt-6 xl:pt-[50px]">
         <div className="container mx-auto">
           <DocumentationCarousel />
         </div>
       </section>
-      <section className="bg-[#F7F9FA] pt-[90px]">
+      <section className="bg-[#F7F9FA] pt-[64px] xl:pt-[90px]">
         <div className="container mx-auto">
           <ReviewCarousel />
         </div>
       </section>
-      <section className="bg-[#F7F9FA] pt-[100px] pb-[50px]">
+      <section className="bg-[#F7F9FA] pt-[84px] xl:pt-[100px] pb-[50px]">
         <div className="container mx-auto">
           <PressShowcase />
         </div>

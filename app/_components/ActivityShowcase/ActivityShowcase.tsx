@@ -3,8 +3,8 @@ import Typography from '../ui/Typography';
 
 export function ActivityShowcase() {
   return (
-    <div className="grid grid-cols-2 grid-rows-1 items-center">
-      <div className="max-w-[600px] justify-self-end">
+    <div className="md:grid md:grid-cols-2 md:grid-rows-1 md:items-center">
+      <div className="container md:p-0 md:max-w-[600px] justify-self-end">
         <Typography
           variant="body1"
           className="font-semibold text-[#0A1B74] uppercase"
@@ -12,10 +12,14 @@ export function ActivityShowcase() {
         >
           ACTIVITIES : HIGHLIGHT OF THE MONTH
         </Typography>
-        <Typography variant="h2" className="mt-3 capitalize">
+        <Typography variant="h2" className="md:mt-3 capitalize">
           Bread softer than cotton cloud
         </Typography>
-        <Typography variant="body2" className="opacity-75 mt-3" element="p">
+        <Typography
+          variant="body2"
+          className="md:opacity-75 md:mt-3"
+          element="p"
+        >
           Fancy homemade fresh and halal TangZhong bread ? Join Rosli’s bakery
           class 24/5 and 28/5 and master the secret in creating these pillow
           soft bread roll
@@ -33,7 +37,11 @@ export function ActivityShowcase() {
           </Typography>
         </div>
       </div>
-      <Placeholder width={469} height={373} className="ml-14" />
+      <Placeholder
+        width={469}
+        height={373}
+        className="max-md:w-full mt-6 md:mt-0 md:ml-4 xl:ml-14"
+      />
     </div>
   );
 }

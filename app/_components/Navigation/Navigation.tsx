@@ -30,10 +30,10 @@ const links: {
 
 export function Navigation() {
   return (
-    <nav className="flex justify-between">
+    <nav className="flex justify-between items-center xl:items-start">
       <div className="flex">
         <Placeholder width={153} height={51} className="mr-9" />
-        <div className="flex items-center">
+        <div className="hidden xl:flex items-center">
           {links.map((link, i) => (
             <Link
               href={link.href}
@@ -46,12 +46,15 @@ export function Navigation() {
         </div>
       </div>
       <div>
-        <Link href="/" className="mr-3">
-          <Button variant="secondary">Sign in</Button>
-        </Link>
-        <Link href="/">
-          <Button>Sign Up Today!</Button>
-        </Link>
+        <Placeholder width={32} height={32} className="xl:hidden" />
+        <div className="hidden xl:block">
+          <Link href="/" className="mr-3">
+            <Button variant="secondary">Sign in</Button>
+          </Link>
+          <Link href="/">
+            <Button>Sign Up Today!</Button>
+          </Link>
+        </div>
       </div>
     </nav>
   );

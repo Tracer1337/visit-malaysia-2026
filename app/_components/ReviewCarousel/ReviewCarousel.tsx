@@ -10,9 +10,7 @@ export function ReviewCarousel() {
       <Typography variant="h5" className="mt-2 text-center opacity-70">
         We’ve 4.7/5 Positive Reviews From Several Credential Reviewers Platform
       </Typography>
-      <div className="flex gap-6 mt-6">
-        <ReviewCard />
-        <ReviewCard />
+      <div className="flex gap-6 mt-4 xl:mt-6">
         <ReviewCard />
       </div>
     </>
