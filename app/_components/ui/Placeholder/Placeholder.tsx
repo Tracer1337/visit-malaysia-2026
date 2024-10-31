@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { ComponentProps } from 'react';
 
 export function Placeholder({
   width,
@@ -8,7 +7,7 @@ export function Placeholder({
 }: {
   width: number;
   height: number;
-  className?: ComponentProps<typeof Image>['className'];
+  className?: string;
 }) {
   return (
     <Image

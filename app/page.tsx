@@ -1,6 +1,7 @@
 import ActivityShowcase from './_components/ActivityShowcase';
 import Adverts from './_components/Adverts';
 import AIGuide from './_components/AIGuide';
+import DocumentationCarousel from './_components/DocumentationCarousel';
 import TravelPlan from './_components/TravelPlan';
 import TravelRecommendations from './_components/TravelRecommendations';
 import Button from './_components/ui/Button';
@@ -44,9 +45,14 @@ export default function LandingPage() {
           <TravelPlan />
         </div>
       </section>
-      <section className="bg-[#F7F9FA] pt-[108px] pb-[50px]">
+      <section className="bg-[#F7F9FA] pt-[108px]">
         <div className="container mx-auto">
           <UpcomingEvents />
+        </div>
+      </section>
+      <section className="bg-[#F7F9FA] pt-[50px]">
+        <div className="container mx-auto">
+          <DocumentationCarousel />
         </div>
       </section>
     </main>
