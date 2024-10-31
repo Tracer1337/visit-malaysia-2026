@@ -28,7 +28,7 @@ const links: {
   },
 ];
 
-export default function Navigation() {
+export function Navigation() {
   return (
     <nav className="flex justify-between">
       <div className="flex">

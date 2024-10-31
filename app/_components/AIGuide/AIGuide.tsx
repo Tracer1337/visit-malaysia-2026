@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Placeholder from '../ui/Placeholder';
-import Typography from '../ui/Typography/Typography';
+import Typography from '../ui/Typography';
 
 const links: {
   title: string;
@@ -20,7 +20,7 @@ const links: {
   },
 ];
 
-export default function AIGuide() {
+export function AIGuide() {
   return (
     <div className="flex flex-col items-center">
       <Placeholder width={65} height={65} />

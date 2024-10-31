@@ -1,7 +1,7 @@
 import Placeholder from '../ui/Placeholder';
-import Typography from '../ui/Typography/Typography';
+import Typography from '../ui/Typography';
 
-export default function EventCard() {
+export function EventCard() {
   return (
     <div className="shadow-lg p-4 max-w-[336px] bg-white rounded-xl">
       <div className="grid grid-cols-[116px_minmax(0,_1fr)] grid-rows-1">

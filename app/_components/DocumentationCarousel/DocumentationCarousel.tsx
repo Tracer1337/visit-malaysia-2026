@@ -1,7 +1,7 @@
 import Placeholder from '../ui/Placeholder';
-import Typography from '../ui/Typography/Typography';
+import Typography from '../ui/Typography';
 
-export default function DocumentationCarousel() {
+export function DocumentationCarousel() {
   return (
     <>
       <Typography variant="h3" className="text-center">

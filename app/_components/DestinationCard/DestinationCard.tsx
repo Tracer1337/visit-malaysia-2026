@@ -1,7 +1,7 @@
 import Placeholder from '../ui/Placeholder';
-import Typography from '../ui/Typography/Typography';
+import Typography from '../ui/Typography';
 
-export default function DestinationCard() {
+export function DestinationCard() {
   return (
     <div className="w-[278px] shadow-sm shadow-[#A6AFC366]">
       <div className="relative">

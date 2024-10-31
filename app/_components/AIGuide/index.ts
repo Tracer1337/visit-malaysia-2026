@@ -1,3 +1,3 @@
-import AIGuide from './AIGuide';
+import { AIGuide } from './AIGuide';
 
 export default AIGuide;

@@ -1,3 +1,3 @@
-import Adverts from './Adverts';
+import { Adverts } from './Adverts';
 
 export default Adverts;

@@ -1,3 +1,3 @@
-import ActivityShowcase from './ActivityShowcase';
+import { ActivityShowcase } from './ActivityShowcase';
 
 export default ActivityShowcase;

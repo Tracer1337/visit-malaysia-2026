@@ -5,7 +5,7 @@ const variants = {
   secondary: 'bg-[#F4F5F6]',
 };
 
-export default function Button({
+export function Button({
   onClick,
   variant = 'primary',
   children,

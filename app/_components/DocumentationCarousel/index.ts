@@ -1,3 +1,3 @@
-import DocumentationCarousel from './DocumentationCarousel';
+import { DocumentationCarousel } from './DocumentationCarousel';
 
 export default DocumentationCarousel;

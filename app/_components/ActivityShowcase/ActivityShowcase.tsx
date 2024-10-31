@@ -1,7 +1,7 @@
 import Placeholder from '../ui/Placeholder';
-import Typography from '../ui/Typography/Typography';
+import Typography from '../ui/Typography';
 
-export default function ActivityShowcase() {
+export function ActivityShowcase() {
   return (
     <div className="grid grid-cols-2 grid-rows-1 items-center">
       <div className="max-w-[600px] justify-self-end">

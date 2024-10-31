@@ -1,3 +1,3 @@
-import DestinationCard from './DestinationCard';
+import { DestinationCard } from './DestinationCard';
 
 export default DestinationCard;

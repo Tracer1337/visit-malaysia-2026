@@ -36,7 +36,7 @@ const typographyClasses: Record<TypographyVariant, string> = {
   body4: 'text-[12px] leading-[16px]',
 };
 
-export default function Typography({
+export function Typography({
   variant,
   className,
   element,

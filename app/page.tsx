@@ -2,10 +2,10 @@ import ActivityShowcase from './_components/ActivityShowcase';
 import Adverts from './_components/Adverts';
 import AIGuide from './_components/AIGuide';
 import DocumentationCarousel from './_components/DocumentationCarousel';
-import TravelPlan from './_components/TravelPlan';
-import TravelRecommendations from './_components/TravelRecommendations';
+import TravelPlanShowcase from './_components/TravelPlanShowcase';
+import DestinationCarousel from './_components/DestinationCarousel';
 import Button from './_components/ui/Button';
-import UpcomingEvents from './_components/UpcomingEvents';
+import EventCarousel from './_components/EventCarousel';
 
 export default function LandingPage() {
   return (
@@ -19,15 +19,15 @@ export default function LandingPage() {
         <Adverts />
       </section>
       <section className="container mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
-        <TravelRecommendations
+        <DestinationCarousel
           title="Top Recommend Itineraries"
           subtitle="Unique travel plans and experiences shared by guides and travellers"
         />
-        <TravelRecommendations
+        <DestinationCarousel
           title="Island & Beaches"
           subtitle="From pristine beaches to deep sea dives among the mysteries of the ocean, our communities reserve their best experiences with you. "
         />
-        <TravelRecommendations
+        <DestinationCarousel
           title="Cultural & Arts"
           subtitle="Unique travel plans and experiences shared by guides and travellers"
         />
@@ -42,12 +42,12 @@ export default function LandingPage() {
       </section>
       <section className="bg-[#0A1B74] py-[80px]">
         <div className="container mx-auto">
-          <TravelPlan />
+          <TravelPlanShowcase />
         </div>
       </section>
       <section className="bg-[#F7F9FA] pt-[108px]">
         <div className="container mx-auto">
-          <UpcomingEvents />
+          <EventCarousel />
         </div>
       </section>
       <section className="bg-[#F7F9FA] pt-[50px]">
