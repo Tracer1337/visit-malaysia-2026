@@ -3,7 +3,7 @@ import Adverts from './_components/Adverts';
 import AIGuide from './_components/AIGuide';
 import DocumentationCarousel from './_components/DocumentationCarousel';
 import TravelPlanShowcase from './_components/TravelPlanShowcase';
-import DestinationCarousel from './_components/DestinationCarousel';
+import LocationCarousel from './_components/LocationCarousel';
 import Button from './_components/ui/Button';
 import EventCarousel from './_components/EventCarousel';
 import ReviewCarousel from './_components/ReviewCarousel';
@@ -23,15 +23,15 @@ export default function LandingPage() {
         <Adverts />
       </section>
       <section className="container mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
-        <DestinationCarousel
+        <LocationCarousel
           title="Top Recommend Itineraries"
           subtitle="Unique travel plans and experiences shared by guides and travellers"
         />
-        <DestinationCarousel
+        <LocationCarousel
           title="Island & Beaches"
           subtitle="From pristine beaches to deep sea dives among the mysteries of the ocean, our communities reserve their best experiences with you. "
         />
-        <DestinationCarousel
+        <LocationCarousel
           title="Cultural & Arts"
           subtitle="Unique travel plans and experiences shared by guides and travellers"
         />

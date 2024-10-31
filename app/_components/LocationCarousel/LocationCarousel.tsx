@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import DestinationCard from '../DestinationCard';
+import LocationCard from '../LocationCard';
 import Typography from '../ui/Typography';
 
-const destinations = new Array(3).fill(0);
+const locations = new Array(3).fill(0);
 
-export function DestinationCarousel({
+export function LocationCarousel({
   title,
   subtitle,
 }: {
@@ -26,8 +26,8 @@ export function DestinationCarousel({
         {subtitle}
       </Typography>
       <div className="mt-6 flex gap-6">
-        {destinations.map((_, i) => (
-          <DestinationCard key={i} />
+        {locations.map((_, i) => (
+          <LocationCard key={i} />
         ))}
       </div>
     </>
