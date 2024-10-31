@@ -21,8 +21,8 @@ export function LocationDetails() {
           (formerly Land Dayak); others include Orang Ulu, Melanau, Murut,
           Kenyah, Kayan, Kedayan, Kelabit, Berawan, Penan and Bisayah. Sarawak’s
           rich ethnic and cultural diversity is one of the reasons that make the
-          state such a fascinating destination to explore." "Sarawak is the
-          largest state in Malaysia and has a population of 2.8 million,
+          state such a fascinating destination to explore.&quot; &quot;Sarawak
+          is the largest state in Malaysia and has a population of 2.8 million,
           comprising of 26 different ethnic groups. The two biggest ethnic
           groups within the Dayak community are the Iban (formerly Sea Dayak)
           and the Bidayuh (formerly Land Dayak); others include Orang Ulu,
@@ -40,17 +40,17 @@ export function LocationDetails() {
           Sarawak Airport, proceed to the cultural site where you can explore
           replicas of traditional local houses and buildings. This attraction
           provides a detailed portrayal of the diverse cultures, customs, and
-          rituals of Sarawak's indigenous tribes, offering an immersive
+          rituals of Sarawak&apos;s indigenous tribes, offering an immersive
           experience into the heritage of the region DAY 2 Upon arrival at
           Sarawak Airport, proceed to the cultural site where you can explore
           replicas of traditional local houses and buildings. This attraction
           provides a detailed portrayal of the diverse cultures, customs, and
-          rituals of Sarawak's indigenous tribes, offering an immersive
+          rituals of Sarawak&apos;s indigenous tribes, offering an immersive
           experience into the heritage of the region DAY 3 Upon arrival at
           Sarawak Airport, proceed to the cultural site where you can explore
           replicas of traditional local houses and buildings. This attraction
           provides a detailed portrayal of the diverse cultures, customs, and
-          rituals of Sarawak's indigenous tribes, offering an immersive
+          rituals of Sarawak&apos;s indigenous tribes, offering an immersive
           experience into the heritage of the region
         </div>
         <div className="max-xl:mt-[42px]">
