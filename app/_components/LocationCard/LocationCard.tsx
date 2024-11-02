@@ -3,7 +3,7 @@ import Typography from '../ui/Typography';
 
 export function LocationCard() {
   return (
-    <div className="w-[278px] shadow-sm shadow-[#A6AFC366]">
+    <div className="max-w-[278px] shadow-sm shadow-[#A6AFC366]">
       <div className="relative">
         <Placeholder width={278} height={292} />
         <div className="absolute top-0 left-0 px-2.5 py-1 bg-[#F24949] rounded-br-md">

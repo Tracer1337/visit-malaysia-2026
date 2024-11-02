@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import LocationCard from '../LocationCard';
 import Typography from '../ui/Typography';
+import Carousel from '../ui/Carousel';
+import { tailwindConfig } from '@/_lib/tailwind';
+
+const items = Array(10).fill(0);
 
 export function LocationCarousel({
   title,
@@ -23,9 +27,24 @@ export function LocationCarousel({
       <Typography variant="h5" className="opacity-70 mt-1 xl:mt-2">
         {subtitle}
       </Typography>
-      <div className="mt-4 xl:mt-6 flex gap-6">
-        <LocationCard />
-      </div>
+      <Carousel
+        className="mt-4 xl:mt-6 [&_.slick-slide]:pr-[24px] [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black"
+        variableWidth
+        dots
+        responsive={[
+          {
+            breakpoint: parseInt(tailwindConfig.theme.screens.xl),
+            settings: {
+              arrows: false,
+              dots: false,
+            },
+          },
+        ]}
+      >
+        {items.map((_, i) => (
+          <LocationCard key={i} />
+        ))}
+      </Carousel>
     </div>
   );
 }

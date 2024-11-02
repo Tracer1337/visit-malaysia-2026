@@ -3,7 +3,7 @@ import Typography from '../ui/Typography';
 
 export function ReviewCard() {
   return (
-    <div className="px-6 py-4 rounded-xl bg-white w-[277px] xl:w-[320px]">
+    <div className="px-6 py-4 rounded-xl bg-white max-w-[277px] xl:max-w-[320px]">
       <div className="flex items-center">
         <Placeholder width={62} height={62} className="mr-4" />
         <div>
