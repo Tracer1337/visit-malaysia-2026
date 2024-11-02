@@ -1,4 +1,9 @@
-import { createElement, PropsWithChildren, ReactHTML } from 'react';
+import {
+  ComponentProps,
+  createElement,
+  PropsWithChildren,
+  ReactHTML,
+} from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type TypographyVariant =
@@ -42,18 +47,21 @@ const typographyClasses: Record<TypographyVariant, string> = {
 
 export function Typography({
   variant,
-  className,
   element,
   children,
-}: PropsWithChildren<{
-  variant: TypographyVariant;
-  element?: keyof ReactHTML;
-  className?: string;
-}>) {
+  className,
+  ...props
+}: PropsWithChildren<
+  {
+    variant: TypographyVariant;
+    element?: keyof ReactHTML;
+  } & ComponentProps<'div'>
+>) {
   return createElement(
     element ?? typographyElements[variant],
     {
       className: twMerge(typographyClasses[variant], className),
+      ...props,
     },
     children,
   );
