@@ -1,14 +1,14 @@
-import ActivityShowcase from './_components/ActivityShowcase';
-import Adverts from './_components/Adverts';
-import AIGuide from './_components/AIGuide';
-import DocumentationCarousel from './_components/DocumentationCarousel';
-import TravelPlanShowcase from './_components/TravelPlanShowcase';
-import LocationCarousel from './_components/LocationCarousel';
-import Button from './_components/ui/Button';
-import EventCarousel from './_components/EventCarousel';
-import ReviewCarousel from './_components/ReviewCarousel';
-import PressShowcase from './_components/PressShowcase';
-import HeroSection from './_components/HeroSection';
+import ActivityShowcase from '../_components/ActivityShowcase';
+import Adverts from '../_components/Adverts';
+import AIGuide from '../_components/AIGuide';
+import DocumentationCarousel from '../_components/DocumentationCarousel';
+import TravelPlanShowcase from '../_components/TravelPlanShowcase';
+import LocationCarousel from '../_components/LocationCarousel';
+import Button from '../_components/ui/Button';
+import EventCarousel from '../_components/EventCarousel';
+import ReviewCarousel from '../_components/ReviewCarousel';
+import PressShowcase from '../_components/PressShowcase';
+import HeroSection from '../_components/HeroSection';
 
 export default function LandingPage() {
   return (
