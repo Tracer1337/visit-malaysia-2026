@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
+import { LandingPageFooter } from '@/_lib/strapi/landing-page';
 
-export function Footer() {
+export function Footer({ data }: { data: LandingPageFooter }) {
   return (
     <footer className="bg-black py-[60px]">
       <div className="container mx-auto">
@@ -70,7 +71,7 @@ export function Footer() {
           className="text-[#D1D5DB] text-center mt-4"
           element="p"
         >
-          © 2024 EpicHolidays. All rights reserved
+          {data.CopyrightSubtitle}
         </Typography>
       </div>
     </footer>

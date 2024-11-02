@@ -1,27 +1,31 @@
+import { LandingPageEditorsChoiceGroup } from '@/_lib/strapi/landing-page';
 import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
 
-export function TravelPlanShowcase() {
+export function EditorsChoiceShowcase({
+  data,
+}: {
+  data: LandingPageEditorsChoiceGroup;
+}) {
   return (
     <div className="md:grid md:grid-cols-2 md:grid-rows-1 md:items-center">
       <div className="md:p-0 md:max-w-[600px] md:justify-self-end md:mr-12">
         <Typography
           variant="body1"
-          className="font-semibold text-white uppercase"
+          className="font-semibold text-white"
           element="p"
         >
-          EDITORS’ CHOICE : TRAVEL PLAN
+          {data.EditorsChoiceTitle}
         </Typography>
-        <Typography variant="h2" className="mt-3 capitalize text-white">
-          Sipadan : Beauty beyond words
+        <Typography variant="h2" className="mt-3 text-white">
+          {data.EditorsChoiceName}
         </Typography>
         <Typography
           variant="body2"
           className="opacity-75 md:mt-3 text-white"
           element="p"
         >
-          Farah has been dreaming to go to Sipadan. So when Ahmed surprised her
-          with this birthday trip, she didn’t think
+          {data.EditorsChoiceDesc}
         </Typography>
         <div className="gap-2 mt-3 grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 [&>img]:w-full">
           <Placeholder width={181} height={130} />
@@ -42,12 +46,9 @@ export function TravelPlanShowcase() {
           </div>
         </div>
         <div className="p-4">
-          <Typography variant="h4">Sed ut perspiciatis unde omnis</Typography>
+          <Typography variant="h4">{data.EditorsChoiceBlogTitle}</Typography>
           <Typography variant="body1" className="mt-4 opacity-75" element="p">
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-            fugit, sed quia consequuntur magni dolores eos qui ratione
-            voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
-            ipsum quia dolor sit amet.
+            {data.EditorsChoiceBlogDesc}
           </Typography>
         </div>
       </div>

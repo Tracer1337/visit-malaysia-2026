@@ -1,40 +1,35 @@
+import { LandingPageActivityGroup } from '@/_lib/strapi/landing-page';
 import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
 
-export function ActivityShowcase() {
+export function ActivityShowcase({ data }: { data: LandingPageActivityGroup }) {
   return (
     <div className="md:grid md:grid-cols-2 md:grid-rows-1 md:items-center">
       <div className="container md:p-0 md:max-w-[600px] justify-self-end">
         <Typography
           variant="body1"
-          className="font-semibold text-[#0A1B74] uppercase"
+          className="font-semibold text-[#0A1B74]"
           element="p"
         >
-          ACTIVITIES : HIGHLIGHT OF THE MONTH
+          {data.ActivitiesTitle}
         </Typography>
-        <Typography variant="h2" className="md:mt-3 capitalize">
-          Bread softer than cotton cloud
+        <Typography variant="h2" className="md:mt-3">
+          {data.ActivityNameTitle}
         </Typography>
         <Typography
           variant="body2"
           className="md:opacity-75 md:mt-3"
           element="p"
         >
-          Fancy homemade fresh and halal TangZhong bread ? Join Rosli’s bakery
-          class 24/5 and 28/5 and master the secret in creating these pillow
-          soft bread roll
+          {data.ActivityNameDesc}
         </Typography>
         <div className="flex items-center mt-3">
           <Placeholder width={24} height={24} className="mr-2" />
-          <Typography variant="body1">
-            I’m interested. <span className="underline">Find out more</span>
-          </Typography>
+          <Typography variant="body1">{data.InterestenButton}</Typography>
         </div>
         <div className="flex items-center mt-3">
           <Placeholder width={24} height={24} className="mr-2" />
-          <Typography variant="body1">
-            Show me other ideas around Kuala Lumpur
-          </Typography>
+          <Typography variant="body1">{data.ShowOtherButton}</Typography>
         </div>
       </div>
       <Placeholder

@@ -1,4 +1,4 @@
-import type { HeroSectionItem } from '@/_components/HeroSection/HeroSection';
+import { HeroSectionItem } from '@/_components/HeroSection/HeroSection';
 import Carousel from '@/_components/ui/Carousel';
 import { RefObject } from 'react';
 
@@ -18,9 +18,8 @@ export function useUpdateHeroSection({
     }
 
     const indexElement = document.querySelector('#hero-section-index');
-    const titleElement = document.querySelector('#hero-section-title');
 
-    if (!indexElement || !titleElement) {
+    if (!indexElement) {
       console.log('Hero-Element could not be found');
       return;
     }
@@ -32,8 +31,7 @@ export function useUpdateHeroSection({
       return;
     }
 
-    indexElement.innerHTML = (item.index + 1).toString().padStart(2, '0');
-    titleElement.innerHTML = item.title;
+    indexElement.innerHTML = item.item.ImgNum;
 
     carousel.slickGoTo(item.index);
   };

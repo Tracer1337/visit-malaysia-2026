@@ -1,19 +1,24 @@
-import Placeholder from '../ui/Placeholder';
+import { ImageList } from '@/_lib/strapi/media';
 import Typography from '../ui/Typography';
+import StrapiImage from '../ui/StrapiImage';
 
-export function PressShowcase() {
+export function PressShowcase({
+  data,
+}: {
+  data: {
+    title: string;
+    images: ImageList;
+  };
+}) {
   return (
     <>
       <Typography variant="h3" className="text-center">
-        From The Press
+        {data.title}
       </Typography>
       <div className="flex justify-center items-start gap-3 mt-6">
-        <Placeholder width={110} height={112} />
-        <Placeholder width={141} height={105} />
-        <Placeholder width={92} height={123} />
-        <Placeholder width={112} height={90} />
-        <Placeholder width={128} height={85} />
-        <Placeholder width={160} height={92} />
+        {data.images.data.map((image) => (
+          <StrapiImage key={image.id} data={image.attributes} />
+        ))}
       </div>
     </>
   );
