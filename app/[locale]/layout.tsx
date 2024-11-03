@@ -25,9 +25,11 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  hero,
   params,
 }: Readonly<{
   children: React.ReactNode;
+  hero: React.ReactNode;
   params: Promise<{
     locale: Locale;
   }>;
@@ -45,6 +47,7 @@ export default async function RootLayout({
         <div className="container mx-auto pt-4">
           <Navigation data={landingPageData.data.attributes.Header} />
         </div>
+        {hero}
         {children}
         <Footer data={landingPageData.data.attributes.Footer} />
       </body>
