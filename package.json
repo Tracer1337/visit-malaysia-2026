@@ -21,6 +21,7 @@
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.58.1",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^20",
     "@types/qs": "^6.9.16",

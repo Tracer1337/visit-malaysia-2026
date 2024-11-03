@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
 import { LandingPageSearchGroup } from '@/_lib/strapi/landing-page';
+import InputAutocomplete from './components/InputAutocomplete';
 
 export function DiscoverySearch({ data }: { data: LandingPageSearchGroup }) {
   const links: {
@@ -32,7 +33,7 @@ export function DiscoverySearch({ data }: { data: LandingPageSearchGroup }) {
       <Typography variant="h2" className="text-[#0A1B74] text-center mt-3">
         {data.TitleDiscover}
       </Typography>
-      <div className="my-7 h-[120px] xl:h-[59px] bg-gray-700 w-full"></div>
+      <InputAutocomplete />
       <Typography variant="body1" className="font-semibold mb-6">
         {data.SubtitleMostPeople}
       </Typography>

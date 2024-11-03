@@ -5,6 +5,7 @@ import Navigation from '../_components/Navigation';
 import Footer from '../_components/Footer';
 import { i18n, Locale } from '../../i18n-config';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
+import { GoogleMapsBootstrapScript } from '@/_lib/google/maps';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -37,6 +38,9 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <GoogleMapsBootstrapScript />
+      </head>
       <body className={`${inter.className} ${dm_sans.variable} antialiased`}>
         <div className="container mx-auto pt-4">
           <Navigation data={landingPageData.data.attributes.Header} />

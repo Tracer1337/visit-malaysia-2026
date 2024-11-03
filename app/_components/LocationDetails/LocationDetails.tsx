@@ -1,13 +1,13 @@
 import LocationCard from '../LocationCard';
 import Typography from '../ui/Typography';
 
-export function LocationDetails() {
+export function LocationDetails({ location }: { location: string }) {
   return (
     <>
       <div className="mt-4 xl:-mt-[67px] h-[396px] xl:h-[661px] bg-slate-500">
         <div className="container mx-auto pt-[60px] xl:pt-[230px]">
           <Typography variant="h1" className="text-white xl:max-w-[60%]">
-            Sarawak Charm Heartbeat of our 130 billion year-old
+            {location}
           </Typography>
         </div>
       </div>
