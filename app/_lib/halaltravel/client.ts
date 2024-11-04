@@ -10,7 +10,7 @@ export async function fetchHalalTravelAPI<T>(
   options: RequestInit = {},
 ) {
   const query = qs.stringify(urlParams);
-  const url = getHalalTravelURL(`/api${path}?${query}`);
+  const url = getHalalTravelURL(`${path}?${query}`);
 
   const res = await fetch(url, {
     ...options,

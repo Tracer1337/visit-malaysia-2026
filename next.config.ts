@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         hostname: new URL(process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL ?? '')
           .hostname,
       },
+      {
+        protocol: 'https',
+        hostname: new URL(process.env.NEXT_PUBLIC_HALAL_TRAVEL_API_URL ?? '')
+          .hostname,
+      },
     ],
     // TODO: Must be removed before release
     dangerouslyAllowSVG: true,

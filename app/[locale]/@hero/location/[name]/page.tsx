@@ -5,7 +5,13 @@ export default async function HeroSectionLocationPage({
 }: {
   params: Promise<{ name: string }>;
 }) {
-  const { name } = await params;
-
-  return <LocationDetails location={name} />;
+  return (
+    <LocationDetails
+      query={{
+        location: 'Mersing',
+        state: 'Johor',
+        country: 'Malaysia',
+      }}
+    />
+  );
 }
