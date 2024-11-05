@@ -5,7 +5,6 @@ import { i18n } from './i18n-config';
 
 import { match as matchLocale } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
-import { multipleMiddlewares } from '@/_lib/middleware';
 
 export const config = {
   matcher:
@@ -23,7 +22,7 @@ function getLocale(request: NextRequest): string | undefined {
   );
 }
 
-function i18nMiddleware(request: NextRequest) {
+export default function i18nMiddleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   if (pathname.startsWith('/api')) {
@@ -43,26 +42,3 @@ function i18nMiddleware(request: NextRequest) {
 
   return NextResponse.next();
 }
-
-function basicAuthMiddleware(req: NextRequest) {
-  const basicAuth = req.headers.get('authorization');
-  const url = req.nextUrl;
-
-  if (basicAuth) {
-    const authValue = basicAuth.split(' ')[1];
-    const [user, pwd] = atob(authValue).split(':');
-
-    if (user === 'user' && pwd === 'yWOrymPRetEM') {
-      return NextResponse.next();
-    }
-  }
-
-  url.pathname = '/api/auth';
-
-  return NextResponse.rewrite(url);
-}
-
-export const middleware = multipleMiddlewares([
-  basicAuthMiddleware,
-  i18nMiddleware,
-]);

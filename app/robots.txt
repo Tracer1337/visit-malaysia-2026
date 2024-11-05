@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /api/
+Disallow: /_next/
+Allow: /public/
+Allow: /
+
+Sitemap: https://www.visitmalaysia2026.com/sitemap.xml
