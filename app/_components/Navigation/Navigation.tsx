@@ -3,6 +3,7 @@ import Button from '@/_components/ui/Button';
 import { LandingPageHeader } from '@/_lib/strapi/landing-page';
 import Image from 'next/image';
 import BurgerMenuIcon from '@/_lib/svg/BurgerMenuIcon';
+import LanguageSelect from '../LanguageSelect';
 
 export function Navigation({ data }: { data: LandingPageHeader }) {
   const links: {
@@ -32,7 +33,7 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
   ];
 
   return (
-    <nav className="flex justify-between items-center xl:items-start">
+    <nav className="flex justify-between items-center xl:items-start relative z-10">
       <div className="flex">
         <Image
           src="/img/logo.png"
@@ -62,7 +63,10 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
       </div>
       <div>
         <BurgerMenuIcon className="xl:hidden bg-gray-400" />
-        <div className="hidden xl:block">
+        <div className="max-xl:hidden">
+          <span className="mr-3">
+            <LanguageSelect />
+          </span>
           <Link href="/" className="mr-3">
             <Button variant="secondary">{data.SignInButton}</Button>
           </Link>

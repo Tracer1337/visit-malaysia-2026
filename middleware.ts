@@ -16,7 +16,11 @@ function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
   const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-  return matchLocale(languages, i18n.locales, i18n.defaultLocale);
+  return matchLocale(
+    languages,
+    i18n.locales.map((locale) => locale.code),
+    i18n.defaultLocale,
+  );
 }
 
 function i18nMiddleware(request: NextRequest) {
@@ -27,7 +31,7 @@ function i18nMiddleware(request: NextRequest) {
   }
 
   const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}`),
+    (locale) => !pathname.startsWith(`/${locale.code}`),
   );
 
   if (pathnameIsMissingLocale) {
