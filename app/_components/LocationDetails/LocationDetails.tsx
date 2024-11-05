@@ -23,6 +23,7 @@ export async function LocationDetails({
             src={query.thumbnailUrl}
             alt=""
             fill
+            sizes="100vw"
             className="object-center object-cover pointer-events-none -z-10 brightness-50"
           />
         )}

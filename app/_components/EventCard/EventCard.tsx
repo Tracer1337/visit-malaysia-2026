@@ -8,7 +8,12 @@ export function EventCard({ data }: { data: LandingPageEvent }) {
     <div className="shadow-lg p-4 max-w-[336px] bg-white rounded-xl">
       <div className="grid grid-cols-[116px_minmax(0,_1fr)] grid-rows-1">
         <div className="w-[116px] h-[116px] relative">
-          <StrapiImage data={data.UserImg.data} fill className="object-cover" />
+          <StrapiImage
+            data={data.UserImg.data}
+            fill
+            sizes="116px"
+            className="object-cover"
+          />
         </div>
         <div className="pl-6">
           <div className="flex items-center">
