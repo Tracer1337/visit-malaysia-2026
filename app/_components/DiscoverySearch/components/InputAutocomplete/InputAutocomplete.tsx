@@ -1,19 +1,13 @@
 'use client';
 
 import { useGoogleMapsAutocomplete } from '@/_lib/google/hooks/useGoogleMapsAutocomplete';
-import { useParams, useRouter } from 'next/navigation';
-import { Locale } from '../../../../../i18n-config';
+import { useDiscoverySearchRedirect } from './hooks/useDiscoverySearchRedirect';
 
 export function InputAutocomplete() {
-  const router = useRouter();
-
-  const params = useParams<{ locale: Locale }>();
+  const redirect = useDiscoverySearchRedirect();
 
   const { inputRef } = useGoogleMapsAutocomplete({
-    onPlaceSelect: (place) => {
-      const location = place.address_components?.[0].long_name;
-      router.push(`/${params.locale}/location/${location}`);
-    },
+    onPlaceSelect: redirect,
   });
 
   return (

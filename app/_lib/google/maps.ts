@@ -1,7 +1,6 @@
 import Script from 'next/script';
 import { createElement } from 'react';
 
-// TODO: Enable new places api
 export function GoogleMapsBootstrapScript() {
   return createElement(
     Script,
@@ -48,23 +47,3 @@ export function GoogleMapsBootstrapScript() {
   `,
   );
 }
-
-// export function GoogleMapsBootstrapScript() {
-//   return createElement(
-//     Fragment,
-//     null,
-//     createElement(
-//       Script,
-//       null,
-//       /*js*/ `
-//       window.isGoogleMapsLodaded = new Promise((resolve) => {
-//         console.log("Init Google Maps")
-//         window.initGoogleMaps = resolve
-//       })
-//     `,
-//     ),
-//     createElement(Script, {
-//       src: `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&loading=async&libraries=places&callback=initGoogleMaps`,
-//     }),
-//   );
-// }

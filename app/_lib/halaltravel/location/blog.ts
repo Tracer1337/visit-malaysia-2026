@@ -1,10 +1,7 @@
 import { fetchHalalTravelAPI } from '../client';
+import { LocationQuery } from './types';
 
-export function fetchLocationBlog(query: {
-  location: string;
-  state: string;
-  country: string;
-}) {
+export function fetchLocationBlog(query: LocationQuery) {
   try {
     return fetchHalalTravelAPI<LocationBlogResponse>(
       '/ht/api/blog/srp',

@@ -17,9 +17,11 @@ const nextConfig: NextConfig = {
         hostname: new URL(process.env.NEXT_PUBLIC_HALAL_TRAVEL_API_URL ?? '')
           .hostname,
       },
+      {
+        protocol: 'https',
+        hostname: 'maps.googleapis.com',
+      },
     ],
-    // TODO: Must be removed before release
-    dangerouslyAllowSVG: true,
   },
 };
 
