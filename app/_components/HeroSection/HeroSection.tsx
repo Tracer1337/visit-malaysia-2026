@@ -1,8 +1,9 @@
 import React from 'react';
-import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
 import HeroSectionCarousel from './components/HeroSectionCarousel';
 import { LandingPageCarouselItem } from '@/_lib/strapi/landing-page';
+import StrapiImage from '../ui/StrapiImage';
+import Image from 'next/image';
 
 export type HeroSectionItem = {
   index: number;
@@ -18,8 +19,14 @@ export async function HeroSection({
   };
 }) {
   return (
-    <div className="mt-4 xl:-mt-[67px] xl:h-[812px] bg-slate-500 overflow-x-hidden">
-      <div className="container pt-[60px] pb-[85px] xl:mx-auto xl:pb-0 xl:pt-[155px] xl:grid xl:grid-cols-[minmax(0,_1.1fr),_minmax(0,_0.9fr)] xl:grid-rows-1">
+    <div className="mt-4 xl:-mt-[67px] xl:h-[812px] overflow-x-hidden relative">
+      <Image
+        src="/img/hero-background.png"
+        alt=""
+        fill
+        className="object-center object-cover pointer-events-none -z-10"
+      />
+      <div className="relative container pt-[60px] pb-[85px] xl:mx-auto xl:pb-0 xl:pt-[155px] xl:grid xl:grid-cols-[minmax(0,_1.1fr),_minmax(0,_0.9fr)] xl:grid-rows-1">
         <div className="xl:mt-[75px]">
           <div className="px-4 py-1.5 bg-[#2A3075] rounded-lg w-fit">
             <Typography
@@ -44,10 +51,11 @@ export async function HeroSection({
                   item,
                 } as HeroSectionItem)}
               />
-              <Placeholder
-                width={316}
-                height={573}
-                className="absolute inset-0"
+              <StrapiImage
+                data={item.ImgState.data}
+                alt=""
+                fill
+                className="absolute inset-0 object-cover"
               />
               <div className="absolute inset-0 px-2 py-2.5 xl:px-5 xl:py-6 flex flex-col justify-between">
                 <div className="px-2 py-[2px] xl:px-4 xl:py-1.5 bg-[#2A3075] rounded-lg w-fit">

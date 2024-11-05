@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Button from '@/_components/ui/Button';
-import Placeholder from '../ui/Placeholder';
 import { LandingPageHeader } from '@/_lib/strapi/landing-page';
 import Image from 'next/image';
 import BurgerMenuIcon from '@/_lib/svg/BurgerMenuIcon';

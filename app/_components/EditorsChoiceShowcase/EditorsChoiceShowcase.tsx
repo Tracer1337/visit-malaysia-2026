@@ -1,6 +1,6 @@
 import { LandingPageEditorsChoiceGroup } from '@/_lib/strapi/landing-page';
-import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
+import StrapiImage from '../ui/StrapiImage';
 
 export function EditorsChoiceShowcase({
   data,
@@ -28,17 +28,26 @@ export function EditorsChoiceShowcase({
           {data.EditorsChoiceDesc}
         </Typography>
         <div className="gap-2 mt-3 grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 [&>img]:w-full">
-          <Placeholder width={181} height={130} />
-          <Placeholder width={181} height={130} />
-          <Placeholder width={181} height={130} />
-          <Placeholder width={181} height={130} />
-          <Placeholder width={181} height={130} />
-          <Placeholder width={181} height={130} />
+          {data.EditorsChoiceImgs.data.map((img) => (
+            <StrapiImage
+              data={img}
+              key={img.id}
+              width={181}
+              height={130}
+              className="w-[181px] h-[130px]"
+            />
+          ))}
         </div>
       </div>
       <div className="xl:w-[552px] bg-white md:ml-6 mt-6 md:mt-0">
         <div className="relative">
-          <Placeholder width={552} height={322} className="max-md:w-full" />
+          <video
+            width={552}
+            height={322}
+            className="max-md:w-full"
+            src={data.EditorsChoiceVideo.data.attributes.url}
+            controls
+          />
           <div className="absolute top-0 left-0 px-2.5 py-1 bg-[#F24949] rounded-br-md">
             <Typography variant="body2" className="font-semibold text-shite">
               Tried & Tested

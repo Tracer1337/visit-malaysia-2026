@@ -17,7 +17,7 @@ export function PressShowcase({
       </Typography>
       <div className="flex justify-center items-start gap-3 mt-6">
         {data.images.data.map((image) => (
-          <StrapiImage key={image.id} data={image.attributes} />
+          <StrapiImage key={image.id} data={image} />
         ))}
       </div>
     </>

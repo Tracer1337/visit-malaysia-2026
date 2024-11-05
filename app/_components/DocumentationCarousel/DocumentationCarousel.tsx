@@ -34,7 +34,7 @@ export function DocumentationCarousel({
         {data.images.data.map((item) => (
           <StrapiImage
             key={item.id}
-            data={item.attributes}
+            data={item}
             className="rounded-xl h-[142px] xl:h-[210px]"
           />
         ))}

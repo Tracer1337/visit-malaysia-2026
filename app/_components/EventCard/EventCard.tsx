@@ -1,13 +1,15 @@
 import { LandingPageEvent } from '@/_lib/strapi/landing-page';
-import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
 import LocationIcon from '@/_lib/svg/LocationIcon';
+import StrapiImage from '../ui/StrapiImage';
 
 export function EventCard({ data }: { data: LandingPageEvent }) {
   return (
     <div className="shadow-lg p-4 max-w-[336px] bg-white rounded-xl">
       <div className="grid grid-cols-[116px_minmax(0,_1fr)] grid-rows-1">
-        <Placeholder width={116} height={116} />
+        <div className="w-[116px] h-[116px] relative">
+          <StrapiImage data={data.UserImg.data} fill className="object-cover" />
+        </div>
         <div className="pl-6">
           <div className="flex items-center">
             <LocationIcon fill="#F24949" className="mr-1" />

@@ -1,7 +1,7 @@
 import { LandingPageActivityGroup } from '@/_lib/strapi/landing-page';
-import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
 import ChevronRightIcon from '@/_lib/svg/ChevronRightIcon';
+import StrapiImage from '../ui/StrapiImage';
 
 export function ActivityShowcase({ data }: { data: LandingPageActivityGroup }) {
   return (
@@ -33,9 +33,8 @@ export function ActivityShowcase({ data }: { data: LandingPageActivityGroup }) {
           <Typography variant="body1">{data.ShowOtherButton}</Typography>
         </div>
       </div>
-      <Placeholder
-        width={469}
-        height={373}
+      <StrapiImage
+        data={data.ActivityImg.data}
         className="max-md:w-full mt-6 md:mt-0 md:ml-4 xl:ml-14"
       />
     </div>

@@ -4,10 +4,7 @@ import ActivityShowcase from '../_components/ActivityShowcase';
 import Adverts from '../_components/Adverts';
 import DiscoverySearch from '../_components/DiscoverySearch';
 import DocumentationCarousel from '../_components/DocumentationCarousel';
-import LocationCarousel from '../_components/LocationCarousel';
-import Button from '../_components/ui/Button';
 import EventCarousel from '../_components/EventCarousel';
-import ReviewCarousel from '../_components/ReviewCarousel';
 import PressShowcase from '../_components/PressShowcase';
 import EditorsChoiceShowcase from '@/_components/EditorsChoiceShowcase';
 
@@ -27,10 +24,11 @@ export default async function LandingPage({
           <DiscoverySearch data={data.attributes.SearchGroup} />
         </section>
       </div>
-      <section className="container mx-auto mt-6 xl:mt-20">
+      <section className="container mx-auto my-6 xl:my-20">
         <Adverts />
       </section>
-      <section className="container mt-[50px] xl:mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
+      {/* API for theses sections is not available yet */}
+      {/* <section className="container mt-[50px] xl:mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
         <LocationCarousel
           data={{
             title: 'Top Recommend Itineraries',
@@ -58,7 +56,7 @@ export default async function LandingPage({
         <div className="flex justify-center">
           <Button>Load More</Button>
         </div>
-      </section>
+      </section> */}
       <section className="bg-[#F7F9FA] py-6 xl:py-[80px]">
         <div className="container mx-auto">
           <ActivityShowcase data={data.attributes.ActivityGroup} />
@@ -81,7 +79,7 @@ export default async function LandingPage({
           />
         </div>
       </section>
-      <section className="bg-[#F7F9FA] pt-6 xl:pt-[50px]">
+      <section className="bg-[#F7F9FA] pt-6 xl:pt-[100px]">
         <div className="container mx-auto">
           <DocumentationCarousel
             data={{
@@ -91,11 +89,12 @@ export default async function LandingPage({
           />
         </div>
       </section>
-      <section className="bg-[#F7F9FA] pt-[64px] xl:pt-[90px]">
+      {/* API for theses sections is not available yet */}
+      {/* <section className="bg-[#F7F9FA] pt-[64px] xl:pt-[90px]">
         <div className="container mx-auto">
           <ReviewCarousel />
         </div>
-      </section>
+      </section> */}
       <section className="bg-[#F7F9FA] pt-[84px] xl:pt-[100px] pb-[50px]">
         <div className="container mx-auto">
           <PressShowcase

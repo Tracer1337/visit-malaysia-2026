@@ -1,12 +1,43 @@
 import { Locale } from '../../../i18n-config';
 import { fetchStrapiAPI } from './client';
 import { Localizations } from './i18n';
-import { ImageList } from './media';
+import { Image, ImageList, Video } from './media';
 
 export function fetchLandingPage({ locale }: { locale: Locale }) {
   try {
     return fetchStrapiAPI<LandingPageResponse>('/landing-new', {
-      populate: '*',
+      populate: {
+        LandingCarousel: {
+          populate: '*',
+        },
+        SearchGroup: {
+          populate: '*',
+        },
+        ActivityGroup: {
+          populate: '*',
+        },
+        EditorsChoiceGroup: {
+          populate: '*',
+        },
+        EventList: {
+          populate: '*',
+        },
+        OurFunDocumentationImg: {
+          populate: '*',
+        },
+        PressImg: {
+          populate: '*',
+        },
+        Footer: {
+          populate: '*',
+        },
+        Header: {
+          populate: '*',
+        },
+        localizations: {
+          populate: '*',
+        },
+      },
       locale,
     });
   } catch (error) {
@@ -53,6 +84,7 @@ export interface LandingPageCarouselItem {
   id: number;
   ImgNum: string;
   ImgDesc: string;
+  ImgState: Image;
 }
 
 export interface LandingPageSearchGroup {
@@ -71,6 +103,7 @@ export interface LandingPageActivityGroup {
   ActivityNameDesc: string;
   InterestenButton: string;
   ShowOtherButton: string;
+  ActivityImg: Image;
 }
 
 export interface LandingPageEditorsChoiceGroup {
@@ -80,6 +113,8 @@ export interface LandingPageEditorsChoiceGroup {
   EditorsChoiceDesc: string;
   EditorsChoiceBlogTitle: string;
   EditorsChoiceBlogDesc: string;
+  EditorsChoiceImgs: ImageList;
+  EditorsChoiceVideo: Video;
 }
 
 export interface LandingPageEvent {
@@ -89,6 +124,7 @@ export interface LandingPageEvent {
   EventTitle2: string;
   EventDesc: string;
   EventTitle: string;
+  UserImg: Image;
 }
 
 export interface LandingPageFooter {
