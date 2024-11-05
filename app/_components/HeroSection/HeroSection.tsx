@@ -27,6 +27,7 @@ export async function HeroSection({
         fill
         sizes="100vw"
         className="object-center object-cover pointer-events-none -z-10"
+        priority
       />
       <div className="relative container pt-[60px] pb-[85px] xl:mx-auto xl:pb-0 xl:pt-[155px] xl:grid xl:grid-cols-[minmax(0,_1.1fr),_minmax(0,_0.9fr)] xl:grid-rows-1">
         <div className="xl:mt-[75px]">
