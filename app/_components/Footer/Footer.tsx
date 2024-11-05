@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
 import { LandingPageFooter } from '@/_lib/strapi/landing-page';
+import Image from 'next/image';
 
 export function Footer({ data }: { data: LandingPageFooter }) {
   return (
@@ -9,11 +9,26 @@ export function Footer({ data }: { data: LandingPageFooter }) {
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row">
           <div className="xl:mr-[100px] max-xl:flex max-xl:justify-center max-xl:flex-wrap max-xl:mb-6">
-            <Placeholder width={153} height={51} />
+            <Image
+              src="/img/logo-white.png"
+              alt="Visit Malaysia 2026"
+              width={153}
+              height={51}
+            />
 
             <div className="flex gap-3 mt-8">
-              <Placeholder width={181} height={54} />
-              <Placeholder width={181} height={54} />
+              <Image
+                src="/img/download-google-play.png"
+                alt="Download Google Play"
+                width={181}
+                height={54}
+              />
+              <Image
+                src="/img/download-app-store.png"
+                alt="Download App Store"
+                width={181}
+                height={54}
+              />
             </div>
           </div>
           <div className="max-xl:mt-6 xl:w-[176px] xl:mr-8">

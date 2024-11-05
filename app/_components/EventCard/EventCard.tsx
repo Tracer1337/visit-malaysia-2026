@@ -1,6 +1,7 @@
 import { LandingPageEvent } from '@/_lib/strapi/landing-page';
 import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
+import LocationIcon from '@/_lib/svg/LocationIcon';
 
 export function EventCard({ data }: { data: LandingPageEvent }) {
   return (
@@ -9,7 +10,7 @@ export function EventCard({ data }: { data: LandingPageEvent }) {
         <Placeholder width={116} height={116} />
         <div className="pl-6">
           <div className="flex items-center">
-            <Placeholder width={18} height={18} className="mr-1" />
+            <LocationIcon fill="#F24949" className="mr-1" />
             <Typography
               variant="body2"
               className="font-semibold opacity-75 line-clamp-1"

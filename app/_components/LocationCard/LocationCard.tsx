@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
+import DottedMenuIcon from '@/_lib/svg/DottedMenuIcon';
+import RatingStarIcon from '@/_lib/svg/RatingStarIcon';
 
 export function LocationCard({
   data,
@@ -39,7 +41,7 @@ export function LocationCard({
               Hannisa Travelers
             </Typography>
           </div>
-          <Placeholder width={24} height={24} />
+          <DottedMenuIcon className="w-6 h-6" />
         </div>
         <div className="mt-3">
           <Typography variant="body1" className="font-semibold text-[#0B0B0B]">
@@ -58,11 +60,11 @@ export function LocationCard({
             4.5/5 Ratings
           </Typography>
           <div className="flex gap-1.5">
-            <Placeholder width={22} height={22} />
-            <Placeholder width={22} height={22} />
-            <Placeholder width={22} height={22} />
-            <Placeholder width={22} height={22} />
-            <Placeholder width={22} height={22} />
+            <RatingStarIcon fill="#FF8F15" />
+            <RatingStarIcon fill="#FF8F15" />
+            <RatingStarIcon fill="#FF8F15" />
+            <RatingStarIcon fill="#FF8F15" />
+            <RatingStarIcon fill="#FF8F15" />
           </div>
         </div>
       </div>

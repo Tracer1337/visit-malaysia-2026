@@ -1,5 +1,8 @@
+import LocationIcon from '@/_lib/svg/LocationIcon';
 import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
+import TrustpilotStarIconFilled from '@/_lib/svg/TrustpilotStarIconFilled';
+import TrustpilotStarIconOutlined from '@/_lib/svg/TrustpilotStarIconOutlined';
 
 export function ReviewCard() {
   return (
@@ -11,7 +14,7 @@ export function ReviewCard() {
             Ousman T
           </Typography>
           <div className="mt-1 flex">
-            <Placeholder width={20} height={20} className="mr-1" />
+            <LocationIcon className="mr-1 opacity-60" />
             <Typography variant="body1" className="font-semibold opacity-75">
               Medan
             </Typography>
@@ -23,12 +26,12 @@ export function ReviewCard() {
         Everything is great. Back for a day and I’m planning now our next
       </Typography>
       <div className="mt-4 flex">
-        <Placeholder width={30} height={30} className="mr-4" />
-        <Placeholder width={30} height={30} className="mr-2" />
-        <Placeholder width={30} height={30} className="mr-2" />
-        <Placeholder width={30} height={30} className="mr-2" />
-        <Placeholder width={30} height={30} className="mr-2" />
-        <Placeholder width={30} height={30} />
+        <TrustpilotStarIconOutlined className="mr-4" />
+        <TrustpilotStarIconFilled className="mr-2" />
+        <TrustpilotStarIconFilled className="mr-2" />
+        <TrustpilotStarIconFilled className="mr-2" />
+        <TrustpilotStarIconFilled className="mr-2" />
+        <TrustpilotStarIconFilled />
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export function DocumentationCarousel({
         {data.title}
       </Typography>
       <Carousel
-        className="mt-6 [&_.slick-slide]:pr-[24px] [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black"
+        className="mt-6 [&_.slick-slide]:px-[12px] [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black"
         variableWidth
         infinite
         centerMode
@@ -35,7 +35,7 @@ export function DocumentationCarousel({
           <StrapiImage
             key={item.id}
             data={item.attributes}
-            className="rounded-xl max-w-[142px] xl:max-w-[210px]"
+            className="rounded-xl h-[142px] xl:h-[210px]"
           />
         ))}
       </Carousel>

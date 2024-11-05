@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Button from '@/_components/ui/Button';
 import Placeholder from '../ui/Placeholder';
 import { LandingPageHeader } from '@/_lib/strapi/landing-page';
+import Image from 'next/image';
+import BurgerMenuIcon from '@/_lib/svg/BurgerMenuIcon';
 
 export function Navigation({ data }: { data: LandingPageHeader }) {
   const links: {
@@ -33,7 +35,20 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
   return (
     <nav className="flex justify-between items-center xl:items-start">
       <div className="flex">
-        <Placeholder width={153} height={51} className="mr-9" />
+        <Image
+          src="/img/logo.png"
+          alt="Visit Malaysia 2026a"
+          width={153}
+          height={51}
+          className="mr-9 xl:hidden"
+        />
+        <Image
+          src="/img/logo-white.png"
+          alt="Visit Malaysia 2026a"
+          width={153}
+          height={51}
+          className="mr-9 max-xl:hidden"
+        />
         <div className="hidden xl:flex items-center">
           {links.map((link, i) => (
             <Link
@@ -47,7 +62,7 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
         </div>
       </div>
       <div>
-        <Placeholder width={32} height={32} className="xl:hidden" />
+        <BurgerMenuIcon className="xl:hidden bg-gray-400" />
         <div className="hidden xl:block">
           <Link href="/" className="mr-3">
             <Button variant="secondary">{data.SignInButton}</Button>

@@ -18,7 +18,8 @@
     "react-slick": "^0.30.2",
     "server-only": "^0.0.1",
     "slick-carousel": "^1.8.1",
-    "tailwind-merge": "^2.5.4"
+    "tailwind-merge": "^2.5.4",
+    "tsdef": "^0.0.14"
   },
   "devDependencies": {
     "@types/google.maps": "^3.58.1",
