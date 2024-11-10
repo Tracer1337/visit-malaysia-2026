@@ -14,6 +14,16 @@ export function HeroSectionCarousel({ children }: PropsWithChildren) {
 
   const carouselItemMobileClasses = 'max-w-[145px] h-[264px]';
 
+  const carouselTabletClasses =
+    'md:[&_.slick-slide]:pr-[16px] md:w-[calc(145px*5+16px*5)]';
+
+  const carouselItemTabletClasses = 'md:max-w-[145px] md:h-[264px]';
+
+  const carouselLaptopClasses =
+    'lg:[&_.slick-slide]:pr-[16px] lg:w-[calc(145px*7+16px*7)]';
+
+  const carouselItemLaptopClasses = 'lg:max-w-[145px] lg:h-[264px]';
+
   const carouselDesktopClasses =
     'xl:[&_.slick-slide]:pr-[40px] xl:w-[calc(316px*2+40px*2)]';
 
@@ -21,7 +31,7 @@ export function HeroSectionCarousel({ children }: PropsWithChildren) {
 
   return (
     <div
-      className={`xl:ml-[112px] mt-9 xl:mt-0 ${carouselMobileClasses} ${carouselDesktopClasses}`}
+      className={`xl:ml-[112px] mt-9 xl:mt-0 ${carouselMobileClasses} ${carouselTabletClasses} ${carouselLaptopClasses} ${carouselDesktopClasses}`}
     >
       <Carousel
         ref={carouselRef}
@@ -31,6 +41,18 @@ export function HeroSectionCarousel({ children }: PropsWithChildren) {
           {
             breakpoint: parseInt(tailwindConfig.theme.screens.xl),
             settings: {
+              slidesToShow: 7,
+            },
+          },
+          {
+            breakpoint: parseInt(tailwindConfig.theme.screens.lg),
+            settings: {
+              slidesToShow: 5,
+            },
+          },
+          {
+            breakpoint: parseInt(tailwindConfig.theme.screens.md),
+            settings: {
               slidesToShow: 3,
             },
           },
@@ -38,7 +60,7 @@ export function HeroSectionCarousel({ children }: PropsWithChildren) {
       >
         {React.Children.map(children, (child, i) => (
           <div
-            className={`rounded-2xl relative ${carouselItemMobileClasses} ${carouselItemDesktopClasses} overflow-hidden cursor-pointer`}
+            className={`rounded-2xl relative overflow-hidden cursor-pointer ${carouselItemMobileClasses} ${carouselItemTabletClasses} ${carouselItemLaptopClasses} ${carouselItemDesktopClasses}`}
             key={i}
             onClick={(event) =>
               updateHeroSection(

@@ -27,15 +27,16 @@ export function EditorsChoiceShowcase({
         >
           {data.EditorsChoiceDesc}
         </Typography>
-        <div className="gap-2 mt-3 grid grid-cols-2 grid-rows-3 md:grid-cols-3 md:grid-rows-2 [&>img]:w-full">
+        <div className="gap-2 mt-3 grid grid-cols-2 grid-rows-3 xl:grid-cols-3 xl:grid-rows-2">
           {data.EditorsChoiceImgs.data.map((img) => (
-            <StrapiImage
-              data={img}
-              key={img.id}
-              width={181}
-              height={130}
-              className="w-[181px] h-[130px]"
-            />
+            <div key={img.id} className="w-[100%] h-[130px] relative">
+              <StrapiImage
+                data={img}
+                fill
+                className="object-cover"
+                sizes="181px"
+              />
+            </div>
           ))}
         </div>
       </div>

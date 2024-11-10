@@ -1,12 +1,15 @@
 import LocationDetails from '@/_components/LocationDetails';
 import { LocationQuery } from '@/_lib/halaltravel/location/types';
 import { Metadata } from 'next';
+import { Locale } from '../../../../i18n-config';
+import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 
 export type LocationPageSearchParams = LocationQuery & {
   thumbnailUrl: string | null;
 };
 
 type Props = {
+  params: Promise<{ locale: Locale }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
@@ -32,8 +35,16 @@ export async function generateMetadata({
   };
 }
 
-export default async function HeroSectionLocationPage({ searchParams }: Props) {
-  const query = await loadQuery(searchParams);
+export default async function HeroSectionLocationPage({
+  params,
+  searchParams,
+}: Props) {
+  const { locale } = await params;
 
-  return <LocationDetails query={query} />;
+  const [{ data }, query] = await Promise.all([
+    fetchLandingPage({ locale }),
+    loadQuery(searchParams),
+  ]);
+
+  return <LocationDetails landingPageData={data} query={query} />;
 }
