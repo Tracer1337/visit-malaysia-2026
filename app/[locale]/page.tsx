@@ -7,6 +7,11 @@ import DocumentationCarousel from '../_components/DocumentationCarousel';
 import EventCarousel from '../_components/EventCarousel';
 import PressShowcase from '../_components/PressShowcase';
 import EditorsChoiceShowcase from '@/_components/EditorsChoiceShowcase';
+import BlogCarousel from '@/_components/BlogCarousel';
+import {
+  fetchMostBookmarkedBlog,
+  fetchMostRecentBlog,
+} from '@/_lib/halaltravel/blog';
 
 export default async function LandingPage({
   params,
@@ -15,7 +20,12 @@ export default async function LandingPage({
 }) {
   const { locale } = await params;
 
-  const { data } = await fetchLandingPage({ locale });
+  const [{ data }, mostBookmarkedBlogData, mostRecentBlogData] =
+    await Promise.all([
+      fetchLandingPage({ locale }),
+      fetchMostBookmarkedBlog(),
+      fetchMostRecentBlog(),
+    ]);
 
   return (
     <main>
@@ -27,36 +37,22 @@ export default async function LandingPage({
       <section className="container mx-auto my-6 xl:my-20">
         <Adverts />
       </section>
-      {/* API for theses sections is not available yet */}
-      {/* <section className="container mt-[50px] xl:mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
-        <LocationCarousel
+      <section className="container mt-[50px] xl:mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
+        <BlogCarousel
           data={{
-            title: 'Top Recommend Itineraries',
-            subtitle:
-              'Unique travel plans and experiences shared by guides and travellers',
+            title: 'Most Bookmarked',
             seeMoreButton: data.attributes.SeeMoreButton,
+            items: mostBookmarkedBlogData.content,
           }}
         />
-        <LocationCarousel
+        <BlogCarousel
           data={{
-            title: 'Island & Beaches',
-            subtitle:
-              'From pristine beaches to deep sea dives among the mysteries of the ocean, our communities reserve their best experiences with you. ',
+            title: 'Most Recent',
             seeMoreButton: data.attributes.SeeMoreButton,
+            items: mostRecentBlogData.content,
           }}
         />
-        <LocationCarousel
-          data={{
-            title: 'Cultural & Arts',
-            subtitle:
-              'Unique travel plans and experiences shared by guides and travellers',
-            seeMoreButton: data.attributes.SeeMoreButton,
-          }}
-        />
-        <div className="flex justify-center">
-          <Button>Load More</Button>
-        </div>
-      </section> */}
+      </section>
       <section className="bg-[#F7F9FA] py-6 xl:py-[80px]">
         <div className="container mx-auto">
           <ActivityShowcase data={data.attributes.ActivityGroup} />

@@ -1,17 +1,17 @@
 import Link from 'next/link';
-import LocationCard from '../LocationCard';
+import BlogCard from '../BlogCard';
 import Typography from '../ui/Typography';
 import Carousel from '../ui/Carousel';
 import { tailwindConfig } from '@/_lib/tailwind';
+import { BlogContent } from '@/_lib/halaltravel/blog';
 
-const items = Array(10).fill(0);
-
-export function LocationCarousel({
+export function BlogCarousel({
   data,
 }: {
   data: {
     title: string;
-    subtitle: string;
+    subtitle?: string;
+    items: BlogContent[];
     seeMoreButton: string;
   };
 }) {
@@ -26,11 +26,13 @@ export function LocationCarousel({
           {data.seeMoreButton}
         </Link>
       </div>
-      <Typography variant="h5" className="opacity-70 mt-1 xl:mt-2">
-        {data.subtitle}
-      </Typography>
+      {data.subtitle && (
+        <Typography variant="h5" className="opacity-70 mt-1 xl:mt-2">
+          {data.subtitle}
+        </Typography>
+      )}
       <Carousel
-        className="mt-4 xl:mt-6 [&_.slick-slide]:pr-[24px] [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black"
+        className="mt-4 xl:mt-6 [&_.slick-slide]:pr-[24px] [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black [&_.slick-track]:py-2"
         variableWidth
         dots
         responsive={[
@@ -43,8 +45,8 @@ export function LocationCarousel({
           },
         ]}
       >
-        {items.map((_, i) => (
-          <LocationCard key={i} />
+        {data.items.map((item, i) => (
+          <BlogCard key={i} data={item} />
         ))}
       </Carousel>
     </div>

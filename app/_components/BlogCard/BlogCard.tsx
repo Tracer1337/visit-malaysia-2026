@@ -1,33 +1,22 @@
 import Image from 'next/image';
-import Placeholder from '../ui/Placeholder';
 import Typography from '../ui/Typography';
 import DottedMenuIcon from '@/_lib/svg/DottedMenuIcon';
 import RatingStarIcon from '@/_lib/svg/RatingStarIcon';
+import { BlogContent } from '@/_lib/halaltravel/blog';
 
-export function LocationCard({
-  data,
-}: {
-  data?: {
-    title: string;
-    description: string;
-    coverImg: string | null;
-  };
-}) {
-  data ??= {
-    title: 'Trail visit for the mysterious Prince of Peace',
-    description:
-      'Witness the sacred monkey guardians keep the world’s biggest cave temple alive and make your wishes come true.',
-    coverImg: null,
-  };
-
+export function BlogCard({ data }: { data: BlogContent }) {
   return (
     <div className="max-w-[278px] shadow-sm shadow-[#A6AFC366]">
       <div className="relative">
-        {data.coverImg ? (
-          <Image src={data.coverImg} alt="" width={278} height={292} />
-        ) : (
-          <Placeholder width={278} height={292} />
-        )}
+        <div className="w-[278px] h-[292px] relative">
+          <Image
+            src={data.coverImage}
+            alt=""
+            fill
+            sizes="278px"
+            className="object-cover"
+          />
+        </div>
         <div className="absolute top-0 left-0 px-2.5 py-1 bg-[#F24949] rounded-br-md">
           <Typography variant="body2" className="font-semibold text-white">
             Editor Selected
@@ -44,12 +33,15 @@ export function LocationCard({
           <DottedMenuIcon className="w-6 h-6" />
         </div>
         <div className="mt-3">
-          <Typography variant="body1" className="font-semibold text-[#0B0B0B]">
+          <Typography
+            variant="body1"
+            className="font-semibold text-[#0B0B0B] line-clamp-2 min-h-[2lh]"
+          >
             {data.title}
           </Typography>
           <Typography
             variant="body4"
-            className="text-[#637381] line-clamp-2 mt-2"
+            className="text-[#637381] line-clamp-2 mt-2 min-h-[2lh]"
             element="p"
           >
             {data.description}

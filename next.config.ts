@@ -22,7 +22,6 @@ const nextConfig: NextConfig = {
         hostname: 'maps.googleapis.com',
       },
     ],
-    dangerouslyAllowSVG: true,
   },
 };
 

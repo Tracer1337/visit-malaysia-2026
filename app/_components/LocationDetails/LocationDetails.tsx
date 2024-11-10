@@ -1,9 +1,9 @@
 import { fetchLocationDetails } from '@/_lib/halaltravel/location/details';
-import { fetchLocationBlog } from '@/_lib/halaltravel/location/blog';
-import LocationCard from '../LocationCard';
+import BlogCard from '../BlogCard';
 import Typography from '../ui/Typography';
 import { LocationPageSearchParams } from '@/[locale]/@hero/location/page';
 import Image from 'next/image';
+import { fetchLocationBlog } from '@/_lib/halaltravel/blog';
 
 export async function LocationDetails({
   query,
@@ -48,14 +48,7 @@ export async function LocationDetails({
           <Typography variant="h3">Top Recommend Itineraries</Typography>
           <div className="mt-6 flex xl:flex-col gap-6 max-xl:overflow-x-hidden">
             {blog.content.map((content) => (
-              <LocationCard
-                key={content.id}
-                data={{
-                  title: content.title,
-                  description: content.description,
-                  coverImg: null,
-                }}
-              />
+              <BlogCard key={content.id} data={content} />
             ))}
           </div>
         </div>
