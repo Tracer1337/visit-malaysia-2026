@@ -1,11 +1,10 @@
 import HeroSection from '@/_components/HeroSection';
-import { Locale } from '../../../i18n-config';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 
 export default async function HeroSectionPage({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
 

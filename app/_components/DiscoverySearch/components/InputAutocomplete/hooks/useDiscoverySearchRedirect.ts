@@ -1,12 +1,11 @@
 import { useParams, useRouter } from 'next/navigation';
 import qs from 'qs';
-import { Locale } from '@/../i18n-config';
 import { LocationPageSearchParams } from '@/[locale]/@hero/location/page';
 
 export function useDiscoverySearchRedirect() {
   const router = useRouter();
 
-  const params = useParams<{ locale: Locale }>();
+  const params = useParams<{ locale: string }>();
 
   const findComponent = (place: google.maps.places.PlaceResult, type: string) =>
     place.address_components?.find((component) =>

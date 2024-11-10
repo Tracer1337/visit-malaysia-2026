@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { appConfig } from './config';
 
 const nextConfig: NextConfig = {
   images: {
@@ -9,13 +10,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: new URL(process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL ?? '')
-          .hostname,
+        hostname: new URL(appConfig.api.strapi.mediaUrl ?? '').hostname,
       },
       {
         protocol: 'https',
-        hostname: new URL(process.env.NEXT_PUBLIC_HALAL_TRAVEL_API_URL ?? '')
-          .hostname,
+        hostname: new URL(appConfig.api.halalTravel.url ?? '').hostname,
       },
       {
         protocol: 'https',

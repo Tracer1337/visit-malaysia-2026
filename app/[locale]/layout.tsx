@@ -3,10 +3,10 @@ import '../globals.css';
 import { Inter, DM_Sans } from 'next/font/google';
 import Navigation from '../_components/Navigation';
 import Footer from '../_components/Footer';
-import { i18n, Locale } from '../../i18n-config';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 import { GoogleMapsBootstrapScript } from '@/_lib/google/maps';
 import { TouristInformationCenter, WithContext } from 'schema-dts';
+import { appConfig } from '@/../config';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,7 +34,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   hero: React.ReactNode;
   params: Promise<{
-    locale: Locale;
+    locale: string;
   }>;
 }) {
   const { locale } = await params;
@@ -125,5 +125,5 @@ export default async function RootLayout({
 }
 
 export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ locale: locale.code }));
+  return appConfig.i18n.locales.map((locale) => ({ locale: locale.code }));
 }

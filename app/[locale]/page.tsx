@@ -1,4 +1,3 @@
-import { Locale } from '../../i18n-config';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 import ActivityShowcase from '../_components/ActivityShowcase';
 import Adverts from '../_components/Adverts';
@@ -16,7 +15,7 @@ import {
 export default async function LandingPage({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
 

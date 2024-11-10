@@ -1,9 +1,8 @@
-import { Locale } from '../../../i18n-config';
 import { fetchStrapiAPI } from './client';
 import { Localizations } from './i18n';
 import { Image, ImageList, Video } from './media';
 
-export function fetchLandingPage({ locale }: { locale: Locale }) {
+export function fetchLandingPage({ locale }: { locale: string }) {
   try {
     return fetchStrapiAPI<LandingPageResponse>('/landing-new', {
       populate: {

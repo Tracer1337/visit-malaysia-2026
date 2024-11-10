@@ -1,7 +1,8 @@
 import qs from 'qs';
+import { appConfig } from '@/../config';
 
 export function getStrapiURL(path = '') {
-  return `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${path}`;
+  return `${appConfig.api.strapi.url}${path}`;
 }
 
 export async function fetchStrapiAPI<T>(

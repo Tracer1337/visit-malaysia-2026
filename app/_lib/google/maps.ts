@@ -1,5 +1,6 @@
 import Script from 'next/script';
 import { createElement } from 'react';
+import { appConfig } from '@/../config';
 
 export function GoogleMapsBootstrapScript() {
   return createElement(
@@ -41,7 +42,7 @@ export function GoogleMapsBootstrapScript() {
         ? console.warn(p + " only loads once. Ignoring:", g)
         : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
     })({
-      key: "${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}",
+      key: "${appConfig.api.googleMaps.publicApiKey}",
       v: "weekly",
     });
   `,

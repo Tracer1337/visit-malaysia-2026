@@ -1,7 +1,8 @@
 import qs from 'qs';
+import { appConfig } from '@/../config';
 
 export function getHalalTravelURL(path = '') {
-  return `${process.env.NEXT_PUBLIC_HALAL_TRAVEL_API_URL}${path}`;
+  return `${appConfig.api.halalTravel.url}${path}`;
 }
 
 export async function fetchHalalTravelAPI<T>(

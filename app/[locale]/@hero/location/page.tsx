@@ -1,7 +1,6 @@
 import LocationDetails from '@/_components/LocationDetails';
 import { LocationQuery } from '@/_lib/halaltravel/location/types';
 import { Metadata } from 'next';
-import { Locale } from '../../../../i18n-config';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 
 export type LocationPageSearchParams = LocationQuery & {
@@ -9,7 +8,7 @@ export type LocationPageSearchParams = LocationQuery & {
 };
 
 type Props = {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
