@@ -3,20 +3,25 @@ import Typography from '../ui/Typography';
 import DottedMenuIcon from '@/_lib/svg/DottedMenuIcon';
 import RatingStarIcon from '@/_lib/svg/RatingStarIcon';
 import { BlogContent } from '@/_lib/halaltravel/blog';
+import Placeholder from '../ui/Placeholder';
 
 export function BlogCard({ data }: { data: BlogContent }) {
   return (
     <div className="max-w-[278px] shadow-sm shadow-[#A6AFC366]">
       <div className="relative">
-        <div className="w-[278px] h-[292px] relative">
-          <Image
-            src={data.coverImage}
-            alt=""
-            fill
-            sizes="278px"
-            className="object-cover"
-          />
-        </div>
+        {data.coverImage.startsWith('/') ? (
+          <Placeholder width={278} height={292} />
+        ) : (
+          <div className="w-[278px] h-[292px] relative">
+            <Image
+              src={data.coverImage}
+              alt=""
+              fill
+              sizes="278px"
+              className="object-cover"
+            />
+          </div>
+        )}
         <div className="absolute top-0 left-0 px-2.5 py-1 bg-[#F24949] rounded-br-md">
           <Typography variant="body2" className="font-semibold text-white">
             Editor Selected
