@@ -13,6 +13,9 @@ export async function fetchStrapiAPI<T>(
   const query = qs.stringify(urlParams);
   const url = getStrapiURL(`/api${path}?${query}`);
 
+  console.log('FETCH');
+  console.log(url);
+
   const res = await fetch(url, {
     ...options,
     headers: {
@@ -21,6 +24,8 @@ export async function fetchStrapiAPI<T>(
     },
   });
   const data: T = await res.json();
+
+  console.log(data);
 
   return data;
 }

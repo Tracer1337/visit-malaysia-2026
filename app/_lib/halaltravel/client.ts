@@ -13,6 +13,9 @@ export async function fetchHalalTravelAPI<T>(
   const query = qs.stringify(urlParams);
   const url = getHalalTravelURL(`${path}?${query}`);
 
+  console.log('FETCH');
+  console.log(url);
+
   const res = await fetch(url, {
     ...options,
     headers: {
@@ -21,6 +24,8 @@ export async function fetchHalalTravelAPI<T>(
     },
   });
   const data: T = await res.json();
+
+  console.log(data);
 
   return data;
 }
