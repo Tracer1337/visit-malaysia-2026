@@ -7,6 +7,7 @@ import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 import { GoogleMapsBootstrapScript } from '@/_lib/google/maps';
 import { TouristInformationCenter, WithContext } from 'schema-dts';
 import { appConfig } from '@/../config';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -119,6 +120,7 @@ export default async function RootLayout({
         {hero}
         {children}
         <Footer data={landingPageData.data.attributes.Footer} />
+        <SpeedInsights />
       </body>
     </html>
   );
