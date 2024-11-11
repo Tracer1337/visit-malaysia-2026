@@ -24,7 +24,7 @@ export function BlogCard({ data }: { data: BlogContent }) {
         )}
         <div className="absolute top-0 left-0 px-2.5 py-1 bg-[#F24949] rounded-br-md">
           <Typography variant="body2" className="font-semibold text-white">
-            Editor Selected
+            {data.type}
           </Typography>
         </div>
       </div>
