@@ -27,7 +27,9 @@ export function useDiscoverySearchRedirect() {
     const locationPageSearchParams: LocationPageSearchParams = {
       country: findComponent(place, 'country'),
       state: findComponent(place, 'administrative_area_level_1'),
-      location: findComponent(place, 'locality'),
+      location:
+        findComponent(place, 'locality') ??
+        findComponent(place, 'administrative_area_level_1'),
       thumbnailUrl: findThumbnailUrl(place),
     };
     const query = qs.stringify(locationPageSearchParams);
