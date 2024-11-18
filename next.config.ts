@@ -6,10 +6,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'placehold.co',
-      },
-      {
-        protocol: 'https',
         hostname: new URL(appConfig.api.strapi.mediaUrl ?? '').hostname,
       },
       {
@@ -21,7 +17,6 @@ const nextConfig: NextConfig = {
         hostname: 'maps.googleapis.com',
       },
     ],
-    dangerouslyAllowSVG: true,
   },
 };
 

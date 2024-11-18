@@ -1,3 +1,4 @@
+import { appConfig } from '../../../config';
 import { fetchHalalTravelAPI } from './client';
 import { LocationQuery } from './location/types';
 
@@ -56,6 +57,14 @@ export function fetchMostRecentBlog() {
     console.error(error);
     throw new Error('Could not fetch most recent blog from halal-travel api');
   }
+}
+
+export function resolveBlogCoverImageUrl(data: BlogContent) {
+  if (data.type !== 'Blog') {
+    return `${appConfig.api.halalTravel.url}/hv/api/chatgpt/user/itinerary/coverimage/${data.coverImage}`;
+  }
+
+  return data.coverImage;
 }
 
 export interface BlogResponse {
