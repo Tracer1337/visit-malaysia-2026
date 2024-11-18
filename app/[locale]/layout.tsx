@@ -8,6 +8,7 @@ import { GoogleMapsBootstrapScript } from '@/_lib/google/maps';
 import { TouristInformationCenter, WithContext } from 'schema-dts';
 import { appConfig } from '@/../config';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -120,7 +121,10 @@ export default async function RootLayout({
         {hero}
         {children}
         <Footer data={landingPageData.data.attributes.Footer} />
+        {/* Remove Before Submitting Project */}
         <SpeedInsights />
+        {/* Remove Before Submitting Project */}
+        <Analytics />
       </body>
     </html>
   );
