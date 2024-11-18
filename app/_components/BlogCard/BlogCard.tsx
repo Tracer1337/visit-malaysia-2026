@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Typography from '../ui/Typography';
-import DottedMenuIcon from '@/_lib/svg/DottedMenuIcon';
 import RatingStarIcon from '@/_lib/svg/RatingStarIcon';
 import { BlogContent } from '@/_lib/halaltravel/blog';
 import Placeholder from '../ui/Placeholder';
+import BlogCardMenu from './components/BlogCardMenu';
 
 export function BlogCard({ data }: { data: BlogContent }) {
   return (
@@ -35,7 +35,7 @@ export function BlogCard({ data }: { data: BlogContent }) {
               Hannisa Travelers
             </Typography>
           </div>
-          <DottedMenuIcon className="w-6 h-6" />
+          <BlogCardMenu />
         </div>
         <div className="mt-3">
           <Typography
