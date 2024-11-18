@@ -1,4 +1,5 @@
-import { PropsWithChildren } from 'react';
+import { ComponentProps, PropsWithChildren } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 const variants = {
   primary: 'bg-[#00398D] text-white',
@@ -8,15 +9,19 @@ const variants = {
 export function Button({
   onClick,
   variant = 'primary',
+  className,
   children,
 }: PropsWithChildren<{
-  onClick?: () => void;
   variant?: 'primary' | 'secondary';
-}>) {
+}> &
+  ComponentProps<'button'>) {
   return (
     <button
       onClick={onClick}
-      className={`font-medium px-3 py-[10.5px] ${variants[variant]}`}
+      className={twMerge(
+        `font-medium px-3 py-[10.5px] ${variants[variant]}`,
+        className,
+      )}
     >
       {children}
     </button>
