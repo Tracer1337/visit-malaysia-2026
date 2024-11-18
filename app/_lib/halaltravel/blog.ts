@@ -79,7 +79,7 @@ export interface BlogContent {
   userId: number;
   publishDate: string;
   type: string;
-  username: string;
+  username: string | null;
   attractions: string[];
   interests: string[];
   bookmarked: boolean;

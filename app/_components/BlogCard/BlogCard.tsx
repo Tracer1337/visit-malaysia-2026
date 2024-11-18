@@ -32,15 +32,22 @@ export function BlogCard({ data }: { data: BlogContent }) {
         <div className="flex justify-between">
           <div className="px-2.5 py-[3px] bg-[#2A3075] rounded-[4px]">
             <Typography variant="body3" className="text-white">
-              Hannisa Travelers
+              {data.username}
             </Typography>
           </div>
           <BlogCardMenu />
         </div>
         <div className="mt-3">
+          <div className="flex gap-1.5 opacity-70">
+            <Typography variant="body3">{data.savedCount} Saves</Typography>
+            <Typography variant="body3">•</Typography>
+            <Typography variant="body3" className="line-clamp-1 max-w-[150px]">
+              {data.interests.join(', ')}
+            </Typography>
+          </div>
           <Typography
             variant="body1"
-            className="font-semibold text-[#0B0B0B] line-clamp-2 min-h-[2lh]"
+            className="font-semibold text-[#0B0B0B] line-clamp-2 min-h-[2lh] mt-2"
           >
             {data.title}
           </Typography>
