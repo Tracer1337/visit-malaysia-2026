@@ -25,20 +25,20 @@ export function DiscoverySearch({ data }: { data: LandingPageSearchGroup }) {
 
   return (
     <div className="flex flex-col items-center">
-      <AiStarsIcon fill="#0A1B74" className="w-10 h-10 xl:w-16 xl:h-16" />
-      <Typography variant="h2" className="text-[#0A1B74] text-center mt-3">
+      <AiStarsIcon fill="#0A1B74" className="h-10 w-10 xl:h-16 xl:w-16" />
+      <Typography variant="h2" className="mt-3 text-center text-[#0A1B74]">
         {data.TitleDiscover}
       </Typography>
       <InputAutocomplete />
-      <Typography variant="body1" className="font-semibold mb-6">
+      <Typography variant="body1" className="mb-6 font-semibold">
         {data.SubtitleMostPeople}
       </Typography>
-      <div className="flex justify-center flex-wrap gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
         {links.map((link, i) => (
           <Link
             href={link.href}
             key={i}
-            className="bg-[#F5F5F5] px-4 py-3 rounded-xl"
+            className="rounded-xl bg-[#F5F5F5] px-4 py-3"
           >
             <Typography
               variant="body2"

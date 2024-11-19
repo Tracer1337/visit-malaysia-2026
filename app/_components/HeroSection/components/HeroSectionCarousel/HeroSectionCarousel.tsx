@@ -31,7 +31,7 @@ export function HeroSectionCarousel({ children }: PropsWithChildren) {
 
   return (
     <div
-      className={`xl:ml-[112px] mt-9 xl:mt-0 ${carouselMobileClasses} ${carouselTabletClasses} ${carouselLaptopClasses} ${carouselDesktopClasses}`}
+      className={`mt-9 xl:ml-[112px] xl:mt-0 ${carouselMobileClasses} ${carouselTabletClasses} ${carouselLaptopClasses} ${carouselDesktopClasses}`}
     >
       <Carousel
         ref={carouselRef}
@@ -60,7 +60,7 @@ export function HeroSectionCarousel({ children }: PropsWithChildren) {
       >
         {React.Children.map(children, (child, i) => (
           <div
-            className={`rounded-2xl relative overflow-hidden cursor-pointer ${carouselItemMobileClasses} ${carouselItemTabletClasses} ${carouselItemLaptopClasses} ${carouselItemDesktopClasses}`}
+            className={`relative cursor-pointer overflow-hidden rounded-2xl ${carouselItemMobileClasses} ${carouselItemTabletClasses} ${carouselItemLaptopClasses} ${carouselItemDesktopClasses}`}
             key={i}
             onClick={(event) =>
               updateHeroSection(

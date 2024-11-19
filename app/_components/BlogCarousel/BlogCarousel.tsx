@@ -21,18 +21,18 @@ export function BlogCarousel({
         <Typography variant="h3">{data.title}</Typography>
         <Link
           href="/"
-          className="text-heading font-semibold text-xl leading-[24px] text-[#2A3075] text-nowrap"
+          className="text-heading text-nowrap text-xl font-semibold leading-[24px] text-[#2A3075]"
         >
           {data.seeMoreButton}
         </Link>
       </div>
       {data.subtitle && (
-        <Typography variant="h5" className="opacity-70 mt-1 xl:mt-2">
+        <Typography variant="h5" className="mt-1 opacity-70 xl:mt-2">
           {data.subtitle}
         </Typography>
       )}
       <Carousel
-        className="mt-4 xl:mt-6 [&_.slick-slide]:pr-[24px] [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black [&_.slick-track]:py-2"
+        className="mt-4 xl:mt-6 [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black [&_.slick-slide]:pr-[24px] [&_.slick-track]:py-2"
         variableWidth
         dots
         responsive={[

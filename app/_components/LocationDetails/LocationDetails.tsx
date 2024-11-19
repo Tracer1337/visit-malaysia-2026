@@ -21,23 +21,23 @@ export async function LocationDetails({
 
   return (
     <>
-      <div className="mt-4 xl:-mt-[67px] h-[396px] xl:h-[661px] relative">
+      <div className="relative mt-4 h-[396px] xl:-mt-[67px] xl:h-[661px]">
         {query.thumbnailUrl && (
           <Image
             src={query.thumbnailUrl}
             alt=""
             fill
             sizes="100vw"
-            className="object-center object-cover pointer-events-none -z-10 brightness-50"
+            className="pointer-events-none -z-10 object-cover object-center brightness-50"
           />
         )}
-        <div className="relative container mx-auto pt-[60px] xl:pt-[230px]">
+        <div className="container relative mx-auto pt-[60px] xl:pt-[230px]">
           <Typography variant="h1" className="text-white xl:max-w-[60%]">
             {details.title}
           </Typography>
         </div>
       </div>
-      <div className="container mx-auto mt-4 xl:flex xl:gap-[42px] xl:mt-[46px] xl:pb-[100px]">
+      <div className="container mx-auto mt-4 xl:mt-[46px] xl:flex xl:gap-[42px] xl:pb-[100px]">
         <div>
           <Typography variant="body1" element="p" className="mb-8">
             {details.summary}
@@ -48,15 +48,15 @@ export async function LocationDetails({
             dangerouslySetInnerHTML={{ __html: details.blog }}
           />
         </div>
-        <div className="max-xl:mt-[42px] min-w-[278px] max-xl:hidden">
+        <div className="min-w-[278px] max-xl:mt-[42px] max-xl:hidden">
           <Typography variant="h3">Top Recommend Itineraries</Typography>
-          <div className="mt-6 flex xl:flex-col gap-6 max-xl:overflow-x-hidden">
+          <div className="mt-6 flex gap-6 max-xl:overflow-x-hidden xl:flex-col">
             {blog.content.map((content) => (
               <BlogCard key={content.id} data={content} />
             ))}
           </div>
         </div>
-        <div className="xl:hidden mx-4 py-7">
+        <div className="mx-4 py-7 xl:hidden">
           <BlogCarousel
             data={{
               title: 'Top Recommend Itineraries',

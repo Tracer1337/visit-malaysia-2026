@@ -25,9 +25,9 @@ export function InputAutocomplete() {
   };
 
   return (
-    <div className="my-7 w-full rounded-xl shadow-lg bg-white px-4 py-5 lg:pl-4 lg:pr-2 lg:py-1.5 flex max-lg:flex-col items-center gap-2">
-      <div className="w-full flex gap-2">
-        <AiStarsIcon fill="#CCCCCC" className="w-6 h-6" />
+    <div className="my-7 flex w-full items-center gap-2 rounded-xl bg-white px-4 py-5 shadow-lg max-lg:flex-col lg:py-1.5 lg:pl-4 lg:pr-2">
+      <div className="flex w-full gap-2">
+        <AiStarsIcon fill="#CCCCCC" className="h-6 w-6" />
         <input
           type="text"
           placeholder="Lets typing your holiday preference"
@@ -35,7 +35,7 @@ export function InputAutocomplete() {
           ref={inputRef}
         />
       </div>
-      <hr className="lg:hidden w-full" />
+      <hr className="w-full lg:hidden" />
       <Button
         variant="primary"
         className="rounded-xl px-7 py-3 max-lg:w-full"

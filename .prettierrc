@@ -3,5 +3,8 @@
   "quoteProps": "consistent",
   "trailingComma": "all",
   "arrowParens": "always",
-  "htmlWhitespaceSensitivity": "ignore"
+  "htmlWhitespaceSensitivity": "ignore",
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
 }

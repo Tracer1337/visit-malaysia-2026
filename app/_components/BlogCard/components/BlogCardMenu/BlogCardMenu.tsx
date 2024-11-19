@@ -8,10 +8,10 @@ export function BlogCardMenu() {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <DottedMenuIcon className="w-6 h-6 cursor-pointer" />
+        <DottedMenuIcon className="h-6 w-6 cursor-pointer" />
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content align="end" className="shadow-lg py-2 bg-white">
+        <DropdownMenu.Content align="end" className="bg-white py-2 shadow-lg">
           <DropdownMenu.Item className={itemClasses}>
             <Typography variant="body2">Save</Typography>
           </DropdownMenu.Item>

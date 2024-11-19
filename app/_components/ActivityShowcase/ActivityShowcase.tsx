@@ -6,7 +6,7 @@ import StrapiImage from '../ui/StrapiImage';
 export function ActivityShowcase({ data }: { data: LandingPageActivityGroup }) {
   return (
     <div className="md:grid md:grid-cols-2 md:grid-rows-1 md:items-center">
-      <div className="container md:p-0 md:max-w-[600px] justify-self-end">
+      <div className="container justify-self-end md:max-w-[600px] md:p-0">
         <Typography
           variant="body1"
           className="font-semibold text-[#0A1B74]"
@@ -19,23 +19,23 @@ export function ActivityShowcase({ data }: { data: LandingPageActivityGroup }) {
         </Typography>
         <Typography
           variant="body2"
-          className="md:opacity-75 md:mt-3"
+          className="md:mt-3 md:opacity-75"
           element="p"
         >
           {data.ActivityNameDesc}
         </Typography>
-        <div className="flex items-center mt-3">
+        <div className="mt-3 flex items-center">
           <ChevronRightIcon className="mr-2" />
           <Typography variant="body1">{data.InterestenButton}</Typography>
         </div>
-        <div className="flex items-center mt-3">
+        <div className="mt-3 flex items-center">
           <ChevronRightIcon className="mr-2" />
           <Typography variant="body1">{data.ShowOtherButton}</Typography>
         </div>
       </div>
       <StrapiImage
         data={data.ActivityImg.data}
-        className="max-md:w-full mt-6 md:mt-0 md:ml-4 xl:ml-14"
+        className="mt-6 max-md:w-full md:ml-4 md:mt-0 xl:ml-14"
       />
     </div>
   );

@@ -33,7 +33,7 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
   ];
 
   return (
-    <nav className="flex justify-between items-center xl:items-start relative z-10">
+    <nav className="relative z-10 flex items-center justify-between xl:items-start">
       <div className="flex">
         <Image
           src="/img/logo.png"
@@ -49,12 +49,12 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
           height={51}
           className="mr-9 max-xl:hidden"
         />
-        <div className="hidden xl:flex items-center">
+        <div className="hidden items-center xl:flex">
           {links.map((link, i) => (
             <Link
               href={link.href}
               key={i}
-              className="mr-6 last:mr-0 text-white"
+              className="mr-6 text-white last:mr-0"
             >
               {link.title}
             </Link>
@@ -62,7 +62,7 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
         </div>
       </div>
       <div>
-        <BurgerMenuIcon className="xl:hidden bg-gray-400" />
+        <BurgerMenuIcon className="bg-gray-400 xl:hidden" />
         <div className="max-xl:hidden">
           <span className="mr-3">
             <LanguageSelect />

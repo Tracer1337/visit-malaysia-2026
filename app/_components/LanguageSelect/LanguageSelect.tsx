@@ -13,7 +13,7 @@ export function LanguageSelect() {
     <select
       value={params.locale}
       onChange={(event) => changeLanguage(event.target.value)}
-      className="bg-transparent text-white mx-3 py-2 cursor-pointer"
+      className="mx-3 cursor-pointer bg-transparent py-2 text-white"
     >
       {appConfig.i18n.locales.map((locale) => (
         <option key={locale.code} value={locale.code}>

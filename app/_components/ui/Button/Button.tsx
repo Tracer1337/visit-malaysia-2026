@@ -19,7 +19,7 @@ export function Button({
     <button
       onClick={onClick}
       className={twMerge(
-        `font-medium px-3 py-[10.5px] ${variants[variant]}`,
+        `px-3 py-[10.5px] font-medium ${variants[variant]}`,
         className,
       )}
     >

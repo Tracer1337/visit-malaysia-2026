@@ -7,15 +7,15 @@ export function Footer({ data }: { data: LandingPageFooter }) {
   return (
     <footer className="bg-black py-[60px]">
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row sm:items-center lg:items-start">
-          <div className="lg:mr-[100px] max-lg:mb-6 max-lg:flex max-lg:items-center max-lg:flex-col">
+        <div className="flex flex-col sm:items-center lg:flex-row lg:items-start">
+          <div className="max-lg:mb-6 max-lg:flex max-lg:flex-col max-lg:items-center lg:mr-[100px]">
             <Image
               src="/img/logo-white.png"
               alt="Visit Malaysia 2026"
               width={153}
               height={51}
             />
-            <div className="flex gap-3 mt-8">
+            <div className="mt-8 flex gap-3">
               <Image
                 src="/img/download-google-play.png"
                 alt="Download Google Play"
@@ -31,11 +31,11 @@ export function Footer({ data }: { data: LandingPageFooter }) {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row">
-            <div className="max-lg:mt-6 sm:w-[176px] sm:mr-8">
-              <Typography variant="h4" className="text-[#EDE9FE] mb-6">
+            <div className="max-lg:mt-6 sm:mr-8 sm:w-[176px]">
+              <Typography variant="h4" className="mb-6 text-[#EDE9FE]">
                 Mobile App
               </Typography>
-              <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li]:mb-3 [&>li:last-child]:mb-0">
+              <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li:last-child]:mb-0 [&>li]:mb-3">
                 <li>
                   <Link href="/">Features</Link>
                 </li>
@@ -47,11 +47,11 @@ export function Footer({ data }: { data: LandingPageFooter }) {
                 </li>
               </ul>
             </div>
-            <div className="max-lg:mt-6 sm:w-[176px] sm:mr-8">
-              <Typography variant="h4" className="text-[#EDE9FE] mb-6">
+            <div className="max-lg:mt-6 sm:mr-8 sm:w-[176px]">
+              <Typography variant="h4" className="mb-6 text-[#EDE9FE]">
                 Community
               </Typography>
-              <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li]:mb-3 [&>li:last-child]:mb-0">
+              <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li:last-child]:mb-0 [&>li]:mb-3">
                 <li>
                   <Link href="/">Featured Experience</Link>
                 </li>
@@ -63,11 +63,11 @@ export function Footer({ data }: { data: LandingPageFooter }) {
                 </li>
               </ul>
             </div>
-            <div className="max-lg:mt-6 sm:w-[176px] sm:mr-8">
-              <Typography variant="h4" className="text-[#EDE9FE] mb-6">
+            <div className="max-lg:mt-6 sm:mr-8 sm:w-[176px]">
+              <Typography variant="h4" className="mb-6 text-[#EDE9FE]">
                 Company
               </Typography>
-              <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li]:mb-3 [&>li:last-child]:mb-0">
+              <ul className="text-[16px] leading-[24px] text-[#E5E7EB] [&>li:last-child]:mb-0 [&>li]:mb-3">
                 <li>
                   <Link href="/">About us</Link>
                 </li>
@@ -84,7 +84,7 @@ export function Footer({ data }: { data: LandingPageFooter }) {
         <hr className="mt-8" />
         <Typography
           variant="body3"
-          className="text-[#D1D5DB] text-center mt-4"
+          className="mt-4 text-center text-[#D1D5DB]"
           element="p"
         >
           {data.CopyrightSubtitle}

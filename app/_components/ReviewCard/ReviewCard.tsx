@@ -6,7 +6,7 @@ import TrustpilotStarIconOutlined from '@/_lib/svg/TrustpilotStarIconOutlined';
 
 export function ReviewCard() {
   return (
-    <div className="px-6 py-4 rounded-xl bg-white max-w-[277px] xl:max-w-[320px]">
+    <div className="max-w-[277px] rounded-xl bg-white px-6 py-4 xl:max-w-[320px]">
       <div className="flex items-center">
         <Placeholder width={62} height={62} className="mr-4" />
         <div>
@@ -21,7 +21,7 @@ export function ReviewCard() {
           </div>
         </div>
       </div>
-      <Typography variant="body1" className="opacity-75 mt-4" element="p">
+      <Typography variant="body1" className="mt-4 opacity-75" element="p">
         Great tool. Epic made it simple and managed to tie a full 5 day itinery.
         Everything is great. Back for a day and I’m planning now our next
       </Typography>

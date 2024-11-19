@@ -28,15 +28,15 @@ export default async function LandingPage({
 
   return (
     <main>
-      <div className="bg-[#F7F9FA] flex justify-center rounded-t-3xl xl:-mt-6">
-        <section className="mt-[26px] mb-3 xl:my-20 container xl:p-0 xl:max-w-[715px] w-full">
+      <div className="flex justify-center rounded-t-3xl bg-[#F7F9FA] xl:-mt-6">
+        <section className="container mb-3 mt-[26px] w-full xl:my-20 xl:max-w-[715px] xl:p-0">
           <DiscoverySearch data={data.attributes.SearchGroup} />
         </section>
       </div>
       <section className="container mx-auto my-6 xl:my-20">
         <Adverts />
       </section>
-      <section className="container mt-[50px] xl:mt-[66px] mx-auto [&>div]:mt-[52px] pb-[26px]">
+      <section className="container mx-auto mt-[50px] pb-[26px] xl:mt-[66px] [&>div]:mt-[52px]">
         <BlogCarousel
           data={{
             title: 'Most Bookmarked',
@@ -90,7 +90,7 @@ export default async function LandingPage({
           <ReviewCarousel />
         </div>
       </section> */}
-      <section className="bg-[#F7F9FA] pt-[84px] xl:pt-[100px] pb-[50px]">
+      <section className="bg-[#F7F9FA] pb-[50px] pt-[84px] xl:pt-[100px]">
         <div className="container mx-auto">
           <PressShowcase
             data={{

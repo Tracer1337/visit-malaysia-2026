@@ -8,7 +8,7 @@ export function BlogCard({ data }: { data: BlogContent }) {
   return (
     <div className="max-w-[278px] shadow-sm shadow-[#A6AFC366]">
       <div className="relative">
-        <div className="w-[278px] h-[292px] relative">
+        <div className="relative h-[292px] w-[278px]">
           <Image
             src={resolveBlogCoverImageUrl(data)}
             alt=""
@@ -17,7 +17,7 @@ export function BlogCard({ data }: { data: BlogContent }) {
             className="object-cover"
           />
         </div>
-        <div className="absolute top-0 left-0 px-2.5 py-1 bg-[#F24949] rounded-br-md">
+        <div className="absolute left-0 top-0 rounded-br-md bg-[#F24949] px-2.5 py-1">
           <Typography variant="body2" className="font-semibold text-white">
             {data.type}
           </Typography>
@@ -25,7 +25,7 @@ export function BlogCard({ data }: { data: BlogContent }) {
       </div>
       <div className="p-4">
         <div className="flex justify-between">
-          <div className="px-2.5 py-[3px] bg-[#2A3075] rounded-[4px]">
+          <div className="rounded-[4px] bg-[#2A3075] px-2.5 py-[3px]">
             <Typography variant="body3" className="text-white">
               {data.username}
             </Typography>
@@ -42,19 +42,19 @@ export function BlogCard({ data }: { data: BlogContent }) {
           </div>
           <Typography
             variant="body1"
-            className="font-semibold text-[#0B0B0B] line-clamp-2 min-h-[2lh] mt-2"
+            className="mt-2 line-clamp-2 min-h-[2lh] font-semibold text-[#0B0B0B]"
           >
             {data.title}
           </Typography>
           <Typography
             variant="body4"
-            className="text-[#637381] line-clamp-2 mt-2 min-h-[2lh]"
+            className="mt-2 line-clamp-2 min-h-[2lh] text-[#637381]"
             element="p"
           >
             {data.description}
           </Typography>
         </div>
-        <div className="flex justify-between mt-3 items-center">
+        <div className="mt-3 flex items-center justify-between">
           <Typography variant="body3" className="opacity-70">
             4.5/5 Ratings
           </Typography>

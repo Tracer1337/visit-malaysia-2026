@@ -5,9 +5,9 @@ import StrapiImage from '../ui/StrapiImage';
 
 export function EventCard({ data }: { data: LandingPageEvent }) {
   return (
-    <div className="shadow-lg p-4 max-w-[336px] bg-white rounded-xl">
+    <div className="max-w-[336px] rounded-xl bg-white p-4 shadow-lg">
       <div className="grid grid-cols-[116px_minmax(0,_1fr)] grid-rows-1">
-        <div className="w-[116px] h-[116px] relative">
+        <div className="relative h-[116px] w-[116px]">
           <StrapiImage
             data={data.UserImg.data}
             fill
@@ -20,24 +20,24 @@ export function EventCard({ data }: { data: LandingPageEvent }) {
             <LocationIcon fill="#F24949" className="mr-1" />
             <Typography
               variant="body2"
-              className="font-semibold opacity-75 line-clamp-1"
+              className="line-clamp-1 font-semibold opacity-75"
             >
               {data.StateName}
             </Typography>
           </div>
-          <Typography variant="body3" className="opacity-75 mt-1" element="p">
+          <Typography variant="body3" className="mt-1 opacity-75" element="p">
             {data.EventDate}
           </Typography>
           <Typography
             variant="body1"
-            className="font-semibold mt-1 line-clamp-1"
+            className="mt-1 line-clamp-1 font-semibold"
             element="p"
           >
             {data.EventTitle}
           </Typography>
           <Typography
             variant="body2"
-            className="opacity-75 line-clamp-2"
+            className="line-clamp-2 opacity-75"
             element="p"
           >
             {data.EventTitle2}
@@ -46,7 +46,7 @@ export function EventCard({ data }: { data: LandingPageEvent }) {
       </div>
       <Typography
         variant="body3"
-        className="mt-3 opacity-75 line-clamp-2"
+        className="mt-3 line-clamp-2 opacity-75"
         element="p"
       >
         {data.EventDesc}

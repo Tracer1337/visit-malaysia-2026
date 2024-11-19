@@ -15,7 +15,7 @@ export function ReviewCarousel() {
         We’ve 4.7/5 Positive Reviews From Several Credential Reviewers Platform
       </Typography>
       <Carousel
-        className="mt-4 xl:mt-6 [&_.slick-slide]:pr-[24px] [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black"
+        className="mt-4 xl:mt-6 [&_.slick-next:before]:text-black [&_.slick-prev:before]:text-black [&_.slick-slide]:pr-[24px]"
         variableWidth
         dots
         responsive={[

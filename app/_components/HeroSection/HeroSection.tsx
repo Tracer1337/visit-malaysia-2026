@@ -20,18 +20,18 @@ export async function HeroSection({
   };
 }) {
   return (
-    <div className="mt-4 xl:-mt-[67px] xl:h-[812px] overflow-x-hidden relative">
+    <div className="relative mt-4 overflow-x-hidden xl:-mt-[67px] xl:h-[812px]">
       <Image
         src="/img/hero-background.png"
         alt=""
         fill
         sizes="100vw"
-        className="object-center object-cover pointer-events-none -z-10"
+        className="pointer-events-none -z-10 object-cover object-center"
         priority
       />
-      <div className="relative container pt-[60px] pb-[85px] xl:mx-auto xl:pb-0 xl:pt-[155px] xl:grid xl:grid-cols-[minmax(0,_1.1fr),_minmax(0,_0.9fr)] xl:grid-rows-1">
+      <div className="container relative pb-[85px] pt-[60px] xl:mx-auto xl:grid xl:grid-cols-[minmax(0,_1.1fr),_minmax(0,_0.9fr)] xl:grid-rows-1 xl:pb-0 xl:pt-[155px]">
         <div className="xl:mt-[75px]">
-          <div className="px-4 py-1.5 bg-[#2A3075] rounded-lg w-fit">
+          <div className="w-fit rounded-lg bg-[#2A3075] px-4 py-1.5">
             <Typography
               variant="h2"
               className="text-white"
@@ -40,7 +40,7 @@ export async function HeroSection({
               {data.items[0].ImgNum}
             </Typography>
           </div>
-          <Typography variant="h1" className="text-white mt-4 line-clamp-4">
+          <Typography variant="h1" className="mt-4 line-clamp-4 text-white">
             {data.title}
           </Typography>
         </div>
@@ -61,8 +61,8 @@ export async function HeroSection({
                 sizes={`(max-width: ${tailwindConfig.theme.screens.xl}) 145px, 316px`}
                 className="absolute inset-0 object-cover"
               />
-              <div className="absolute inset-0 px-2 py-2.5 xl:px-5 xl:py-6 flex flex-col justify-between">
-                <div className="px-2 py-[2px] xl:px-4 xl:py-1.5 bg-[#2A3075] rounded-lg w-fit">
+              <div className="absolute inset-0 flex flex-col justify-between px-2 py-2.5 xl:px-5 xl:py-6">
+                <div className="w-fit rounded-lg bg-[#2A3075] px-2 py-[2px] xl:px-4 xl:py-1.5">
                   <Typography
                     variant="body1"
                     className="font-semibold text-white"
@@ -70,7 +70,7 @@ export async function HeroSection({
                     {item.ImgNum}
                   </Typography>
                 </div>
-                <Typography variant="h4" className="text-white line-clamp-3">
+                <Typography variant="h4" className="line-clamp-3 text-white">
                   {item.ImgDesc}
                 </Typography>
               </div>
