@@ -6,7 +6,7 @@ import StrapiImage from '../ui/StrapiImage';
 export function ActivityShowcase({ data }: { data: LandingPageActivityGroup }) {
   return (
     <div className="md:grid md:grid-cols-2 md:grid-rows-1 md:items-center">
-      <div className="container justify-self-end md:max-w-[600px] md:p-0">
+      <div className="container justify-self-end md:p-0 lg:pl-[100px]">
         <Typography
           variant="body1"
           className="font-semibold text-[#0A1B74]"
@@ -35,6 +35,8 @@ export function ActivityShowcase({ data }: { data: LandingPageActivityGroup }) {
       </div>
       <StrapiImage
         data={data.ActivityImg.data}
+        width={469}
+        height={373}
         className="mt-6 max-md:w-full md:ml-4 md:mt-0 xl:ml-14"
       />
     </div>

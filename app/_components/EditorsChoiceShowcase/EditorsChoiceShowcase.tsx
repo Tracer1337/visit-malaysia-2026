@@ -9,7 +9,7 @@ export function EditorsChoiceShowcase({
 }) {
   return (
     <div className="md:grid md:grid-cols-2 md:grid-rows-1 md:items-center">
-      <div className="md:mr-12 md:max-w-[600px] md:justify-self-end md:p-0">
+      <div className="md:mr-12 md:justify-self-end md:p-0 lg:pl-[50px]">
         <Typography
           variant="body1"
           className="font-semibold text-white"
