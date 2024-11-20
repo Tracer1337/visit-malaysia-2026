@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { fetchLocationBlog } from '@/_lib/halaltravel/blog';
 import BlogCarousel from '../BlogCarousel';
 import { LandingPageData } from '@/_lib/strapi/landing-page';
+import Link from 'next/link';
 
 export async function LocationDetails({
   landingPageData,
@@ -54,6 +55,14 @@ export async function LocationDetails({
             {blog.content.map((content) => (
               <BlogCard key={content.id} data={content} />
             ))}
+          </div>
+          <div className="mt-6 flex justify-center">
+            <Link
+              href="/"
+              className="text-heading text-nowrap text-xl font-semibold leading-[24px] text-[#2A3075]"
+            >
+              {landingPageData.attributes.SeeMoreButton}
+            </Link>
           </div>
         </div>
         <div className="mx-4 py-7 xl:hidden">
