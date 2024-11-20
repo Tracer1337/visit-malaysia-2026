@@ -87,11 +87,16 @@ export interface BlogContent {
   savedCount: number;
   userId: number;
   publishDate: string;
-  type: string;
+  type: BlogContentType;
   username: string | null;
   attractions: string[];
   interests: string[];
   bookmarked: boolean;
+}
+
+export enum BlogContentType {
+  Blog = 'Blog',
+  UserItinerary = 'User Itinerary',
 }
 
 export interface BlogDestination {

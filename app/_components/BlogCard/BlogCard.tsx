@@ -1,8 +1,18 @@
 import Image from 'next/image';
 import Typography from '../ui/Typography';
 import RatingStarIcon from '@/_lib/svg/RatingStarIcon';
-import { BlogContent, resolveBlogCoverImageUrl } from '@/_lib/halaltravel/blog';
+import {
+  BlogContent,
+  BlogContentType,
+  resolveBlogCoverImageUrl,
+} from '@/_lib/halaltravel/blog';
 import BlogCardMenu from './components/BlogCardMenu';
+import { cn } from '@/_lib/styling';
+
+const tagMapping: Record<BlogContentType, string> = {
+  [BlogContentType.Blog]: 'Blog',
+  [BlogContentType.UserItinerary]: 'Travel Plan',
+};
 
 export function BlogCard({ data }: { data: BlogContent }) {
   return (
@@ -17,9 +27,16 @@ export function BlogCard({ data }: { data: BlogContent }) {
             className="object-cover"
           />
         </div>
-        <div className="absolute left-0 top-0 rounded-br-md bg-[#F24949] px-2.5 py-1">
+        <div
+          className={cn(
+            'absolute left-0 top-0 rounded-br-md px-2.5 py-1',
+            data.type === BlogContentType.Blog
+              ? 'bg-[#F24949]'
+              : 'bg-[#2A3075]',
+          )}
+        >
           <Typography variant="body2" className="font-semibold text-white">
-            {data.type}
+            {tagMapping[data.type]}
           </Typography>
         </div>
       </div>
