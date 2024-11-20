@@ -20,12 +20,14 @@ export async function LocationDetails({
     fetchLocationBlog(query),
   ]);
 
+  const thumbnailUrl = details.headerImage ?? query.thumbnailUrl;
+
   return (
     <>
       <div className="relative mt-4 h-[396px] xl:-mt-[67px] xl:h-[661px]">
-        {query.thumbnailUrl && (
+        {thumbnailUrl && (
           <Image
-            src={query.thumbnailUrl}
+            src={thumbnailUrl}
             alt=""
             fill
             sizes="100vw"
