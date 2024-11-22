@@ -1,6 +1,6 @@
 import { ImageList } from '@/_lib/strapi/media';
-import Typography from '../ui/Typography';
 import StrapiImage from '../ui/StrapiImage';
+import Typography from '../ui/Typography';
 
 export function PressShowcase({
   data,

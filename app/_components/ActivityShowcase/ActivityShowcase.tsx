@@ -1,7 +1,7 @@
 import { LandingPageActivityGroup } from '@/_lib/strapi/landing-page';
-import Typography from '../ui/Typography';
 import ChevronRightIcon from '@/_lib/svg/ChevronRightIcon';
 import StrapiImage from '../ui/StrapiImage';
+import Typography from '../ui/Typography';
 
 export function ActivityShowcase({ data }: { data: LandingPageActivityGroup }) {
   return (

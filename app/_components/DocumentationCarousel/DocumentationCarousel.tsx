@@ -1,8 +1,8 @@
+import { ImageList } from '@/_lib/strapi/media';
 import { tailwindConfig } from '@/_lib/tailwind';
 import Carousel from '../ui/Carousel';
-import Typography from '../ui/Typography';
-import { ImageList } from '@/_lib/strapi/media';
 import StrapiImage from '../ui/StrapiImage';
+import Typography from '../ui/Typography';
 
 export function DocumentationCarousel({
   data,

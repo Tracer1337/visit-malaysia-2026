@@ -7,8 +7,8 @@ const urls = ['https://www.visitmalaysia2026.com/{locale}'];
 function withLocales(url: string): Languages<string> {
   return Object.fromEntries(
     appConfig.i18n.locales.map((locale) => [
-      locale.code,
-      url.replace('{locale}', locale.code),
+      locale,
+      url.replace('{locale}', locale),
     ]),
   );
 }

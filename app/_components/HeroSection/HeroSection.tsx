@@ -1,10 +1,10 @@
+import Image from 'next/image';
 import React from 'react';
+import { LandingPageCarouselItem } from '@/_lib/strapi/landing-page';
+import { tailwindConfig } from '@/_lib/tailwind';
+import StrapiImage from '../ui/StrapiImage';
 import Typography from '../ui/Typography';
 import HeroSectionCarousel from './components/HeroSectionCarousel';
-import { LandingPageCarouselItem } from '@/_lib/strapi/landing-page';
-import StrapiImage from '../ui/StrapiImage';
-import Image from 'next/image';
-import { tailwindConfig } from '@/_lib/tailwind';
 
 export type HeroSectionItem = {
   index: number;

@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import BlogCard from '../BlogCard';
-import Typography from '../ui/Typography';
-import Carousel from '../ui/Carousel';
-import { tailwindConfig } from '@/_lib/tailwind';
 import { BlogContent } from '@/_lib/halaltravel/blog';
+import { Link } from '@/_lib/i18n/routing';
+import { tailwindConfig } from '@/_lib/tailwind';
+import BlogCard from '../BlogCard';
+import Carousel from '../ui/Carousel';
+import Typography from '../ui/Typography';
 
 export function BlogCarousel({
   data,

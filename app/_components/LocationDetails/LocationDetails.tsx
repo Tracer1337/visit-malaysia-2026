@@ -1,12 +1,12 @@
-import { fetchLocationDetails } from '@/_lib/halaltravel/location/details';
-import BlogCard from '../BlogCard';
-import Typography from '../ui/Typography';
-import { LocationPageSearchParams } from '@/[locale]/@hero/location/page';
 import Image from 'next/image';
+import { LocationPageSearchParams } from '@/[locale]/@hero/location/page';
 import { fetchLocationBlog } from '@/_lib/halaltravel/blog';
-import BlogCarousel from '../BlogCarousel';
+import { fetchLocationDetails } from '@/_lib/halaltravel/location/details';
+import { Link } from '@/_lib/i18n/routing';
 import { LandingPageData } from '@/_lib/strapi/landing-page';
-import Link from 'next/link';
+import BlogCard from '../BlogCard';
+import BlogCarousel from '../BlogCarousel';
+import Typography from '../ui/Typography';
 
 export async function LocationDetails({
   landingPageData,

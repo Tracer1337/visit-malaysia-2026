@@ -1,23 +1,25 @@
 'use client';
 
-import { useParams } from 'next/navigation';
-import { useChangeLanguage } from './hooks/useChangeLanguage';
+import { useLocale } from 'next-intl';
 import { appConfig } from '@/../config';
+import { useRouter } from '@/_lib/i18n/routing';
 
 export function LanguageSelect() {
-  const params = useParams<{ locale: string }>();
+  const locale = useLocale();
 
-  const changeLanguage = useChangeLanguage();
+  const router = useRouter();
 
   return (
     <select
-      value={params.locale}
-      onChange={(event) => changeLanguage(event.target.value)}
+      value={locale}
+      onChange={(event) =>
+        router.replace(location.href, { locale: event.target.value })
+      }
       className="mx-3 cursor-pointer bg-transparent py-2 text-white"
     >
       {appConfig.i18n.locales.map((locale) => (
-        <option key={locale.code} value={locale.code}>
-          {locale.label}
+        <option key={locale} value={locale}>
+          {appConfig.i18n.labels[locale]}
         </option>
       ))}
     </select>

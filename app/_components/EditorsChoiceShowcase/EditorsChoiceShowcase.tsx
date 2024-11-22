@@ -1,6 +1,6 @@
 import { LandingPageEditorsChoiceGroup } from '@/_lib/strapi/landing-page';
-import Typography from '../ui/Typography';
 import StrapiImage from '../ui/StrapiImage';
+import Typography from '../ui/Typography';
 
 export function EditorsChoiceShowcase({
   data,

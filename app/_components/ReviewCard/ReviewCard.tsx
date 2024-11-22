@@ -1,8 +1,8 @@
 import LocationIcon from '@/_lib/svg/LocationIcon';
-import Placeholder from '../ui/Placeholder';
-import Typography from '../ui/Typography';
 import TrustpilotStarIconFilled from '@/_lib/svg/TrustpilotStarIconFilled';
 import TrustpilotStarIconOutlined from '@/_lib/svg/TrustpilotStarIconOutlined';
+import Placeholder from '../ui/Placeholder';
+import Typography from '../ui/Typography';
 
 export function ReviewCard() {
   return (

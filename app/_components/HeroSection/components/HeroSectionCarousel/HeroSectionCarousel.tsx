@@ -1,8 +1,8 @@
 'use client';
 
+import React, { PropsWithChildren, useRef } from 'react';
 import Carousel from '@/_components/ui/Carousel';
 import { tailwindConfig } from '@/_lib/tailwind';
-import React, { PropsWithChildren, useRef } from 'react';
 import { useUpdateHeroSection } from './hooks/useUpdateHeroSection';
 
 export function HeroSectionCarousel({ children }: PropsWithChildren) {

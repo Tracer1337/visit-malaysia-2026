@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import EventCard from '../EventCard';
-import Typography from '../ui/Typography';
-import Carousel from '../ui/Carousel';
-import { tailwindConfig } from '@/_lib/tailwind';
+import { Link } from '@/_lib/i18n/routing';
 import { LandingPageEvent } from '@/_lib/strapi/landing-page';
+import { tailwindConfig } from '@/_lib/tailwind';
+import EventCard from '../EventCard';
+import Carousel from '../ui/Carousel';
+import Typography from '../ui/Typography';
 
 export function EventCarousel({
   data,

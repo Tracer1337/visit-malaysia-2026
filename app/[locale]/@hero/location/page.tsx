@@ -1,6 +1,6 @@
+import { Metadata } from 'next';
 import LocationDetails from '@/_components/LocationDetails';
 import { LocationQuery } from '@/_lib/halaltravel/location/types';
-import { Metadata } from 'next';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 
 export type LocationPageSearchParams = LocationQuery & {

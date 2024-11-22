@@ -1,6 +1,6 @@
+import { RefObject } from 'react';
 import { HeroSectionItem } from '@/_components/HeroSection/HeroSection';
 import Carousel from '@/_components/ui/Carousel';
-import { RefObject } from 'react';
 
 export function useUpdateHeroSection({
   carouselRef,

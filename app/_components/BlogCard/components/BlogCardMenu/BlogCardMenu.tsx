@@ -1,6 +1,6 @@
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import Typography from '@/_components/ui/Typography';
 import DottedMenuIcon from '@/_lib/svg/DottedMenuIcon';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 export function BlogCardMenu() {
   const itemClasses = 'cursor-pointer py-1 px-4 data-[highlighted]:bg-gray-100';

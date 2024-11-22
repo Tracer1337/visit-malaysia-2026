@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Typography from '../ui/Typography';
+import { Link } from '@/_lib/i18n/routing';
 import { LandingPageSearchGroup } from '@/_lib/strapi/landing-page';
 import AiStarsIcon from '@/_lib/svg/AiStarsIcon';
+import Typography from '../ui/Typography';
 import DiscoverySearchForm from './components/DiscoverySearchForm';
 
 export function DiscoverySearch({ data }: { data: LandingPageSearchGroup }) {

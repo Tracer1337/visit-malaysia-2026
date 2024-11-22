@@ -1,14 +1,18 @@
-import type { Metadata } from 'next';
-import '../globals.css';
-import { Inter, DM_Sans } from 'next/font/google';
-import Navigation from '../_components/Navigation';
-import Footer from '../_components/Footer';
-import { fetchLandingPage } from '@/_lib/strapi/landing-page';
-import { GoogleMapsBootstrapScript } from '@/_lib/google/maps';
-import { TouristInformationCenter, WithContext } from 'schema-dts';
-import { appConfig } from '@/../config';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { DM_Sans, Inter } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import { TouristInformationCenter, WithContext } from 'schema-dts';
+import { Locale, appConfig } from '@/../config';
+import { GoogleMapsBootstrapScript } from '@/_lib/google/maps';
+import { routing } from '@/_lib/i18n/routing';
+import { fetchLandingPage } from '@/_lib/strapi/landing-page';
+import Footer from '../_components/Footer';
+import Navigation from '../_components/Navigation';
+import '../globals.css';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -36,10 +40,16 @@ export default async function RootLayout({
   children: React.ReactNode;
   hero: React.ReactNode;
   params: Promise<{
-    locale: string;
+    locale: Locale;
   }>;
 }) {
   const { locale } = await params;
+
+  if (!routing.locales.includes(locale)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
 
   const landingPageData = await fetchLandingPage({ locale });
 
@@ -115,21 +125,23 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${inter.className} ${dm_sans.variable} antialiased`}>
-        <div className="container mx-auto pt-4">
-          <Navigation data={landingPageData.data.attributes.Header} />
-        </div>
-        {hero}
-        {children}
-        <Footer data={landingPageData.data.attributes.Footer} />
-        {/* Remove Before Submitting Project */}
-        <SpeedInsights />
-        {/* Remove Before Submitting Project */}
-        <Analytics />
+        <NextIntlClientProvider>
+          <div className="container mx-auto pt-4">
+            <Navigation data={landingPageData.data.attributes.Header} />
+          </div>
+          {hero}
+          {children}
+          <Footer data={landingPageData.data.attributes.Footer} />
+          {/* Remove Before Submitting Project */}
+          <SpeedInsights />
+          {/* Remove Before Submitting Project */}
+          <Analytics />
+        </NextIntlClientProvider>
       </body>
     </html>
   );
 }
 
 export async function generateStaticParams() {
-  return appConfig.i18n.locales.map((locale) => ({ locale: locale.code }));
+  return appConfig.i18n.locales.map((locale) => ({ locale }));
 }

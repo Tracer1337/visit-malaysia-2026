@@ -1,7 +1,7 @@
-import { ImageData } from '@/_lib/strapi/media';
 import Image from 'next/image';
 import { ComponentProps } from 'react';
 import { WithOptionalKeys } from 'tsdef';
+import { ImageData } from '@/_lib/strapi/media';
 
 export function StrapiImage({
   data,

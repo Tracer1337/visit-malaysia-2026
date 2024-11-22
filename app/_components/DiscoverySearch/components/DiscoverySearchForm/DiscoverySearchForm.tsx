@@ -1,16 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { mapGooglePlacesResultToLocationPageSearchParams } from '../../utils/mapping';
+import { useLocale } from 'next-intl';
 import Form from 'next/form';
+import { useState } from 'react';
 import Button from '@/_components/ui/Button';
 import Typography from '@/_components/ui/Typography';
-import { useParams } from 'next/navigation';
 import { useGoogleMapsAutocomplete } from '@/_lib/google/hooks/useGoogleMapsAutocomplete';
 import AiStarsIcon from '@/_lib/svg/AiStarsIcon';
+import { mapGooglePlacesResultToLocationPageSearchParams } from '../../utils/mapping';
 
 export function DiscoverySearchForm() {
-  const params = useParams<{ locale: string }>();
+  const locale = useLocale();
 
   const [selectedPlace, setSelectedPlace] =
     useState<google.maps.places.PlaceResult | null>(null);
@@ -25,7 +25,7 @@ export function DiscoverySearchForm() {
 
   return (
     <Form
-      action={`/${params.locale}/location`}
+      action={`/${locale}/location`}
       className="my-7 flex w-full items-center gap-2 rounded-xl bg-white px-4 py-5 shadow-lg max-lg:flex-col lg:py-1.5 lg:pl-4 lg:pr-2"
     >
       <div className="flex w-full gap-2">

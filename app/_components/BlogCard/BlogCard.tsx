@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import Typography from '../ui/Typography';
-import RatingStarIcon from '@/_lib/svg/RatingStarIcon';
 import {
   BlogContent,
   BlogContentType,
   resolveBlogCoverImageUrl,
 } from '@/_lib/halaltravel/blog';
-import BlogCardMenu from './components/BlogCardMenu';
 import { cn } from '@/_lib/styling';
+import RatingStarIcon from '@/_lib/svg/RatingStarIcon';
+import Typography from '../ui/Typography';
+import BlogCardMenu from './components/BlogCardMenu';
 
 const tagMapping: Record<BlogContentType, string> = {
   [BlogContentType.Blog]: 'Blog',

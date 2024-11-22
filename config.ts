@@ -12,12 +12,13 @@ export const appConfig = {
     },
   },
   i18n: {
+    // Updating this list also requires updating the matcher in middleware.ts
+    locales: ['en'],
     defaultLocale: 'en',
-    locales: [
-      {
-        code: 'en',
-        label: 'English',
-      },
-    ],
+    labels: {
+      en: 'English',
+    },
   },
 } as const;
+
+export type Locale = (typeof appConfig.i18n.locales)[number];

@@ -1,3 +1,10 @@
+import { setRequestLocale } from 'next-intl/server';
+import BlogCarousel from '@/_components/BlogCarousel';
+import EditorsChoiceShowcase from '@/_components/EditorsChoiceShowcase';
+import {
+  fetchMostBookmarkedBlog,
+  fetchMostRecentBlog,
+} from '@/_lib/halaltravel/blog';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 import ActivityShowcase from '../_components/ActivityShowcase';
 import Adverts from '../_components/Adverts';
@@ -5,12 +12,6 @@ import DiscoverySearch from '../_components/DiscoverySearch';
 import DocumentationCarousel from '../_components/DocumentationCarousel';
 import EventCarousel from '../_components/EventCarousel';
 import PressShowcase from '../_components/PressShowcase';
-import EditorsChoiceShowcase from '@/_components/EditorsChoiceShowcase';
-import BlogCarousel from '@/_components/BlogCarousel';
-import {
-  fetchMostBookmarkedBlog,
-  fetchMostRecentBlog,
-} from '@/_lib/halaltravel/blog';
 
 export default async function LandingPage({
   params,
@@ -18,6 +19,8 @@ export default async function LandingPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+
+  setRequestLocale(locale);
 
   const [{ data }, mostBookmarkedBlogData, mostRecentBlogData] =
     await Promise.all([

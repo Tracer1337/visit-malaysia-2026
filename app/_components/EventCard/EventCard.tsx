@@ -1,7 +1,7 @@
 import { LandingPageEvent } from '@/_lib/strapi/landing-page';
-import Typography from '../ui/Typography';
 import LocationIcon from '@/_lib/svg/LocationIcon';
 import StrapiImage from '../ui/StrapiImage';
+import Typography from '../ui/Typography';
 
 export function EventCard({ data }: { data: LandingPageEvent }) {
   return (

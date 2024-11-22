@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Button from '@/_components/ui/Button';
-import { LandingPageHeader } from '@/_lib/strapi/landing-page';
 import Image from 'next/image';
+import Button from '@/_components/ui/Button';
+import { Link } from '@/_lib/i18n/routing';
+import { LandingPageHeader } from '@/_lib/strapi/landing-page';
 import BurgerMenuIcon from '@/_lib/svg/BurgerMenuIcon';
 import LanguageSelect from '../LanguageSelect';
 
