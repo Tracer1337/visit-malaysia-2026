@@ -1,6 +1,7 @@
 import { createNavigation } from 'next-intl/navigation';
 import { defineRouting } from 'next-intl/routing';
-import { appConfig } from '../../../config';
+import { notFound } from 'next/navigation';
+import { Locale, appConfig } from '@/../config';
 
 export const routing = defineRouting({
   locales: appConfig.i18n.locales,
@@ -9,3 +10,9 @@ export const routing = defineRouting({
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
   createNavigation(routing);
+
+export function handleInvalidLocale(locale: Locale) {
+  if (!appConfig.i18n.locales.includes(locale)) {
+    notFound();
+  }
+}

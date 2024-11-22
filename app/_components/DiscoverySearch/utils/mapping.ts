@@ -1,4 +1,4 @@
-import { LocationPageSearchParams } from '@/[locale]/@hero/location/page';
+import { LocationPageSearchParams } from '@/[locale]/location/page';
 
 export function mapGooglePlacesResultToLocationPageSearchParams(
   result: google.maps.places.PlaceResult,

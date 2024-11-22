@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import { LocationPageSearchParams } from '@/[locale]/@hero/location/page';
+import { LocationPageSearchParams } from '@/[locale]/location/page';
 import { fetchLocationBlog } from '@/_lib/halaltravel/blog';
 import { fetchLocationDetails } from '@/_lib/halaltravel/location/details';
 import { Link } from '@/_lib/i18n/routing';
 import { LandingPageData } from '@/_lib/strapi/landing-page';
 import BlogCard from '../BlogCard';
 import BlogCarousel from '../BlogCarousel';
+import HtmlRenderer from '../ui/HtmlRenderer';
 import Typography from '../ui/Typography';
 
 export async function LocationDetails({
@@ -45,11 +46,7 @@ export async function LocationDetails({
           <Typography variant="body1" element="p" className="mb-8">
             {details.summary}
           </Typography>
-          <Typography
-            variant="body1"
-            element="p"
-            dangerouslySetInnerHTML={{ __html: details.blog }}
-          />
+          <HtmlRenderer html={details.blog} />
         </div>
         <div className="min-w-[278px] max-xl:mt-[42px] max-xl:hidden">
           <Typography variant="h3">Top Recommend Itineraries</Typography>
