@@ -1,13 +1,13 @@
-import ActivityShowcase from '@/_components/ActivityShowcase';
-import Adverts from '@/_components/Adverts';
-import BlogCarousel from '@/_components/BlogCarousel';
-import DiscoverySearch from '@/_components/DiscoverySearch';
-import DocumentationCarousel from '@/_components/DocumentationCarousel';
-import EditorsChoiceShowcase from '@/_components/EditorsChoiceShowcase';
-import EventCarousel from '@/_components/EventCarousel';
-import PressShowcase from '@/_components/PressShowcase';
 import { BlogResponse } from '@/_lib/halaltravel/blog';
 import { LandingPageData } from '@/_lib/strapi/landing-page';
+import ActivityShowcase from './components/ActivityShowcase';
+import Adverts from './components/Adverts';
+import BlogCarousel from './components/BlogCarousel';
+import DiscoverySearch from './components/DiscoverySearch';
+import DocumentationCarousel from './components/DocumentationCarousel';
+import EditorsChoiceShowcase from './components/EditorsChoiceShowcase';
+import EventCarousel from './components/EventCarousel';
+import PressShowcase from './components/PressShowcase';
 
 export function LandingPageSections({
   landingPageData,

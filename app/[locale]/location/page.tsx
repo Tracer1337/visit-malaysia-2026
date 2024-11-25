@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { Locale } from '@/../config';
-import LocationDetails from '@/_components/LocationDetails';
 import {
   fetchMostBookmarkedBlog,
   fetchMostRecentBlog,
@@ -10,6 +9,7 @@ import { LocationQuery } from '@/_lib/halaltravel/location/types';
 import { handleInvalidLocale } from '@/_lib/i18n/routing';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 import LandingPageSections from '../_components/LandingPageSections';
+import LocationDetails from './_components/LocationDetails';
 
 export type LocationPageSearchParams = LocationQuery & {
   thumbnailUrl: string | null;

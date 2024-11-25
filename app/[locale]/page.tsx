@@ -1,5 +1,4 @@
 import { setRequestLocale } from 'next-intl/server';
-import HeroSection from '@/_components/HeroSection';
 import {
   fetchMostBookmarkedBlog,
   fetchMostRecentBlog,
@@ -7,6 +6,7 @@ import {
 import { handleInvalidLocale } from '@/_lib/i18n/routing';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 import { Locale } from '../../config';
+import LandingPageHeroSection from './_components/LandingPageHeroSection';
 import LandingPageSections from './_components/LandingPageSections';
 
 export default async function LandingPage({
@@ -32,7 +32,7 @@ export default async function LandingPage({
 
   return (
     <main>
-      <HeroSection
+      <LandingPageHeroSection
         data={{
           title: landingPageData.attributes.HeaderTitle,
           items: landingPageData.attributes.LandingCarousel,
