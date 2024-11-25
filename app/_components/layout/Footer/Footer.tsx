@@ -1,7 +1,7 @@
 import Image from 'next/image';
+import Typography from '@/_components/ui/Typography';
 import { Link } from '@/_lib/i18n/routing';
 import { LandingPageFooter } from '@/_lib/strapi/landing-page';
-import Typography from '../ui/Typography';
 
 export function Footer({ data }: { data: LandingPageFooter }) {
   return (

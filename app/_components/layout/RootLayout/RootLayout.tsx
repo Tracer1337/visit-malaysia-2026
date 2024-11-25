@@ -23,9 +23,11 @@ const dm_sans = DM_Sans({
 
 export async function RootLayout({
   children,
+  modal,
   locale,
 }: React.PropsWithChildren<{
   locale: Locale;
+  modal: React.ReactNode;
 }>) {
   const landingPageData = await fetchLandingPage({ locale });
 
@@ -116,6 +118,7 @@ export async function RootLayout({
         <SpeedInsights />
         {/* Remove Before Submitting Project */}
         <Analytics />
+        {modal}
       </body>
     </html>
   );

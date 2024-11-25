@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { Locale, appConfig } from '@/../config';
-import RootLayout from '@/_components/RootLayout';
+import RootLayout from '@/_components/layout/RootLayout';
 import { handleInvalidLocale } from '@/_lib/i18n/routing';
 
 export const metadata: Metadata = {
@@ -13,9 +13,11 @@ export const metadata: Metadata = {
 
 export default async function LocaleLayout({
   children,
+  modal,
   params,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
   params: Promise<{
     locale: Locale;
   }>;
@@ -26,7 +28,11 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  return <RootLayout locale={locale}>{children}</RootLayout>;
+  return (
+    <RootLayout locale={locale} modal={modal}>
+      {children}
+    </RootLayout>
+  );
 }
 
 export async function generateStaticParams() {
