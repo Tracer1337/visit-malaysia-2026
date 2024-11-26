@@ -45,7 +45,7 @@ const typographyClasses: Record<TypographyVariant, string> = {
     'xl:text-[12px] xl:leading-[16px] md:text-[12px] md:leading-[16px] text-[10px] leading-[13px]',
 };
 
-export function Typography({
+export function Typography<T extends keyof ReactHTML>({
   variant,
   element,
   children,
@@ -54,8 +54,8 @@ export function Typography({
 }: PropsWithChildren<
   {
     variant: TypographyVariant;
-    element?: keyof ReactHTML;
-  } & ComponentProps<'div'>
+    element?: T;
+  } & ComponentProps<T>
 >) {
   return createElement(
     element ?? typographyElements[variant],

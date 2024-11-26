@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.6",
+    "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^3.9.1",
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@vercel/analytics": "^1.4.0",
     "@vercel/speed-insights": "^1.1.0",
@@ -20,12 +24,14 @@
     "qs": "^6.13.0",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
+    "react-hook-form": "^7.53.2",
     "react-slick": "^0.30.2",
     "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
     "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.5.4",
-    "tsdef": "^0.0.14"
+    "tsdef": "^0.0.14",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
