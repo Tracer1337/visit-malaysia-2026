@@ -22,7 +22,7 @@ export function LoginForm() {
   const {
     handleSubmit,
     register,
-    formState: { isValid, errors },
+    formState: { errors },
     control,
   } = useForm<LoginInputs>({
     resolver: zodResolver(LoginSchema),
@@ -69,16 +69,12 @@ export function LoginForm() {
           </Typography>
         </Link>
       </div>
-      <Button
-        className="rounded-xl font-bold"
-        disabled={!isValid}
-        type="submit"
-      >
+      <Button className="rounded-xl font-bold" type="submit">
         Sign In
       </Button>
       <Typography variant="body2" element="p" className="text-center">
         Don’t have an account?{' '}
-        <Link href="/signup" replace className="text-[#00398D] font-semibold">
+        <Link href="/register" replace className="text-[#00398D] font-semibold">
           Sign Up
         </Link>
       </Typography>

@@ -27,7 +27,7 @@ export const TextField = forwardRef<
         <input
           type="text"
           className={cn(
-            'p-4 bg-[#F4F5F6] rounded-xl w-full',
+            'p-4 bg-[#F4F5F6] rounded-xl w-full placeholder-gray-400',
             error && 'outline-red-600 outline outline-1',
           )}
           id={id}

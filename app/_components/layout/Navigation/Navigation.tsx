@@ -72,7 +72,7 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
             <Link href="/login" className="mr-3">
               <Button variant="secondary">{data.SignInButton}</Button>
             </Link>
-            <Link href="/">
+            <Link href="/register">
               <Button>{data.SignUpButton}</Button>
             </Link>
           </div>
