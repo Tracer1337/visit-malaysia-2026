@@ -40,7 +40,6 @@ export function LoginForm() {
     >
       <TextField
         label="Email"
-        type="email"
         placeholder="jhonedward@gmail.com"
         error={errors.email}
         {...register('email')}

@@ -9,8 +9,12 @@ export const TextField = forwardRef<
     label?: string;
     inputSlot?: ReactNode;
     error?: FieldError;
+    hint?: ReactNode;
   } & ComponentProps<'input'>
->(function TextField({ label, className, inputSlot, error, ...props }, ref) {
+>(function TextField(
+  { label, className, inputSlot, error, hint, ...props },
+  ref,
+) {
   const id = useId();
 
   return (
@@ -36,6 +40,11 @@ export const TextField = forwardRef<
         />
         {inputSlot}
       </div>
+      {hint && (
+        <Typography variant="body3" className="mt-1 opacity-50" element="p">
+          {hint}
+        </Typography>
+      )}
     </div>
   );
 });

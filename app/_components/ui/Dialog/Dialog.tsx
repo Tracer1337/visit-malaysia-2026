@@ -1,5 +1,6 @@
 'use client';
 
+import { ChevronLeftIcon } from '@heroicons/react/16/solid';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { PropsWithChildren, ReactNode } from 'react';
@@ -31,6 +32,15 @@ export function Dialog({
                   onClick={() => router.back()}
                 >
                   <XMarkIcon className="size-6" />
+                </button>
+              )}
+              {closeButtonVariant === 'back' && (
+                <button
+                  className="absolute top-[26px] left-4 sm:top-[30px] sm:left-[50px] opacity-30"
+                  aria-label="Back"
+                  onClick={() => router.back()}
+                >
+                  <ChevronLeftIcon className="size-6" />
                 </button>
               )}
             </div>

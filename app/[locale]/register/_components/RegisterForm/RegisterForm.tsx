@@ -108,23 +108,17 @@ export function RegisterForm() {
       </div>
       <TextField
         label="Email"
-        type="Email"
         placeholder="jhonedward@gmail.com"
         error={errors?.email}
         {...register('email')}
       />
-      <div>
-        <PasswordField
-          label="Password"
-          placeholder="Please input"
-          error={errors?.password}
-          {...register('password')}
-        />
-        <Typography variant="body3" className="opacity-75 mt-1" element="p">
-          Password min 8 characters with uppercase, lowercase, number, and
-          special character
-        </Typography>
-      </div>
+      <PasswordField
+        label="Password"
+        placeholder="Please input"
+        error={errors?.password}
+        hint="Password min 8 characters with uppercase, lowercase, number, and special character"
+        {...register('password')}
+      />
       <PasswordField
         label="Confirm Password"
         placeholder="Please input"
