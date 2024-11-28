@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import Button from '@/_components/ui/Button';
 import TextField from '@/_components/ui/TextField';
+import { useRouter } from '@/_lib/i18n/routing';
 
 const ForgotPasswordSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -13,6 +14,8 @@ const ForgotPasswordSchema = z.object({
 type ForgotPasswordInputs = z.infer<typeof ForgotPasswordSchema>;
 
 export function ForgotPasswordForm() {
+  const router = useRouter();
+
   const {
     handleSubmit,
     register,
@@ -23,7 +26,7 @@ export function ForgotPasswordForm() {
 
   const onSubmit: SubmitHandler<ForgotPasswordInputs> = (data) => {
     console.log(data);
-    alert('Forgot Password');
+    router.push('/reset-password');
   };
 
   return (
