@@ -8,8 +8,10 @@ import { useRouter } from '@/_lib/i18n/routing';
 export function Dialog({
   title,
   children,
+  closeButtonVariant = 'close',
 }: PropsWithChildren<{
   title: ReactNode;
+  closeButtonVariant?: 'close' | 'back' | 'none';
 }>) {
   const router = useRouter();
 
@@ -21,13 +23,17 @@ export function Dialog({
           <RadixDialog.Title asChild>{title}</RadixDialog.Title>
           {children}
           <RadixDialog.Close asChild>
-            <button
-              className="absolute top-[26px] right-4 sm:top-[30px] sm:right-[50px] opacity-30"
-              aria-label="Close"
-              onClick={() => router.back()}
-            >
-              <XMarkIcon className="size-6" />
-            </button>
+            <div>
+              {closeButtonVariant === 'close' && (
+                <button
+                  className="absolute top-[26px] right-4 sm:top-[30px] sm:right-[50px] opacity-30"
+                  aria-label="Close"
+                  onClick={() => router.back()}
+                >
+                  <XMarkIcon className="size-6" />
+                </button>
+              )}
+            </div>
           </RadixDialog.Close>
         </RadixDialog.Content>
       </RadixDialog.Portal>
