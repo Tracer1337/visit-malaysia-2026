@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Button from '@/_components/Button';
-import LanguageSelect from '@/_components/LanguageSelect';
 import { Link } from '@/_lib/i18n/routing';
 import { LandingPageHeader } from '@/_lib/strapi/landing-page';
 import BurgerMenuIcon from '@/_lib/svg/BurgerMenuIcon';
+import LocaleSelect from './components/LocaleSelect';
 import NavigationVariants from './components/NavigationVariants';
 
 export function Navigation({ data }: { data: LandingPageHeader }) {
@@ -65,10 +65,10 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
         </div>
         <div>
           <BurgerMenuIcon className="bg-gray-400 xl:hidden" />
-          <div className="max-xl:hidden">
-            <span className="mr-3">
-              <LanguageSelect />
-            </span>
+          <div className="max-xl:hidden flex">
+            <div className="mr-3">
+              <LocaleSelect />
+            </div>
             <Link href="/login" className="mr-3">
               <Button variant="secondary">{data.SignInButton}</Button>
             </Link>

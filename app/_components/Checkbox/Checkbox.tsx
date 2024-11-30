@@ -1,4 +1,5 @@
 import { CheckIcon } from '@heroicons/react/16/solid';
+// eslint-disable-next-line no-restricted-imports
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { ComponentProps, ReactNode, useId } from 'react';
 import { FieldError } from 'react-hook-form';

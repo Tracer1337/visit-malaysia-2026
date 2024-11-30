@@ -5,7 +5,7 @@
       "error",
       {
         "name": "next/link",
-        "message": "Please import from `@/app/_lib/i18n/routing` instead."
+        "message": "Please import from `@/_lib/i18n/routing` instead."
       },
       {
         "name": "next/navigation",
@@ -15,7 +15,19 @@
           "useRouter",
           "usePathname"
         ],
-        "message": "Please import from `@/app/_lib/i18n/routing` instead."
+        "message": "Please import from `@/_lib/i18n/routing` instead."
+      },
+      {
+        "name": "@radix-ui/react-checkbox",
+        "message": "Please import from `@/_components/Checkbox` instead."
+      },
+      {
+        "name": "@radix-ui/react-dialog",
+        "message": "Please import from `@/_components/Dialog` instead."
+      },
+      {
+        "name": "@radix-ui/react-select",
+        "message": "Please import from `@/_components/Select` instead."
       }
     ]
   }

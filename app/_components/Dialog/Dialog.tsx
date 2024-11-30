@@ -2,6 +2,7 @@
 
 import { ChevronLeftIcon } from '@heroicons/react/16/solid';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+// eslint-disable-next-line no-restricted-imports
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { PropsWithChildren, ReactNode } from 'react';
 import { useRouter } from '@/_lib/i18n/routing';

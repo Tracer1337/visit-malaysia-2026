@@ -1,7 +1,7 @@
 import { CheckIcon, ChevronUpIcon } from '@heroicons/react/16/solid';
 import { ChevronDownIcon } from '@heroicons/react/16/solid';
+// eslint-disable-next-line no-restricted-imports
 import * as RadixSelect from '@radix-ui/react-select';
-import { useId } from 'react';
 import { FieldError } from 'react-hook-form';
 import { cn } from '@/_lib/styling';
 import Typography from '../Typography';
@@ -16,6 +16,8 @@ export function Select({
   placeholder,
   error,
   className,
+  triggerClasses,
+  iconClasses,
 }: {
   options: SelectOption[];
   value: string;
@@ -24,13 +26,13 @@ export function Select({
   placeholder?: string;
   error?: FieldError;
   className?: string;
+  triggerClasses?: string;
+  iconClasses?: string;
 }) {
-  const id = useId();
-
   return (
     <div className={className}>
       <div className="flex items-center justify-between mb-1">
-        <Typography variant="body2" element="label" htmlFor={id}>
+        <Typography variant="body2" element="label">
           {label}
         </Typography>
         <Typography variant="body2" className="text-red-600">
@@ -41,12 +43,18 @@ export function Select({
         <RadixSelect.Trigger
           className={cn(
             'flex items-center bg-[#F4F5F6] p-4 rounded-xl w-full relative data-[placeholder]:text-gray-400',
+            triggerClasses,
             error && 'outline-red-600 outline outline-1',
           )}
         >
           <RadixSelect.Value placeholder={placeholder}></RadixSelect.Value>
-          <RadixSelect.Icon>
-            <ChevronDownIcon className="absolute top-1/2 right-4 -translate-y-1/2 w-[20px] opacity-35 pointer-events-none text-black" />
+          <RadixSelect.Icon asChild>
+            <ChevronDownIcon
+              className={cn(
+                'absolute top-1/2 right-4 -translate-y-1/2 w-[20px] opacity-35 pointer-events-none text-black',
+                iconClasses,
+              )}
+            />
           </RadixSelect.Icon>
         </RadixSelect.Trigger>
         <RadixSelect.Portal>
