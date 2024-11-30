@@ -1,6 +1,6 @@
 'use client';
 
-import Typography from '@/_components/ui/Typography';
+import Typography from '@/_components/Typography';
 import { cn } from '@/_lib/styling';
 import AppleIcon from '@/_lib/svg/AppleIcon';
 

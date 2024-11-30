@@ -1,5 +1,5 @@
 import { ForgotPasswordPageContent } from '@/[locale]/forgot-password/_components/ForgotPasswordPageContent';
-import Dialog from '@/_components/ui/Dialog';
+import Dialog from '@/_components/Dialog';
 
 export default function ForgotPasswordModalPage() {
   return (

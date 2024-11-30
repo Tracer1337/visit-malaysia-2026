@@ -1,4 +1,4 @@
-import { SelectOption } from '@/_components/ui/Select/Select';
+import { SelectOption } from '@/_components/Select/Select';
 
 export enum Gender {
   Male = 'male',

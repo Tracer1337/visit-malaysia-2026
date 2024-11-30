@@ -3,11 +3,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import Button from '@/_components/ui/Button';
-import Checkbox from '@/_components/ui/Checkbox';
-import PasswordField from '@/_components/ui/PasswordField';
-import TextField from '@/_components/ui/TextField';
-import Typography from '@/_components/ui/Typography';
+import Button from '@/_components/Button';
+import Checkbox from '@/_components/Checkbox';
+import PasswordField from '@/_components/PasswordField';
+import TextField from '@/_components/TextField';
+import Typography from '@/_components/Typography';
 import { Link } from '@/_lib/i18n/routing';
 
 const LoginSchema = z.object({

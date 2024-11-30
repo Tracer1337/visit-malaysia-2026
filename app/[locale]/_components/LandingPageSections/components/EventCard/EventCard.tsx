@@ -1,5 +1,5 @@
-import StrapiImage from '@/_components/ui/StrapiImage';
-import Typography from '@/_components/ui/Typography';
+import StrapiImage from '@/_components/StrapiImage';
+import Typography from '@/_components/Typography';
 import { LandingPageEvent } from '@/_lib/strapi/landing-page';
 import LocationIcon from '@/_lib/svg/LocationIcon';
 

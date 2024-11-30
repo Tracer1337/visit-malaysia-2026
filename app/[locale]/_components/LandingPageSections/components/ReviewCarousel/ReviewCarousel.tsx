@@ -1,5 +1,5 @@
-import Carousel from '@/_components/ui/Carousel';
-import Typography from '@/_components/ui/Typography';
+import Carousel from '@/_components/Carousel';
+import Typography from '@/_components/Typography';
 import { tailwindConfig } from '@/_lib/tailwind';
 import ReviewCard from '../ReviewCard';
 

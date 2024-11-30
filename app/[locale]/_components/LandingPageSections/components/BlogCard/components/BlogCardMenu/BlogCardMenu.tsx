@@ -1,5 +1,5 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import Typography from '@/_components/ui/Typography';
+import Typography from '@/_components/Typography';
 import DottedMenuIcon from '@/_lib/svg/DottedMenuIcon';
 
 export function BlogCardMenu() {

@@ -1,4 +1,4 @@
-import Typography from '@/_components/ui/Typography';
+import Typography from '@/_components/Typography';
 import { Link } from '@/_lib/i18n/routing';
 import { LandingPageSearchGroup } from '@/_lib/strapi/landing-page';
 import AiStarsIcon from '@/_lib/svg/AiStarsIcon';

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Typography from '@/_components/ui/Typography';
+import Typography from '@/_components/Typography';
 import { Link } from '@/_lib/i18n/routing';
 import { LandingPageFooter } from '@/_lib/strapi/landing-page';
 

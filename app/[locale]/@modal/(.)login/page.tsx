@@ -1,5 +1,5 @@
 import { LoginPageContent } from '@/[locale]/login/_components/LoginPageContent';
-import Dialog from '@/_components/ui/Dialog';
+import Dialog from '@/_components/Dialog';
 
 export default function LoginModalPage() {
   return (

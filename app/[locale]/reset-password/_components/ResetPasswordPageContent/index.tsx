@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import Typography from '@/_components/ui/Typography';
+import Typography from '@/_components/Typography';
 import ResetPasswordForm from '../ResetPasswordForm';
 
 function Title(props: ComponentProps<'div'>) {

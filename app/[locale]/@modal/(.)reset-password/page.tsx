@@ -1,5 +1,5 @@
 import { ResetPasswordPageContent } from '@/[locale]/reset-password/_components/ResetPasswordPageContent';
-import Dialog from '@/_components/ui/Dialog';
+import Dialog from '@/_components/Dialog';
 
 export default function ResetPasswordModalPage() {
   return (

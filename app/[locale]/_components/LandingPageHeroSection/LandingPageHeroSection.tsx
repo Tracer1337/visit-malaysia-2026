@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import StrapiImage from '@/_components/ui/StrapiImage';
-import Typography from '@/_components/ui/Typography';
+import StrapiImage from '@/_components/StrapiImage';
+import Typography from '@/_components/Typography';
 import { LandingPageCarouselItem } from '@/_lib/strapi/landing-page';
 import { tailwindConfig } from '@/_lib/tailwind';
 import LandingPageHeroSectionCarousel from './components/LandingPageHeroSectionCarousel';

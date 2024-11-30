@@ -3,8 +3,8 @@
 import { useLocale } from 'next-intl';
 import Form from 'next/form';
 import { useState } from 'react';
-import Button from '@/_components/ui/Button';
-import Typography from '@/_components/ui/Typography';
+import Button from '@/_components/Button';
+import Typography from '@/_components/Typography';
 import { useGoogleMapsAutocomplete } from '@/_lib/google/hooks/useGoogleMapsAutocomplete';
 import AiStarsIcon from '@/_lib/svg/AiStarsIcon';
 import { mapGooglePlacesResultToLocationPageSearchParams } from '../../utils/mapping';

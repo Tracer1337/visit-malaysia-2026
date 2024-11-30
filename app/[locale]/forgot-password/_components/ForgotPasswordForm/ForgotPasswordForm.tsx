@@ -3,8 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import Button from '@/_components/ui/Button';
-import TextField from '@/_components/ui/TextField';
+import Button from '@/_components/Button';
+import TextField from '@/_components/TextField';
 import { useRouter } from '@/_lib/i18n/routing';
 
 const ForgotPasswordSchema = z.object({

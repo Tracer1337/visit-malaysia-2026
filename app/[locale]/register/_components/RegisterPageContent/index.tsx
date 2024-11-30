@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import Typography from '@/_components/ui/Typography';
+import Typography from '@/_components/Typography';
 import RegisterForm from '../RegisterForm';
 import { RegisterWithAppleButton } from '../RegisterWithAppleButton/RegisterWithAppleButton';
 import RegisterWithGoogleButton from '../RegisterWithGoogleButton';

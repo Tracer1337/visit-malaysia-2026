@@ -3,8 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import Button from '@/_components/ui/Button';
-import PasswordField from '@/_components/ui/PasswordField';
+import Button from '@/_components/Button';
+import PasswordField from '@/_components/PasswordField';
 import { passwordSchema } from '@/_lib/schema/password';
 
 const ResetPasswordSchema = z

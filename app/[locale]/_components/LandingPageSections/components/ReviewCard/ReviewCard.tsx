@@ -1,5 +1,5 @@
-import Placeholder from '@/_components/ui/Placeholder';
-import Typography from '@/_components/ui/Typography';
+import Placeholder from '@/_components/Placeholder';
+import Typography from '@/_components/Typography';
 import LocationIcon from '@/_lib/svg/LocationIcon';
 import TrustpilotStarIconFilled from '@/_lib/svg/TrustpilotStarIconFilled';
 import TrustpilotStarIconOutlined from '@/_lib/svg/TrustpilotStarIconOutlined';

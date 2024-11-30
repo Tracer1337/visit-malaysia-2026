@@ -1,5 +1,5 @@
 import { RefObject } from 'react';
-import Carousel from '@/_components/ui/Carousel';
+import Carousel from '@/_components/Carousel';
 import { LandingPageHeroSectionItem } from '../../../LandingPageHeroSection';
 
 export function useUpdateLandingPageHeroSection({

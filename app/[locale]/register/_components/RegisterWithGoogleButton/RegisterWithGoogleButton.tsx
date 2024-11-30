@@ -1,6 +1,6 @@
 'use client';
 
-import Typography from '@/_components/ui/Typography';
+import Typography from '@/_components/Typography';
 import { useRouter } from '@/_lib/i18n/routing';
 import { cn } from '@/_lib/styling';
 import GoogleIcon from '@/_lib/svg/GoogleIcon';

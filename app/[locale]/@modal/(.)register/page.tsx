@@ -1,5 +1,5 @@
 import { RegisterPageContent } from '@/[locale]/register/_components/RegisterPageContent';
-import Dialog from '@/_components/ui/Dialog';
+import Dialog from '@/_components/Dialog';
 
 export default function RegisterModalPage() {
   return (

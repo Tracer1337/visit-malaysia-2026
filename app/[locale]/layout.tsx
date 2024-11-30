@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { Locale, appConfig } from '@/../config';
-import RootLayout from '@/_components/layout/RootLayout';
 import { handleInvalidLocale } from '@/_lib/i18n/routing';
+import RootLayout from './_components/RootLayout';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.visitmalaysia2026.com'),
