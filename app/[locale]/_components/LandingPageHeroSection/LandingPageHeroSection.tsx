@@ -20,7 +20,7 @@ export async function LandingPageHeroSection({
   };
 }) {
   return (
-    <div className="relative mt-4 overflow-x-hidden xl:-mt-[67px] xl:h-[812px]">
+    <div className="relative overflow-x-hidden -mt-[83px]">
       <Image
         src="/img/hero-background.png"
         alt=""
@@ -29,7 +29,7 @@ export async function LandingPageHeroSection({
         className="pointer-events-none -z-10 object-cover object-center"
         priority
       />
-      <div className="container relative pb-[85px] pt-[60px] xl:mx-auto xl:grid xl:grid-cols-[minmax(0,_1.1fr),_minmax(0,_0.9fr)] xl:grid-rows-1 xl:pb-0 xl:pt-[155px]">
+      <div className="container relative pb-[85px] pt-[100px] xl:mx-auto xl:grid xl:grid-cols-[minmax(0,_1.1fr),_minmax(0,_0.9fr)] xl:grid-rows-1 xl:pt-[155px]">
         <div className="xl:mt-[75px]">
           <div className="w-fit rounded-lg bg-[#2A3075] px-4 py-1.5">
             <Typography

@@ -109,10 +109,8 @@ export async function RootLayout({
           dm_sans.className,
         )}
       >
-        <div className="container mx-auto pt-4">
-          <Navigation data={landingPageData.data.attributes.Header} />
-        </div>
-        <div className="grow">{children}</div>
+        <Navigation data={landingPageData.data.attributes.Header} />
+        <div className="grow mt-[83px]">{children}</div>
         <Footer data={landingPageData.data.attributes.Footer} />
         {/* Remove Before Submitting Project */}
         <SpeedInsights />

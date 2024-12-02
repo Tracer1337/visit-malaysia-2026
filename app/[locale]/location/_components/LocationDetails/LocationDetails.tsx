@@ -25,7 +25,7 @@ export async function LocationDetails({
 
   return (
     <>
-      <div className="relative mt-4 h-[396px] xl:-mt-[67px] xl:h-[661px]">
+      <div className="relative h-[396px] -mt-[83px] xl:h-[661px]">
         {thumbnailUrl && (
           <Image
             src={thumbnailUrl}
@@ -35,7 +35,7 @@ export async function LocationDetails({
             className="pointer-events-none -z-10 object-cover object-center brightness-50"
           />
         )}
-        <div className="container relative mx-auto pt-[60px] xl:pt-[230px]">
+        <div className="container relative mx-auto pt-[90px] xl:pt-[230px]">
           <Typography variant="h1" className="text-white xl:max-w-[60%]">
             {details.title}
           </Typography>
