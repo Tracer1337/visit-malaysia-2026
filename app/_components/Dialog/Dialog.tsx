@@ -23,6 +23,7 @@ export function Dialog({
         <RadixDialog.Overlay className="fixed inset-0 z-10 bg-black opacity-60" />
         <RadixDialog.Content className="fixed max-sm:bottom-0 sm:left-1/2 sm:top-1/2 z-10 max-h-[85vh] sm:-translate-x-1/2 sm:-translate-y-1/2 rounded-t-3xl sm:rounded-xl bg-white pt-6 pb-9 px-4 sm:py-6 sm:px-[50px] w-full max-w-screen-sm overflow-y-auto">
           <RadixDialog.Title asChild>{title}</RadixDialog.Title>
+          <RadixDialog.Description></RadixDialog.Description>
           {children}
           <RadixDialog.Close asChild>
             <div>

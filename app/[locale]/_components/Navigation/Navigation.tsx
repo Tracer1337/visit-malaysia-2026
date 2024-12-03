@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { Link } from '@/_lib/i18n/routing';
 import { LandingPageHeader } from '@/_lib/strapi/landing-page';
-import BurgerMenuIcon from '@/_lib/svg/BurgerMenuIcon';
 import LocaleSelect from './components/LocaleSelect';
 import NavigationAuth from './components/NavigationAuth';
+import NavigationMobile from './components/NavigationMobile';
 import NavigationVariants from './components/NavigationVariants';
 
 export function Navigation({ data }: { data: LandingPageHeader }) {
@@ -37,7 +37,10 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
     <NavigationVariants>
       <div className="fixed z-10 top-0 left-0 right-0 group-[.variant-default]:bg-white transition-colors">
         <nav className="flex items-center justify-between container mx-auto py-4">
-          <BurgerMenuIcon className="bg-gray-400 xl:hidden group-[.auth-logged-out]:hidden" />
+          <NavigationMobile
+            className="group-[.auth-logged-out]:hidden"
+            data={data}
+          />
           <div className="flex">
             <Image
               src="/img/logo.png"
@@ -72,7 +75,10 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
               </div>
               <NavigationAuth data={data} />
             </div>
-            <BurgerMenuIcon className="bg-gray-400 xl:hidden group-[.auth-logged-in]:hidden" />
+            <NavigationMobile
+              className="group-[.auth-logged-in]:hidden"
+              data={data}
+            />
           </div>
         </nav>
       </div>
