@@ -3,7 +3,7 @@ import React from 'react';
 import StrapiImage from '@/_components/StrapiImage';
 import Typography from '@/_components/Typography';
 import { LandingPageCarouselItem } from '@/_lib/strapi/landing-page';
-import { tailwindConfig } from '@/_lib/tailwind';
+import { tailwindConfig } from '@/_lib/tailwind/config';
 import LandingPageHeroSectionCarousel from './components/LandingPageHeroSectionCarousel';
 
 export type LandingPageHeroSectionItem = {

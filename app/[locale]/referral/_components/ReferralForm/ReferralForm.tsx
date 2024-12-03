@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import Button from '@/_components/Button';
 import TextField from '@/_components/TextField';
+import { useAuthPlaceholder } from '@/_lib/auth/context';
 import { useRouter } from '@/_lib/i18n/routing';
 
 const ReferralSchema = z.object({
@@ -14,6 +15,8 @@ const ReferralSchema = z.object({
 type ReferralInputs = z.infer<typeof ReferralSchema>;
 
 export function ReferralForm() {
+  const authPlaceholder = useAuthPlaceholder();
+
   const router = useRouter();
 
   const {
@@ -30,7 +33,7 @@ export function ReferralForm() {
 
   const onSubmit: SubmitHandler<ReferralInputs> = (data) => {
     console.log(data);
-    alert('Referral');
+    authPlaceholder.login();
   };
 
   return (

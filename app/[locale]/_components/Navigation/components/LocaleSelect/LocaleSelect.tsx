@@ -19,6 +19,7 @@ export function LocaleSelect() {
       }
       triggerClasses="cursor-pointer bg-transparent py-2 flex items-center [&>span]:mr-1 group-[.variant-light]:text-white"
       iconClasses="static translate-y-0 group-[.variant-light]:text-white opacity-60"
+      className="flex"
     />
   );
 }

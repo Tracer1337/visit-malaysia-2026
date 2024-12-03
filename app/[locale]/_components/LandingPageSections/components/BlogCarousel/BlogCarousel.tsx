@@ -2,7 +2,7 @@ import Carousel from '@/_components/Carousel';
 import Typography from '@/_components/Typography';
 import { BlogContent } from '@/_lib/halaltravel/blog';
 import { Link } from '@/_lib/i18n/routing';
-import { tailwindConfig } from '@/_lib/tailwind';
+import { tailwindConfig } from '@/_lib/tailwind/config';
 import BlogCard from '../BlogCard';
 
 export function BlogCarousel({

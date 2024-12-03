@@ -8,6 +8,7 @@ import Checkbox from '@/_components/Checkbox';
 import PasswordField from '@/_components/PasswordField';
 import TextField from '@/_components/TextField';
 import Typography from '@/_components/Typography';
+import { useAuthPlaceholder } from '@/_lib/auth/context';
 import { Link } from '@/_lib/i18n/routing';
 
 const LoginSchema = z.object({
@@ -19,6 +20,8 @@ const LoginSchema = z.object({
 type LoginInputs = z.infer<typeof LoginSchema>;
 
 export function LoginForm() {
+  const authPlaceholder = useAuthPlaceholder();
+
   const {
     handleSubmit,
     register,
@@ -30,7 +33,7 @@ export function LoginForm() {
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
     console.log(data);
-    alert('Login');
+    authPlaceholder.login();
   };
 
   return (

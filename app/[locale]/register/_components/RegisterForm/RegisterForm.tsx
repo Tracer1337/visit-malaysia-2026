@@ -13,6 +13,7 @@ import PhoneNumberField from '@/_components/PhoneNumberField';
 import Select from '@/_components/Select';
 import TextField from '@/_components/TextField';
 import Typography from '@/_components/Typography';
+import { useAuthPlaceholder } from '@/_lib/auth/context';
 import { Link } from '@/_lib/i18n/routing';
 import { Gender, genderOptions } from '@/_lib/options/gender';
 import { passwordSchema } from '@/_lib/schema/password';
@@ -61,6 +62,8 @@ const RegisterSchema = z
 type RegisterInputs = z.infer<typeof RegisterSchema>;
 
 export function RegisterForm() {
+  const authPlaceholder = useAuthPlaceholder();
+
   const {
     handleSubmit,
     register,
@@ -74,7 +77,7 @@ export function RegisterForm() {
 
   const onSubmit: SubmitHandler<RegisterInputs> = (data) => {
     console.log(data);
-    alert('Login');
+    authPlaceholder.login();
   };
 
   return (

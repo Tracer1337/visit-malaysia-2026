@@ -4,6 +4,7 @@ import { DM_Sans, Inter } from 'next/font/google';
 import React from 'react';
 import { TouristInformationCenter, WithContext } from 'schema-dts';
 import { Locale } from '@/../config';
+import { AuthPlaceholderProvider } from '@/_lib/auth/context';
 import { GoogleMapsBootstrapScript } from '@/_lib/google/maps';
 import { fetchLandingPage } from '@/_lib/strapi/landing-page';
 import { cn } from '@/_lib/styling';
@@ -104,19 +105,21 @@ export async function RootLayout({
       </head>
       <body
         className={cn(
-          'flex min-h-screen flex-col antialiased',
+          'flex min-h-screen flex-col antialiased overflow-x-hidden',
           inter.className,
           dm_sans.className,
         )}
       >
-        <Navigation data={landingPageData.data.attributes.Header} />
-        <div className="grow mt-[83px]">{children}</div>
-        <Footer data={landingPageData.data.attributes.Footer} />
-        {/* Remove Before Submitting Project */}
-        <SpeedInsights />
-        {/* Remove Before Submitting Project */}
-        <Analytics />
-        {modal}
+        <AuthPlaceholderProvider>
+          <Navigation data={landingPageData.data.attributes.Header} />
+          <div className="grow mt-[83px]">{children}</div>
+          <Footer data={landingPageData.data.attributes.Footer} />
+          {/* Remove Before Submitting Project */}
+          <SpeedInsights />
+          {/* Remove Before Submitting Project */}
+          <Analytics />
+          {modal}
+        </AuthPlaceholderProvider>
       </body>
     </html>
   );

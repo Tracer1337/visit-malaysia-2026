@@ -1,6 +1,6 @@
 import Carousel from '@/_components/Carousel';
 import Typography from '@/_components/Typography';
-import { tailwindConfig } from '@/_lib/tailwind';
+import { tailwindConfig } from '@/_lib/tailwind/config';
 import ReviewCard from '../ReviewCard';
 
 const items = Array(5).fill(0);

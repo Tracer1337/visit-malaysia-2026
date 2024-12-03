@@ -18,6 +18,8 @@ export function useNavigationVariant(): NavigationVariant {
       }
     };
 
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll);
 
     return () => {

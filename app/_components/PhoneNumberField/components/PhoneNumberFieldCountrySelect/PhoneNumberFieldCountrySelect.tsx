@@ -2,6 +2,7 @@
 
 import { CheckIcon, ChevronUpIcon } from '@heroicons/react/16/solid';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
+// eslint-disable-next-line no-restricted-imports
 import * as Select from '@radix-ui/react-select';
 import Image from 'next/image';
 import { getCountries, getCountryCallingCode } from 'react-phone-number-input';

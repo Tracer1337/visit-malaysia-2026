@@ -2,7 +2,7 @@ import Carousel from '@/_components/Carousel';
 import Typography from '@/_components/Typography';
 import { Link } from '@/_lib/i18n/routing';
 import { LandingPageEvent } from '@/_lib/strapi/landing-page';
-import { tailwindConfig } from '@/_lib/tailwind';
+import { tailwindConfig } from '@/_lib/tailwind/config';
 import EventCard from '../EventCard';
 
 export function EventCarousel({

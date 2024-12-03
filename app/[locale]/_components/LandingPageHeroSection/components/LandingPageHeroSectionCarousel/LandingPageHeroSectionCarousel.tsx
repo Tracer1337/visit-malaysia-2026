@@ -2,7 +2,7 @@
 
 import React, { PropsWithChildren, useRef } from 'react';
 import Carousel from '@/_components/Carousel';
-import { tailwindConfig } from '@/_lib/tailwind';
+import { tailwindConfig } from '@/_lib/tailwind/config';
 import { useUpdateLandingPageHeroSection } from './hooks/useUpdateLandingPageHeroSection';
 
 export function LandingPageHeroSectionCarousel({

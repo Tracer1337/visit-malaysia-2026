@@ -2,7 +2,7 @@ import Carousel from '@/_components/Carousel';
 import StrapiImage from '@/_components/StrapiImage';
 import Typography from '@/_components/Typography';
 import { ImageList } from '@/_lib/strapi/media';
-import { tailwindConfig } from '@/_lib/tailwind';
+import { tailwindConfig } from '@/_lib/tailwind/config';
 
 export function DocumentationCarousel({
   data,
