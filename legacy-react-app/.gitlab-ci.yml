@@ -1,0 +1,163 @@
+image: node:18
+
+stages:
+  - install
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+# Shared install job
+install_dependencies:
+  stage: install
+  script:
+    - npm ci  # Faster, deterministic installation from package-lock.json
+  artifacts:
+    paths:
+      - node_modules/
+  only:
+    - prod
+    - prod-epictravel
+    - prod-halaltravel
+    - prod-vm
+    - main
+    - izzatest
+    - dev_izzah
+    - dev_staging
+
+# General build job template
+.build_template:
+  stage: build
+  dependencies:
+    - install_dependencies
+  script:
+    - export CI=false  
+  artifacts:
+    paths:
+      - build/
+
+# Production builds
+build_prod:
+  extends: .build_template
+  script:
+    - npm run build:prod
+  only:
+    - prod
+  tags:
+    - saas-linux-medium-amd64
+
+
+build_prod_epictravel:
+  extends: .build_template
+  script:
+    - npm run build:prod:epictravel
+  only:
+    - prod-epictravel
+  tags:
+    - saas-linux-medium-amd64
+
+
+build_prod_vm:
+  extends: .build_template
+  script:
+    - npm run build:prod:vm
+  only:
+    - prod-vm
+  tags:
+    - saas-linux-medium-amd64
+
+
+build_prod_halaltravel:
+  extends: .build_template
+  script:
+    - npm run build:prod:halaltravel
+  only:
+    - prod-halaltravel
+  tags:
+    - saas-linux-medium-amd64
+
+
+build_main:
+  extends: .build_template
+  script:
+    - npm run build
+  only:
+    - main
+  tags:
+    - saas-linux-medium-amd64
+
+
+build_dev_staging:
+  extends: .build_template
+  script:
+    - npm run build:stage
+  only:
+    - dev_staging
+  tags:
+    - saas-linux-medium-amd64
+
+
+# General deploy job template
+.deploy_template:
+  stage: deploy
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+
+# Production deployments
+deploy_prod:
+  extends: .deploy_template
+  script:
+    - ssh-keyscan -p 8288 -H 45.127.5.176 >> ~/.ssh/known_hosts
+    - ssh -p 8288 root@45.127.5.176 "cd /usr/local/visitmelaka.epictravel.ai/website && rm -rf build"
+    - scp -P 8288 -r ./build root@45.127.5.176:/usr/local/visitmelaka.epictravel.ai/website
+  only:
+    - prod
+
+deploy_prod_epictravel:
+  extends: .deploy_template
+  script:
+    - ssh-keyscan -p 8288 -H 45.127.5.176 >> ~/.ssh/known_hosts
+    - ssh -p 8288 root@45.127.5.176 "cd /usr/local/epictravel.ai/website && rm -rf build"
+    - scp -P 8288 -r ./build root@45.127.5.176:/usr/local/epictravel.ai/website
+  only:
+    - prod-epictravel
+
+deploy_prod_vm:
+  extends: .deploy_template
+  script:
+    - ssh-keyscan -p 8288 -H 45.127.5.176 >> ~/.ssh/known_hosts
+    - ssh -p 8288 root@45.127.5.176 "cd /usr/local/vm.epictravel.ai/website && rm -rf build"
+    - scp -P 8288 -r ./build root@45.127.5.176:/usr/local/vm.epictravel.ai/website
+  only:
+    - prod-vm
+
+deploy_prod_halaltravel:
+  extends: .deploy_template
+  script:
+    - ssh-keyscan -p 8288 -H 45.127.5.115 >> ~/.ssh/known_hosts
+    - ssh -p 8288 root@45.127.5.115 "cd /usr/local/halaltravel/website && rm -rf build"
+    - scp -P 8288 -r ./build root@45.127.5.115:/usr/local/halaltravel/website
+  only:
+    - prod-halaltravel
+
+deploy_main:
+  extends: .deploy_template
+  script:
+    - ssh-keyscan -p 8288 -H 45.127.5.176 >> ~/.ssh/known_hosts
+    - ssh -p 8288 root@45.127.5.176 "cd /usr/local/halaltravel/staging/website && rm -rf build"
+    - scp -P 8288 -r ./build root@45.127.5.176:/usr/local/halaltravel/staging/website
+  only:
+    - main
+
+deploy_dev_staging:
+  extends: .deploy_template
+  script:
+    - ssh-keyscan -p 22 -H 35.187.255.5 >> ~/.ssh/known_hosts
+    - ssh -p 22 root@35.187.255.5 "cd /usr/local/staging.epictravel.ai/website/halaltravel_frontend && rm -rf build"
+    - scp -P 22 -r ./build root@35.187.255.5:/usr/local/staging.epictravel.ai/website/halaltravel_frontend
+  only:
+    - dev_staging

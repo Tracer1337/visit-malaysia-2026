@@ -1,0 +1,42 @@
+/* Custom styles for small screens (max-width: 768px) */
+@media (max-width: 1023px) {
+  .toast-message {
+    font-size: 32px;
+    padding: 30px 20px;
+  }
+
+  /** Used to position the icon **/
+  .Toastify__toast-icon {
+    height: 40px;
+    width: 40px;
+    padding-right: 10px;
+  }
+
+  .loading-spinner {
+    width: 100px;
+    /* Adjust the width to your desired size */
+    height: 100px;
+    /* Adjust the height to your desired size */
+    /* Other styling properties for your spinner */
+  }
+
+
+}
+
+.Toastify__toast-container--top-right {
+  width: auto;
+}
+
+
+/* CANVAS */
+.chartMO-canvas {
+  width: 570px !important; /* Set the width */
+  height: 330px !important; /* Set the height */
+}
+
+.chartVP-canvas {
+  width: 370px !important; /* Set the width */
+  height: 370px !important; /* Set the height */
+}
+
+

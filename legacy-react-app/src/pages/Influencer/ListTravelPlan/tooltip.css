@@ -1,0 +1,112 @@
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tooltip {
+  position: fixed;
+  right: 80px; /* Adjusted to make space for the plus-float button */
+  bottom: 80px;
+  background-color: #fff;
+  color: #00A19A;
+  padding: 10px 15px; /* Adjusted padding */
+  border-radius: 5px;
+  display: none;
+  max-width: 300px; /* Adjusted max-width */
+  min-width: 200px; /* Adjusted min-width */
+  z-index: 10;
+  box-shadow: 1px 1px 18px -1px rgba(0, 0, 0, 0.1), 1px 1px 1px -1px rgba(0, 0, 0, 0.1); /* Adjusted box-shadow */
+  line-height: 1.3; /* Line-height for better text readability */
+  animation: fadeInUp 1s ease-in-out; /* Added animation */
+  white-space: normal; /* Prevent text wrapping */
+  margin: auto; /* Center the tooltip */
+}
+
+
+.tooltip.show {
+  display: block;
+}
+
+.tooltip-message {
+  margin-right: 50px;
+}
+
+.close-btn {
+  background-color: var(--zsiqf-tooltip-close-bg, #fff); /* Customizable background color */
+  color: var(--zsiqf-primary-color, #00A19A); /* Customizable text color */
+  border-radius: 50%; /* Make the button circular */
+  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow */
+  transition: opacity 0.3s; /* Smooth transition for opacity */
+}
+
+.close-btn:hover {
+  opacity: 0.7; /* Slightly transparent on hover */
+}
+
+.close-btn::before {
+  content: '✕'; /* Unicode character for 'x' */
+  font-size: 14px;
+  color: var(--zsiqf-primary-color, #00A19A); /* Customizable text color */
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 25px;
+  right: -5px;
+  border-color: #fff transparent transparent transparent;
+  transform: rotate(135deg);
+  width: 10px;
+  height: 10px;
+  background-color: inherit;
+  z-index: 1;
+margin: auto;
+}
+
+.plus-float {
+  position: fixed;
+  right: 10px;
+  bottom: 80px;
+  background-color: #00A19A;
+  border: none;
+  color: white;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 100%;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.plus-float button {
+  font-size: 16px; /* Set the text size */
+}
+/* Set the icon size */
+.plus-float svg {
+  width: 18px;
+  height: 18px;
+}

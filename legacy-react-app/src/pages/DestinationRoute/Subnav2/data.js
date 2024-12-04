@@ -1,0 +1,50 @@
+export const busData = [
+    {
+      depart: "06:45",
+      arrive: "07:39",
+      min: "48min",
+      change: "1",
+      myr: "3 - 6",
+      way: "One-way",
+      passenger: "1",
+      url: "subnav3",
+    },
+    {
+      depart: "07:25",
+      arrive: "8:15",
+      min: "49min",
+      change: "1",
+      myr: "3 - 6",
+      way: "One-way",
+      passenger: "1",
+    },
+    {
+      depart: "07:41",
+      arrive: "08:32",
+      min: "50min",
+      change: "1",
+      myr: "3 - 6",
+      way: "One-way",
+      passenger: "1",
+    },
+    {
+      depart: "08:17",
+      arrive: "09:06",
+      min: "48min",
+      change: "1",
+      myr: "3 - 6",
+      way: "One-way",
+      passenger: "1",
+    },
+    {
+      depart: "09:20",
+      arrive: "10:15",
+      min: "49min",
+      change: "1",
+      myr: "3 - 6",
+      way: "One-way",
+      passenger: "1",
+    },
+    
+    
+  ];

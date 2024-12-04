@@ -1,0 +1,92 @@
+
+.ck-editor__editable {
+  height: 500px !important;
+}
+
+/* Style for CKEditor Bullet List */
+.ck-editor__editable ul {
+  list-style-type: disc; 
+  margin-left: 20px; 
+}
+
+
+.ck-editor__editable ol {
+  list-style-type: decimal; 
+  margin-left: 20px; 
+}
+
+
+.ck-editor__editable li {
+  margin-bottom: 5px;
+}
+
+/* Dialog box configuration */
+.ck-editor__editable .e-dialog {
+  width: 400px; /* Set a fixed width */
+  height: auto; /* Allow the height to adjust automatically based on content */
+  max-height: 90vh; /* Ensure it doesn't exceed viewport height */
+  padding: 20px; /* Add padding for better spacing */
+  box-sizing: border-box;
+  overflow: visible; /* Prevent overflow */
+}
+
+/* Ensure the content area is visible without scrollbars */
+.ck-editor__editable .e-dlg-content {
+  padding: 0 0 10px 0; /* Add padding to the bottom */
+  box-sizing: border-box;
+  overflow: visible; /* Ensure no scroll bar appears */
+}
+
+/* Footer Container */
+.ck-editor__editable .e-dialog .e-footer-content {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 10px; /* Space between buttons */
+  padding: 0; /* Remove padding to fit buttons */
+  box-sizing: border-box;
+  height: auto; /* Adjust height based on content */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Adjust the OK and CANCEL buttons to be smaller */
+.ck-editor__editable .e-dialog .e-footer-content .e-btn {
+  width: 80px; /* Explicitly set the button width */
+  height: 35px; /* Adjust the height to be smaller */
+  padding: 5px 10px; /* Adjust padding for smaller buttons */
+  font-size: 14px; /* Keep the font size reasonable */
+  border-radius: 4px;
+  box-sizing: border-box;
+  min-height: 30px;
+
+}
+
+/* Specific OK button styling */
+.ck-editor__editable .e-dialog .e-footer-content .e-btn.e-primary {
+  background-color: rgb(0 161 154); /* Custom color for OK button */
+  color: #ffffff; /* White text */
+  border: none;
+}
+
+/* Specific CANCEL button styling */
+.ck-editor__editable .e-dialog .e-footer-content .e-btn:not(.e-primary) {
+  background-color: #f8f9fa; /* Light background for CANCEL button */
+  color: #6c757d; /* Dark text */
+  border: 1px solid #6c757d; /* Border to distinguish */
+}
+
+
+
+
+@import '../../../../node_modules/@syncfusion/ej2-richtexteditor/styles/material.css';
+@import '../../../../node_modules/@syncfusion/ej2-react-richtexteditor/styles/material.css';
+@import '../../../../node_modules/@syncfusion/ej2-base/styles/material.css';
+
+
+@import '../../../../node_modules/@syncfusion/ej2-buttons/styles/material.css';  
+@import '../../../../node_modules/@syncfusion/ej2-calendars/styles/material.css';  
+@import '../../../../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';  
+@import '../../../../node_modules/@syncfusion/ej2-inputs/styles/material.css';  
+@import '../../../../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import '../../../../node_modules/@syncfusion/ej2-popups/styles/material.css';
+@import '../../../../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
+  
