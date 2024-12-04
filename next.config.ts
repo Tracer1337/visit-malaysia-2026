@@ -21,6 +21,37 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  rewrites: async () => ({
+    beforeFiles: [
+      {
+        source: '/images/:path*',
+        destination: '/legacy/images/:path*',
+      },
+      {
+        source: '/videos/:path*',
+        destination: '/legacy/videos/:path*',
+      },
+      {
+        source: '/logo192.png',
+        destination: '/legacy/logo192.png',
+      },
+      {
+        source: '/logo512.png',
+        destination: '/legacy/logo512.png',
+      },
+      {
+        source: '/manifest.json',
+        destination: '/legacy/manifest.json',
+      },
+    ],
+    afterFiles: [
+      {
+        source: '/legacy/:path*',
+        destination: '/legacy/index.html',
+      },
+    ],
+    fallback: [],
+  }),
 };
 
 export default withNextIntl(nextConfig);

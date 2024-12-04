@@ -20,6 +20,18 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+
+## Legacy-React-App Integration
+
+The sourcecode for the legacy react app is located in the folder legacy-react-app. Some changes were made in the package.json and router component to make it work on the /legacy route.
+
+The build files of the react app are placed in /public/legacy. Together with a set of rewrite rules located inside next.config.ts the build files are served under the /legacy route. Follow these steps to update the build files:
+
+1. Run `npm install && npm run build` inside the legacy-react-app folder
+2. Rename the build folder to `legacy`
+3. Replace the current `legacy` folder inside the public directory with the new one
+4. Commit and push changes
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
