@@ -21,7 +21,7 @@ const linkGroups: { label: string; href: string }[][] = [
     },
     {
       label: 'Storefront',
-      href: '/',
+      href: '/legacy/influencer-creator/516',
     },
     {
       label: 'Travel Ideas',
@@ -29,11 +29,11 @@ const linkGroups: { label: string; href: string }[][] = [
     },
     {
       label: 'Become a Creator',
-      href: '/',
+      href: '/legacy/epic-creator-guide',
     },
     {
       label: 'Contact us',
-      href: '/',
+      href: '/legacy/about-us',
     },
   ],
   [
@@ -43,7 +43,7 @@ const linkGroups: { label: string; href: string }[][] = [
     },
     {
       label: 'Storefront',
-      href: '/',
+      href: '/legacy/influencer-creator/516',
     },
     {
       label: 'Itinerary Plan',

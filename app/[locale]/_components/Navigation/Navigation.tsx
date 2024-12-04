@@ -17,7 +17,7 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
     },
     {
       title: data.StorefrontButton,
-      href: '/',
+      href: '/legacy/influencer-creator/516',
     },
     {
       title: data.TravelIdeaButton,
@@ -25,11 +25,11 @@ export function Navigation({ data }: { data: LandingPageHeader }) {
     },
     {
       title: data.BecomeCreatorButton,
-      href: '/',
+      href: '/legacy/epic-creator-guide',
     },
     {
       title: data.ContactUsButton,
-      href: '/',
+      href: '/legacy/about-us',
     },
   ];
 

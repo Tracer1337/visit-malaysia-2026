@@ -11,27 +11,27 @@ import { useTailwindBreakpoint } from '@/_lib/tailwind/breakpoint';
 const links: { label: string; href: string }[] = [
   {
     label: 'Personal Info',
-    href: '/',
+    href: '/legacy/profile',
   },
   {
     label: 'Travel Plan',
-    href: '/',
+    href: '/legacy/my-travelplan',
   },
   {
     label: 'Social Posting',
-    href: '/',
+    href: '/legacy/manage-content',
   },
   {
     label: 'Edit Storefront',
-    href: '/',
+    href: '/legacy/edit-creator',
   },
   {
     label: 'Bookings',
-    href: '/',
+    href: '/legacy/bus-ticket-info',
   },
   {
     label: 'Report',
-    href: '/',
+    href: '/legacy/report-dashboard',
   },
   {
     label: 'Affiliate Commission',
