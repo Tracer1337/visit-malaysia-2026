@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "AuthContext";
@@ -30,7 +29,7 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
   const defaultProfileImageUrl = "/images/default_profile_login.jpg";
   const [profileImage, setProfileImagePath] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
-  const [token,setToken] = useState("");
+  const [token, setToken] = useState("");
   const handleMouseEnter = () => {
     setShowTooltip(true);
   };
@@ -42,13 +41,16 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
     // Clear the entire local storage
     localStorage.clear();
     isLoggedIn(false); // Update the isLoggedIn state
-    navigate("/")
+    navigate("/");
   };
 
   useEffect(() => {
     // Function to check if click is outside of dropdowns
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.dropdown-btn') && !event.target.closest('.dropdown-content')) {
+      if (
+        !event.target.closest(".dropdown-btn") &&
+        !event.target.closest(".dropdown-content")
+      ) {
         setNav(false);
         setNav1(false);
         setNav3(false);
@@ -56,14 +58,13 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
     };
 
     // Add event listener
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     // Cleanup the event listener
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
 
   const toggleDropdown = () => {
     setNav((prevState) => !prevState); // Toggles the state between true and false
@@ -95,7 +96,7 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
   const [userName, setUserName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [commissionUserId,setCommissionUserId] = useState("");
+  const [commissionUserId, setCommissionUserId] = useState("");
   const [password, setPassword] = useState("");
   const { setIsLoggedIn } = useAuth();
   const [error, setError] = useState("");
@@ -213,7 +214,7 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
           setCommissionUserId(commissionUserId);
           setLoading(false);
           setEmail(email);
-          setToken(localStorage.getItem('token'));
+          setToken(localStorage.getItem("token"));
         })
         .catch((error) => {
           setError(error);
@@ -274,8 +275,6 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
           />
         </div>
 
-
-
         {isLoggedIn ? (
           <>
             {/* navbar */}
@@ -307,13 +306,13 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                 >
                   <ul class="py-2 text-sm text-left text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                     <li>
-                      <a href="/property" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Acommodation</a>
+                      <a href="/legacy/property" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Acommodation</a>
                     </li>
                     <li>
-                      <a href="/flight" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Flight</a>
+                      <a href="/legacy/flight" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Flight</a>
                     </li>
                     <li>
-                      <a href="/tour" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tour</a>
+                      <a href="/legacy/tour" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tour</a>
                     </li>
                   </ul>
                 </div>
@@ -334,36 +333,72 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                   id="dropdownNavbarLink3"
                   data-dropdown-toggle="dropdownNavbar3"
                   className="dropdown-btn flex items-center justify-between w-full py-2 pl-3 pr-4 font-montserrat text-[15px] text-[#008D36] rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                  onClick={toggleDropdown3}>
+                  onClick={toggleDropdown3}
+                >
                   Marketplace
-                  <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                  <svg
+                    class="w-2.5 h-2.5 ml-2.5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 4 4 4-4"
+                    />
                   </svg>
                 </button>
                 {/* <!-- Dropdown menu --> */}
                 <div
                   id="dropdownNavbar3"
-                  className={`dropdown-content z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ${nav3 ? "" : "hidden"
-                    } absolute left-30 top-18`}
+                  className={`dropdown-content z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ${
+                    nav3 ? "" : "hidden"
+                  } absolute left-30 top-18`}
                 >
-                  <ul class="py-2 text-sm text-left text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                  <ul
+                    class="py-2 text-sm text-left text-gray-700 dark:text-gray-400"
+                    aria-labelledby="dropdownLargeButton"
+                  >
                     <li>
-                      <a href="/tour-marketplace" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Viator</a>
+                      <a
+                        href="/legacy/tour-marketplace"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Viator
+                      </a>
                     </li>
                     {/* <li>
-                      <a href="/tour-marketplace2" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Epic</a>
+                      <a href="/legacy/tour-marketplace2" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Epic</a>
                     </li> */}
                     <li>
-                      <a href="/tour-marketplace5" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Hotels</a>
+                      <a
+                        href="/legacy/tour-marketplace5"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Hotels
+                      </a>
                     </li>
                     {/* <li>
-                      <a href="/tour-marketplace3" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Flight & Transport</a>
+                      <a href="/legacy/tour-marketplace3" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Flight & Transport</a>
                     </li> */}
                     {/* <li>
-                      <a href="/tour-marketplace4" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deals</a>
+                      <a href="/legacy/tour-marketplace4" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deals</a>
                     </li> */}
                     <li>
-                      <a href="/tour-marketplace-amadeus" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Amadeus</a>
+                      <a
+                        href="/legacy/tour-marketplace-amadeus"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Amadeus
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -398,12 +433,9 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                   Manage User
                 </Text>
               </div> */}
-
-
             </div>
 
             <div className="flex justify-end text-center items-center w-[30%] ">
-
               <div className="items-center justify-center mr-2">
                 <IoIosNotificationsOutline size={35} className="" />
               </div>
@@ -440,8 +472,9 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                 )}
                 <div
                   id="dropdownNavbar2"
-                  className={`dropdown-content z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-[250px] dark:bg-gray-700 dark:divide-gray-600 ${nav1 ? "" : "hidden"
-                    } absolute right-2`}
+                  className={`dropdown-content z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-[250px] dark:bg-gray-700 dark:divide-gray-600 ${
+                    nav1 ? "" : "hidden"
+                  } absolute right-2`}
                 >
                   <ul
                     class="py-2 text-sm text-left text-gray-700 dark:text-gray-400"
@@ -450,37 +483,29 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                     <li>
                       {userName ? (
                         <>
-                          <text
-                            class="block px-4 pt-2 text-center font-semibold"
-                          >
+                          <text class="block px-4 pt-2 text-center font-semibold">
                             Hi, {userName}!
                           </text>
-                          <text
-                            class="block px-4 pt-1 pb-3 text-center font-thin text-xs">
+                          <text class="block px-4 pt-1 pb-3 text-center font-thin text-xs">
                             {email}
                           </text>
                         </>
-                      ) : (<>
-                        <text
-                          class="block px-4 pt-2 text-center font-semibold"
-                        >
-                          Hi, {userName}!
-                        </text>
+                      ) : (
+                        <>
+                          <text class="block px-4 pt-2 text-center font-semibold">
+                            Hi, {userName}!
+                          </text>
 
-                        <text
-                          class="block px-4 pt-1 pb-3 text-center font-thin text-xs">
-                          {email}
-                        </text>
-
-                      </>
+                          <text class="block px-4 pt-1 pb-3 text-center font-thin text-xs">
+                            {email}
+                          </text>
+                        </>
                       )}
-
-
                     </li>
                     <hr></hr>
                     <li>
                       <a
-                        href="/profile"
+                        href="/legacy/profile"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Personal Info
@@ -488,7 +513,7 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/my-travelplan"
+                        href="/legacy/my-travelplan"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Travel Plan
@@ -496,8 +521,7 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                      
-                        href={`/influencer-creator/${userId}`}
+                        href={`/legacy/influencer-creator/${userId}`}
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Storefront
@@ -505,7 +529,7 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/manage-content"
+                        href="/legacy/manage-content"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Social Posting
@@ -513,7 +537,7 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/edit-creator"
+                        href="/legacy/edit-creator"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Edit Storefront
@@ -521,7 +545,7 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/bus-ticket-info"
+                        href="/legacy/bus-ticket-info"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Bookings
@@ -529,30 +553,31 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/report-dashboard"
+                        href="/legacy/report-dashboard"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Report
                       </a>
                     </li>
-                    {commissionUserId&&(
-                    <li>
-                      <a
-                        href={
-                          "https://affiliate.epictravel.ai/cmsadmin/jumpto_member_office.php?id=" +
-                          commissionUserId +
-                          "&token=" +
-                          token
-                        }
-                        class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Affiliate Commission
-                      </a>
-                    </li>)}
+                    {commissionUserId && (
+                      <li>
+                        <a
+                          href={
+                            "https://affiliate.epictravel.ai/cmsadmin/jumpto_member_office.php?id=" +
+                            commissionUserId +
+                            "&token=" +
+                            token
+                          }
+                          class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                          Affiliate Commission
+                        </a>
+                      </li>
+                    )}
                     <hr></hr>
                     <li>
                       <a
-                        href="/"
+                        href="/legacy/"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         onClick={handleSignOut}
                       >
@@ -565,7 +590,6 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
             </div>
           </>
         ) : (
-
           <>
             <div class="flex justify-start text-center w-[70%] ">
               <div className="text-center w-fit ">
@@ -615,7 +639,6 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
               </div>
             </div>
 
-
             <div className="gap-3 flex justify-end text-center items-center w-[25%] ">
               <GoogleTranslate className="" />
               <Button
@@ -630,10 +653,8 @@ const HeaderOTAAdmin = ({ openPopup1 }) => {
           </>
         )}
       </Row>
-
     </header>
   );
-}
+};
 
 export default HeaderOTAAdmin;
-

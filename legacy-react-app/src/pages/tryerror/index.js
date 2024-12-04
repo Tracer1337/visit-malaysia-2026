@@ -1,8 +1,8 @@
 // import EmailVerification from 'components/EmailVerification/index'
 import React, { useState, useEffect } from "react";
 import { Row } from "components/Row/index";
-import { Column } from 'components/Column/index';
-import { Text } from 'components/index';
+import { Column } from "components/Column/index";
+import { Text } from "components/index";
 import { FaTimes } from "react-icons/fa";
 import axios from "axios";
 import Icon from "@mdi/react";
@@ -14,22 +14,20 @@ const TryErrorPage = () => {
   const [showYT, setShowYT] = React.useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [profileData, setProfileData] = useState('');
+  const [profileData, setProfileData] = useState("");
   const userId = localStorage.getItem("userId");
 
   // *Profile User Data*
   useEffect(() => {
-
-    axios.get(`https://halaltravel.ai/ht/api/profile/${userId}`)
-      .then(response => {
-
+    axios
+      .get(`https://halaltravel.ai/ht/api/profile/${userId}`)
+      .then((response) => {
         const data = response.data;
 
         setProfileData(data);
-
       })
-      .catch(error => {
-        console.error('Error fetching profile data:', error);
+      .catch((error) => {
+        console.error("Error fetching profile data:", error);
       });
   }, [userId]);
 
@@ -38,11 +36,14 @@ const TryErrorPage = () => {
   return (
     <div>
       {/* <EmailVerification /> */}
-      <button className='rounded-full border'
+      <button
+        className="rounded-full border"
         onClick={() => {
           setShowYT(true);
-        }
-        }>SHOWMEEEE</button>
+        }}
+      >
+        SHOWMEEEE
+      </button>
       {showYT ? (
         <>
           <div
@@ -55,24 +56,23 @@ const TryErrorPage = () => {
             >
               {/* Modal Content */}
               <div className="text-center p-4 ">
-                <div className='p-2 items-center'>
+                <div className="p-2 items-center">
                   <FaUserCheck size={30} className="text-[#00A19A]" />
-
-
                 </div>
                 <h1 className="xs:text-[32px] lg:text-[22px] font-medium leading-normal text-gray-800">
-                  Activate your account </h1>
+                  Activate your account{" "}
+                </h1>
                 <p className="text-gray-600 xs:text-[24px] lg:text-[14px]">
-                  We have sent a verification email to {profileData.email}.<br />
+                  We have sent a verification email to {profileData.email}.
+                  <br />
                   Open the email and verify your account.
                 </p>
 
                 {/* <p className="xs:text-[24px] lg:text-[14px] text-gray-600">
                                 Please proceed to the
-                                <a href="/manage-content" className="text-black font-bold"> social posting</a>
+                                <a href="/legacy/manage-content" className="text-black font-bold"> social posting</a>
                                 <span> section to adjust the blog's status.</span>
                             </p> */}
-
               </div>
 
               {/* Modal Footer */}
@@ -92,7 +92,7 @@ const TryErrorPage = () => {
         </>
       ) : null}
     </div>
-  )
-}
+  );
+};
 
-export default TryErrorPage
+export default TryErrorPage;

@@ -2,7 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { RatingBar } from "components/RatingBar/index";
 import { Row, Text, Button, Img, ButtonMp } from "components";
 import { mdiBookmark, mdiDotsHorizontal, mdiCircleSmall } from "@mdi/js";
-import { data, fetchItineraryBookmark, fetchBlogData, fetchProductData, fetchItineraryDestination, fetchItineraryDetails, fetchTravelPlan } from "data/data";
+import {
+  data,
+  fetchItineraryBookmark,
+  fetchBlogData,
+  fetchProductData,
+  fetchItineraryDestination,
+  fetchItineraryDetails,
+  fetchTravelPlan,
+} from "data/data";
 import Icon from "@mdi/react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import ThreeDotSave from "components/ThreeDotSave/index";
@@ -12,7 +20,6 @@ import "./LoadingSpinner3.css";
 import axios from "axios";
 
 const SavedContent = () => {
-
   const [nav3, setNav3] = useState(false);
   const [travelPlan, setTravelPlan] = useState([]);
   const [travelPlanAll, setTravelPlanAll] = useState([]);
@@ -20,15 +27,15 @@ const SavedContent = () => {
   const tokenType = localStorage.getItem("tokenType");
   const userId = localStorage.getItem("userId");
   const [isPlan, setIsPlan] = useState(false);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const navigate = useNavigate();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isLoadingg, setIsLoadingg] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const baseURL = window.location.origin;
-  console.log("baseUrl: ", baseURL)
- 
+  console.log("baseUrl: ", baseURL);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -58,7 +65,7 @@ const SavedContent = () => {
         // All steps completed successfully
         setIsLoadingg(false);
       } catch (error) {
-        console.error('Error during loading:', error);
+        console.error("Error during loading:", error);
         setIsLoadingg(true);
       }
     };
@@ -67,7 +74,7 @@ const SavedContent = () => {
   }, []);
 
   const simulateAsyncAction = () => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(resolve, 6000); // Simulate a delay (replace with your actual async action)
     });
   };
@@ -104,7 +111,7 @@ const SavedContent = () => {
     const fetchBookmark = async () => {
       try {
         const response = await axios.get(
-          `https://halaltravel.ai/hv/api/chatgpt/user/itinerary-bookmark/${userId}/${currentPage}`
+          `https://halaltravel.ai/hv/api/chatgpt/user/itinerary-bookmark/${userId}/${currentPage}`,
         );
 
         const itineraryBookmark = response.data.content.map((element) => ({
@@ -173,7 +180,7 @@ const SavedContent = () => {
           itineraryDetails,
           userItineraryActivity,
           travelPlanId,
-          userId
+          userId,
         },
       });
       setIsLoadingg(false);
@@ -204,13 +211,13 @@ const SavedContent = () => {
         <div className="success-message">
           <div className="message-line">
             Travel plan unsaved from your bookmark
-            <button onClick={hideSuccess} className="close-button">X</button>
+            <button onClick={hideSuccess} className="close-button">
+              X
+            </button>
           </div>
+          <div className="message-line">{title} have been unsaved from </div>
           <div className="message-line">
-            {title} have been unsaved from {' '}
-          </div>
-          <div className="message-line">
-            <a href="/my-travelplan">My Travel Plan</a>.
+            <a href="/legacy/my-travelplan">My Travel Plan</a>.
           </div>
         </div>
       )}
@@ -238,14 +245,18 @@ const SavedContent = () => {
               className="loader-container3 md:block lg:hidden "
             >
               <div className="loader md:block lg:hidden"></div>
-              <p className="loading-text md:block lg:hidden text-center ">{loadingTexts[loadingTextIndex]}</p>
+              <p className="loading-text md:block lg:hidden text-center ">
+                {loadingTexts[loadingTextIndex]}
+              </p>
             </div>
             <div
               id="loading-container"
               className="loader-container3 lg:block md:hidden"
             >
               <div className="loader lg:block md:hidden"></div>
-              <p className="loading-text lg:block md:hidden text-center">{loadingTexts[loadingTextIndex]}</p>
+              <p className="loading-text lg:block md:hidden text-center">
+                {loadingTexts[loadingTextIndex]}
+              </p>
             </div>
           </>
         ) : (
@@ -256,15 +267,18 @@ const SavedContent = () => {
                   <div className="bg-white common-pointer md:w-full md:h-[630px] lg:w-full lg:h-[360px] 2xl:h-[420px] border shadow-lg rounded-lg hover:scale-105 duration-300">
                     <div className="relative" key={index}>
                       <button className="absolute right-1 cursor-pointer">
-                      <ThreeDotSave
-                            userItineraryBookmarkId={data.id}
-                            userId={userId}
-                            showSuccess={showSuccess}
-                            itineraryTitle={data.title}
-                            setTravelPlan={setTravelPlan}
-                            setShowSuccessMessage={setShowSuccessMessage}
-                            itineraryLink={baseURL + `/itinerary-save/${data.userId}/${data.userItineraryId}/${encodeURIComponent(data.title)}`}
-                          />
+                        <ThreeDotSave
+                          userItineraryBookmarkId={data.id}
+                          userId={userId}
+                          showSuccess={showSuccess}
+                          itineraryTitle={data.title}
+                          setTravelPlan={setTravelPlan}
+                          setShowSuccessMessage={setShowSuccessMessage}
+                          itineraryLink={
+                            baseURL +
+                            `/itinerary-save/${data.userId}/${data.userItineraryId}/${encodeURIComponent(data.title)}`
+                          }
+                        />
                       </button>
                       <img
                         src={`https://halaltravel.ai/hv/api/chatgpt/user/itinerary/bookmarkimage/${data.coverImage}`}
@@ -276,10 +290,13 @@ const SavedContent = () => {
                     <div
                       className=" items-center sm:p-6 lg:p-3"
                       onClick={() =>
-                        handleTravelPlanClick(data.userId, data.userItineraryId, data.title)
+                        handleTravelPlanClick(
+                          data.userId,
+                          data.userItineraryId,
+                          data.title,
+                        )
                       }
                     >
-
                       <Row>
                         <p
                           className="ml-3 justify-center font-bold w-fit md:text-[28px] lg:text-[14px] lg:block md:hidden"
@@ -305,7 +322,7 @@ const SavedContent = () => {
 
                       <p
                         className="ml-3 mt-1 w-fit md:text-[25px] lg:text-[12px] lg:h-[40px] 2xl:h-[75px] md:h-[20px] lg:block md:hidden"
-                      //   title={filteredFood.desc}
+                        //   title={filteredFood.desc}
                       >
                         {data.description.length > 65
                           ? `${data.description.substring(0, 65)}...`
@@ -315,7 +332,7 @@ const SavedContent = () => {
                       </p>
                       <p
                         className="ml-3 mt-1 w-fit md:text-[23px] lg:text-[12px] lg:h-[40px] md:h-[70px] lg:hidden md:block"
-                      //   title={filteredFood.desc}
+                        //   title={filteredFood.desc}
                       >
                         {data.description.length > 58
                           ? `${data.description.substring(0, 58)}...`
@@ -420,13 +437,16 @@ const SavedContent = () => {
                           {data.state && (
                             <span className="flex items-center sm:text-[22px] xl:text-[11px] lg:text-[11px] font-medium">
                               <FaMapMarkerAlt className="inline-block mr-1" />
-                              {data.state.replace("Federal Territory of ", "").length > 9
+                              {data.state.replace("Federal Territory of ", "")
+                                .length > 9
                                 ? `${data.state.replace("Federal Territory of ", "").substring(0, 9)}...`
-                                : data.state.replace("Federal Territory of ", "")}
+                                : data.state.replace(
+                                    "Federal Territory of ",
+                                    "",
+                                  )}
                             </span>
                           )}
                         </div>
-
 
                         {/* to display state and country */}
 
@@ -440,7 +460,6 @@ const SavedContent = () => {
                           </span>
                         )}
                       </div> */}
-
                       </div>
 
                       <div className="justify-between ml-2 mr-3 lg:mt-[0px] md:mt-[25px] flex lg:mb-0 md:mb-1">
@@ -462,7 +481,6 @@ const SavedContent = () => {
                             {data.originalBy}
                           </text>
                         </div> */}
-
 
                         <div className="">
                           {/* Render if username is not null */}
@@ -493,22 +511,20 @@ const SavedContent = () => {
                                 username={data.originalBy}
                                 className="lg:text-[12px] md:text-[24px] italic text-[#000000] lg:block md:hidden"
                               >
-                                {' '}
+                                {" "}
                               </text>
                               <text
                                 username={data.originalBy}
                                 className="lg:text-[12px] md:text-[24px] italic text-[#000000] md:block lg:hidden"
                               >
-                                {' '}
+                                {" "}
                               </text>
                             </>
                           )}
                         </div>
                       </div>
                     </div>
-
                   </div>
-
                 ))}
               </>
             )}

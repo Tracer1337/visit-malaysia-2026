@@ -2,32 +2,37 @@ import { useNavigate } from "react-router-dom";
 //import PhoneInput from "react-phone-number-input";
 //import PhoneInput from 'react-phone-number-input/input';
 import { PhoneInput } from "react-international-phone";
-import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Text } from 'components/index';
+import { Text } from "components/index";
 import { Row } from "components/Row/index";
-import { Column } from 'components/Column/index';
+import { Column } from "components/Column/index";
 import { FaTimes, FaCheck, FaUserCheck, FaApple } from "react-icons/fa";
 import Icon from "@mdi/react";
 import { mdiCheckCircle, mdiAlertCircle } from "@mdi/js";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PasswordChecklist from "react-password-checklist";
 import { FcGoogle } from "react-icons/fc";
 import "./LoadingSpinner9.css";
-import LoadingSpinner from 'components/LoadingSpinner/index';
-import GoogleLogin from 'components/GoogleLogin';
-import Cookies from 'js-cookie';
+import LoadingSpinner from "components/LoadingSpinner/index";
+import GoogleLogin from "components/GoogleLogin";
+import Cookies from "js-cookie";
 
 const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
   const navigate = useNavigate();
   // const [countryCode, setCountryCode] = useState('');
   // const [phoneNumber, setPhoneNumber] = useState('');
-  const [parsedNumber, setParsedNumber] = useState({ countryCode: '', phoneNumber: '' });
+  const [parsedNumber, setParsedNumber] = useState({
+    countryCode: "",
+    phoneNumber: "",
+  });
   const [value, setValue] = useState("");
-  const [referral_id, setReferral_id] = useState(Cookies.get('commissionUserId'))
+  const [referral_id, setReferral_id] = useState(
+    Cookies.get("commissionUserId"),
+  );
   console.log("REFERRALID: ", referral_id);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -58,18 +63,18 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
     setModalOpen(false);
   };
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
 
   const handleDateChange = (e) => {
     const dateValue = e.target.value;
     if (dateValue > today) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        dtOfBirth: 'Date of Birth cannot be in the future',
+        dtOfBirth: "Date of Birth cannot be in the future",
       }));
     } else {
       setDateBirth(dateValue);
-      setErrors((prevErrors) => ({ ...prevErrors, dtOfBirth: '' }));
+      setErrors((prevErrors) => ({ ...prevErrors, dtOfBirth: "" }));
     }
   };
 
@@ -111,7 +116,6 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
     setErrors((prevErrors) => ({ ...prevErrors, gender: "" }));
   }, [gender]);
 
-
   const handlePhoneInputChange = (newValue) => {
     setValue(newValue);
 
@@ -125,38 +129,34 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
       });
     } else {
       // Handle invalid phone number
-      setParsedNumber({ countryCode: '', phoneNumber: '' });
+      setParsedNumber({ countryCode: "", phoneNumber: "" });
     }
   };
-  
-  const handleCheckReferralId = (value) => {       
-    if(value==null || value.trim().length==0){
+
+  const handleCheckReferralId = (value) => {
+    if (value == null || value.trim().length == 0) {
       setShowReferralErrMsg(false);
       return;
     }
 
     const url = "https://halaltravel.ai/ht/api/auth/checkReferralId";
     const data = {
-      referral_id: value      
+      referral_id: value,
     };
 
     axios
       .post(url, data)
-      .then((response) => {       
+      .then((response) => {
         console.log("Response:", response);
 
         if (!response.data) {
           setShowReferralErrMsg(true);
-        }else{
+        } else {
           setShowReferralErrMsg(false);
         }
       })
-      .catch((error) => {
-      
-      })
-      .finally(() => {
-      
-      });
+      .catch((error) => {})
+      .finally(() => {});
   };
 
   const handleSubmit = (event) => {
@@ -178,7 +178,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
       },
       dtOfBirth: dateBirth,
       gender: gender,
-      website: "https://vm.epictravel.ai"
+      website: "https://vm.epictravel.ai",
     };
 
     console.log("--------------", data);
@@ -198,13 +198,21 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
       const isNumber = /[0-9]/.test(password);
       const isMinLength = password.length >= 8;
 
-      if (!isCapitalLetter || !isSpecialCharacter || !isNumber || !isMinLength || !isLowerCaseLetter) {
-        setErrors({ ...errors, password: "Password does not meet the required criteria." });
+      if (
+        !isCapitalLetter ||
+        !isSpecialCharacter ||
+        !isNumber ||
+        !isMinLength ||
+        !isLowerCaseLetter
+      ) {
+        setErrors({
+          ...errors,
+          password: "Password does not meet the required criteria.",
+        });
         setIsLoading(false); // Hide loading spinner if validation fails
         return;
       }
     }
-
 
     // Perform form validation before submitting
     const validationErrors = validateForm(data);
@@ -306,7 +314,6 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
     //   });
     // };
 
-
     // Submit the form data to the server using axios or any other HTTP library
     axios
       .post(url, data)
@@ -318,8 +325,8 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
           // Successful signup
           console.log("Account created successfully!", response.data.message);
           toast.success(`Account created successfully!`, {
-            className: 'toast-message xs:top-30 lg:top-10',          
-            autoClose: 5000
+            className: "toast-message xs:top-30 lg:top-10",
+            autoClose: 5000,
           });
           toggleModal();
           // You can show a success message to the user or redirect to another page
@@ -341,11 +348,17 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
               // Show error message for existing email address
               const errorMessage = "Email address is already taken";
               setErrors({ ...errors, email: errorMessage });
-            }else if(error.response.data.message ==="Error: verification time error"){
-              const errorMessage = "Authentication email sent. Please wait for 30 minutes before requesting another.";
+            } else if (
+              error.response.data.message === "Error: verification time error"
+            ) {
+              const errorMessage =
+                "Authentication email sent. Please wait for 30 minutes before requesting another.";
               setErrors({ ...errors, email: errorMessage });
-            }else if(error.response.data.message ==="Error: inactive account"){
-              const errorMessage = "Your account registration is incompleted. Please check the verification email";
+            } else if (
+              error.response.data.message === "Error: inactive account"
+            ) {
+              const errorMessage =
+                "Your account registration is incompleted. Please check the verification email";
               setErrors({ ...errors, email: errorMessage });
             } else if (
               error.response.data.message === "Fields validation failed"
@@ -353,12 +366,12 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
               // Show error messages for invalid fields
               console.error(
                 "Fields validation failed:",
-                error.response.data.invalidFields
+                error.response.data.invalidFields,
               );
 
               // Check if there is a validation error for 'phoneNumber'
               const phoneNumberError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "phoneNumber"
+                (field) => field.fieldName === "phoneNumber",
               );
 
               if (
@@ -371,7 +384,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
 
               // Check if there is a validation error for 'firstName'
               const firstNameError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "firstName"
+                (field) => field.fieldName === "firstName",
               );
 
               if (
@@ -384,7 +397,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
 
               // Check if there is a validation error for 'lastName'
               const lastNameError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "lastName"
+                (field) => field.fieldName === "lastName",
               );
 
               if (
@@ -397,7 +410,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
 
               // Check if there is a validation error for 'password'
               const passwordError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "password"
+                (field) => field.fieldName === "password",
               );
 
               if (
@@ -410,7 +423,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
 
               // Check if there is a validation error for 'gender'
               const genderError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "gender"
+                (field) => field.fieldName === "gender",
               );
 
               if (
@@ -425,7 +438,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
         } else {
           console.error("Error:", error.message);
           toast.error(`Error while creating the account`, {
-            className: 'toast-message w- xs:top-30 lg:top-10',          
+            className: "toast-message w- xs:top-30 lg:top-10",
           });
           toggleError();
         }
@@ -458,8 +471,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
             {/*Content title*/}
 
             <Column className="sm:py-[50px]  sm:w-[100%] sm:h-[100%] lg:py-[10px] lg:w-[100%] lg:h-fit">
-              <div className='flex sm:mx-8 lg:mx-[60px] items-center'>
-
+              <div className="flex sm:mx-8 lg:mx-[60px] items-center">
                 <Text className="w-[100%] text-start py-[20px] sm:text-[37px] lg:text-xl text-[#00A19A] font-bold">
                   Create your account
                 </Text>
@@ -470,7 +482,6 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                   />
                 </button>
               </div>
-              
 
               {/* Web view */}
               <div className="mx-[60px] sm:hidden lg:block xl:block 2xl:block">
@@ -479,7 +490,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                   action="#"
                   onSubmit={handleSubmit}
                 >
-                   <GoogleLogin closePopup1={closePopup2} c_id={c_id} />
+                  <GoogleLogin closePopup1={closePopup2} c_id={c_id} />
                   <div>
                     <label
                       htmlFor="referral_id"
@@ -498,11 +509,15 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                       onChange={(e) => setReferral_id(e.target.value)}
                       autoComplete="off"
                     />
-                    {/* {errors.email && (
+                    {
+                      /* {errors.email && (
                       <div className="text-[#e63946]">{errors.email}</div>
                     )} */
-                    showReferralErrMsg?<div className="text-[#e63946]">Invalid Referral ID</div>:null
-                    
+                      showReferralErrMsg ? (
+                        <div className="text-[#e63946]">
+                          Invalid Referral ID
+                        </div>
+                      ) : null
                     }
                   </div>
                   <Row className="space-x-5 w-[100%]">
@@ -579,7 +594,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                     </label>
                     <div className="relative">
                       <input
-                        type={showPassword ? 'text' : 'password'}
+                        type={showPassword ? "text" : "password"}
                         name="password"
                         id="password"
                         className="bg-gray-50 border border-gray-300 text-[#6B7280] sm:text-sm rounded-lg focus:ring-primary-600 focus:border-[#00a19a] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-[#00a19a]"
@@ -614,7 +629,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                     </label>
                     <div className="relative">
                       <input
-                        type={showConfirmPassword ? 'text' : 'password'}
+                        type={showConfirmPassword ? "text" : "password"}
                         name="confirm_password"
                         id="confirm_password"
                         className="bg-gray-50 border border-gray-300 text-[#6B7280] sm:text-sm rounded-lg focus:ring-primary-600 focus:border-[#00a19a] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-[#00a19a]"
@@ -636,7 +651,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                         )}
                       </button>
                     </div>
-                    <div className='py-4'>
+                    <div className="py-4">
                       <PasswordChecklist
                         rules={[
                           "capital",
@@ -650,13 +665,17 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                         value={password}
                         valueAgain={confirmPassword}
                         messages={{
-                          minLength: "Password must be 8 or more characters in length.",
+                          minLength:
+                            "Password must be 8 or more characters in length.",
                           specialChar:
                             "Password should contain at least one special character.",
-                          number: "Password must contain at least one numeric letter.",
-                          capital: "Password should contain at least one uppercase letter.",
+                          number:
+                            "Password must contain at least one numeric letter.",
+                          capital:
+                            "Password should contain at least one uppercase letter.",
                           match: "Password and confirm password should match.",
-                          lowercase: "Password must contain at least one lowercase letter.",
+                          lowercase:
+                            "Password must contain at least one lowercase letter.",
                         }}
                       />
                     </div>
@@ -686,9 +705,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                       onChange={handlePhoneInputChange}
                     />
                     {errors.phoneNumber && (
-                      <div className="text-[#e63946]">
-                        {errors.phoneNumber}
-                      </div>
+                      <div className="text-[#e63946]">{errors.phoneNumber}</div>
                     )}
                   </div>
 
@@ -708,7 +725,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                       value={dateBirth}
                       onChange={handleDateChange}
                       max={today}
-                      autoComplete="DOB"  
+                      autoComplete="DOB"
                     />
                     {errors.dtOfBirth && (
                       <div className="text-[#e63946]">{errors.dtOfBirth}</div>
@@ -789,7 +806,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                   <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                     Already have an account?{" "}
                     <a
-                      href="/#"
+                      href="/legacy/#"
                       className="font-medium text-[#34BEB4] hover:underline dark:text-primary-500"
                       onClick={openPopup1}
                     >
@@ -960,7 +977,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                     )}
                     <div className="relative">
                       <input
-                        type={showPassword ? 'text' : 'password'}
+                        type={showPassword ? "text" : "password"}
                         name="password"
                         id="password"
                         className="bg-gray-50 border border-gray-300 font-regular text-gray-900 text-[28px] rounded-lg focus:ring-primary-600 focus:border-[#00a19a] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-[#00a19a]"
@@ -1003,7 +1020,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                     )}
                     <div className="relative">
                       <input
-                        type={showConfirmPassword ? 'text' : 'password'}
+                        type={showConfirmPassword ? "text" : "password"}
                         name="confirm_password"
                         id="confirm_password"
                         className="bg-gray-50 border border-gray-300 font-regular text-gray-900 text-[28px] rounded-lg focus:ring-primary-600 focus:border-[#00a19a] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-[#00a19a]"
@@ -1025,7 +1042,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                         )}
                       </button>
                     </div>
-                    <div className='py-4 text-[25px]'>
+                    <div className="py-4 text-[25px]">
                       <PasswordChecklist
                         rules={[
                           "capital",
@@ -1039,13 +1056,17 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                         value={password}
                         valueAgain={confirmPassword}
                         messages={{
-                          minLength: "Password must be 8 or more characters in length.",
+                          minLength:
+                            "Password must be 8 or more characters in length.",
                           specialChar:
                             "Password should contain at least one special character.",
-                          number: "Password must contain at least one numeric letter.",
-                          capital: "Password should contain at least one uppercase letter.",
+                          number:
+                            "Password must contain at least one numeric letter.",
+                          capital:
+                            "Password should contain at least one uppercase letter.",
                           match: "Password and confirm password should match.",
-                          lowercase: "Password must contain at least one lowercase letter.",
+                          lowercase:
+                            "Password must contain at least one lowercase letter.",
                         }}
                       />
                     </div>
@@ -1079,7 +1100,6 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                       className="custom-phone-input"
                       onChange={handlePhoneInputChange}
                     />
-
                   </div>
 
                   <div>
@@ -1108,7 +1128,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                       value={dateBirth}
                       onChange={handleDateChange}
                       max={today}
-                      autoComplete="DOB" 
+                      autoComplete="DOB"
                     />
                   </div>
 
@@ -1141,7 +1161,8 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                     >
                       <option value="" disabled hidden>
                         Select
-                      </option>                      <option value="male">Male</option>
+                      </option>{" "}
+                      <option value="male">Male</option>
                       <option value="female">Female</option>
                     </select>
                   </div>
@@ -1167,7 +1188,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                         I accept the{" "}
                         <a
                           class="font-medium text-[#34BEB4] hover:underline dark:text-primary-500"
-                          href="/terms-service"
+                          href="/legacy/terms-service"
                         >
                           Terms and Conditions
                         </a>
@@ -1177,7 +1198,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                   <button
                     type="submit"
                     className=" mb-3 text-white h-20 bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold tracking-tighter rounded-lg text-[28px] w-full px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-                    disabled={!isChecked || isLoading}                  //  onClick={handleNavigate1}
+                    disabled={!isChecked || isLoading} //  onClick={handleNavigate1}
                   >
                     Create an account
                   </button>
@@ -1190,7 +1211,7 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                   <p className="text-[25px] font-light text-gray-500 dark:text-gray-400">
                     Already have an account?{" "}
                     <a
-                      href="/#"
+                      href="/legacy/#"
                       className="font-medium text-[28px] text-[#34BEB4] hover:underline dark:text-primary-500"
                       onClick={openPopup1}
                     >
@@ -1216,7 +1237,6 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
                   Sign in with Apple
                 </button>
               </div>
-
             </Column>
           </div>
 
@@ -1236,16 +1256,16 @@ const SignupPage = ({ isOpen, closePopup2, openPopup1, c_id }) => {
           >
             {/* Modal Content */}
             <div className="text-center p-4 ">
-              <div className='p-2 items-center'>
+              <div className="p-2 items-center">
                 <FaUserCheck size={30} className="text-[#00A19A]" />
               </div>
               <h1 className="xs:text-[32px] lg:text-[22px] font-medium leading-normal text-gray-800">
-                Activate your account </h1>
+                Activate your account{" "}
+              </h1>
               <p className="text-gray-600 xs:text-[24px] lg:text-[14px]">
                 We have sent a verification email to {email}.<br />
                 Open the email and verify your account.
               </p>
-
             </div>
 
             {/* Modal Footer */}

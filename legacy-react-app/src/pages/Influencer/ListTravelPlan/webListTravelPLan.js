@@ -18,7 +18,7 @@ import {
   fetchTravelPlan,
   fetchItineraryDetails,
   fetchItineraryDestination,
-  fetchBlogContent
+  fetchBlogContent,
   // dataDl,
 } from "data/data";
 import { useNavigate } from "react-router";
@@ -31,9 +31,9 @@ import LoginPage from "components/Login/index";
 import SignupPage from "components/SignUp/index";
 import ForgotPassword from "components/ForgotPass/index";
 import HeaderOTAAdmin from "components/Header/HeaderOTAAdmin/index";
-import { FaTimes } from 'react-icons/fa';
-import { AiOutlineDoubleRight } from 'react-icons/ai';
-import CreateYourOwn from 'components/CreateYourOwn/index';
+import { FaTimes } from "react-icons/fa";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import CreateYourOwn from "components/CreateYourOwn/index";
 
 const WebListTravelPLan = (page) => {
   const [isShowAI, setIsShowAI] = useState(false);
@@ -82,10 +82,10 @@ const WebListTravelPLan = (page) => {
 
   const [showBlogSuccessMessage, setShowBlogSuccessMessage] = useState(false);
   const [blogSuccessMessageType, setBlogSuccessMessageType] = useState("");
-  const [blogTitle, setBlogTitle] = useState('');
+  const [blogTitle, setBlogTitle] = useState("");
 
   const toggleTooltip = () => {
-    setShowTooltip(prevState => !prevState);
+    setShowTooltip((prevState) => !prevState);
   };
 
   function handleReadMore(blogId, blogTitle, userId) {
@@ -96,19 +96,19 @@ const WebListTravelPLan = (page) => {
   const fetchBookmarkedItineraries = async () => {
     try {
       const response = await axios.get(
-        `https://halaltravel.ai/hv/api/chatgpt/user/itinerary-bookmark/${userId}`
+        `https://halaltravel.ai/hv/api/chatgpt/user/itinerary-bookmark/${userId}`,
       );
       const data = response.data;
       setBookmarkedItineraries(
         data.map((bookmark) => ({
           itineraryId: bookmark.userItineraryId, // Ensure this matches your data structure
           bookmarkId: bookmark.id,
-        }))
+        })),
       );
 
       // Fetch logic...
       const isCurrentlyBookmarked = data.some(
-        (bookmark) => Number(bookmark.userItineraryId) === Number(itineraryId)
+        (bookmark) => Number(bookmark.userItineraryId) === Number(itineraryId),
       );
       setIsBookmarked(isCurrentlyBookmarked); // Make sure this logic correctly reflects the bookmark status
     } catch (error) {
@@ -119,7 +119,7 @@ const WebListTravelPLan = (page) => {
   const fetchBookmarkedBlogs = async () => {
     try {
       const response = await axios.get(
-        `https://halaltravel.ai/ht/api/blog/bookmark/${userId}`
+        `https://halaltravel.ai/ht/api/blog/bookmark/${userId}`,
       );
       const data = response.data.content;
       setBookmarkedBlogs(
@@ -127,11 +127,11 @@ const WebListTravelPLan = (page) => {
           blogId: bookmark.id,
           bookmarkId: bookmark.id,
           title: bookmark.title,
-        }))
+        })),
       );
 
       const isCurrentlyBookmarked = data.some(
-        (bookmark) => Number(bookmark.id) === Number(blogId)
+        (bookmark) => Number(bookmark.id) === Number(blogId),
       );
       setIsBookmarked(isCurrentlyBookmarked);
       console.log("fetch bookmarked blogs:", response);
@@ -157,13 +157,11 @@ const WebListTravelPLan = (page) => {
     };
   }, [userId, itineraryId, blogId, pageNumber]);
 
-
   useEffect(() => {
     setIsLoadingg(true);
     // scrollToTop();
     // Define your API endpoint
-    const apiUrl =
-      `https://halaltravel.ai/ht/api/blog/srp?pageNumber=${pageNumber}&pageSize=5`;
+    const apiUrl = `https://halaltravel.ai/ht/api/blog/srp?pageNumber=${pageNumber}&pageSize=5`;
 
     // Create the request payload
     const requestData = {
@@ -196,7 +194,7 @@ const WebListTravelPLan = (page) => {
         setIsLoadingg(false);
         // console.log("API responsess:", items);
         // console.log("API responsess:", itemsAll);
-        console.log("all", items)
+        console.log("all", items);
         console.log("API response page:", data);
       } catch (error) {
         // Handle any errors
@@ -210,24 +208,21 @@ const WebListTravelPLan = (page) => {
     fetchData();
   }, [destination, state, country, dataSelected, pageNumber]);
 
-
-
-
   //pagination show more button
   const handleLoadMore = () => {
-    if (pageNumber < (totalPages - 1) && !isLoadingg) {
-      setPageNumber(prevPage => prevPage + 1);
+    if (pageNumber < totalPages - 1 && !isLoadingg) {
+      setPageNumber((prevPage) => prevPage + 1);
       if (targetDivRef.current) {
         targetDivRef.current.scrollIntoView({ behavior: "smooth" });
       }
-    } else if (pageNumber >= (totalPages - 1)) {
+    } else if (pageNumber >= totalPages - 1) {
       setNoMoreResults(true);
     }
   };
 
   const handlePreviousPage = () => {
     if (pageNumber > 1) {
-      setPageNumber(prevPage => prevPage - 1);
+      setPageNumber((prevPage) => prevPage - 1);
       setNoMoreResults(false); // Reset noMoreResults when navigating back
       if (targetDivRef.current) {
         targetDivRef.current.scrollIntoView({ behavior: "smooth" });
@@ -236,12 +231,12 @@ const WebListTravelPLan = (page) => {
   };
 
   const handleNextPage = () => {
-    if (pageNumber < (totalPages - 1) && !isLoadingg) {
-      setPageNumber(prevPage => prevPage + 1);
+    if (pageNumber < totalPages - 1 && !isLoadingg) {
+      setPageNumber((prevPage) => prevPage + 1);
       if (targetDivRef.current) {
         targetDivRef.current.scrollIntoView({ behavior: "smooth" });
       }
-    } else if (pageNumber >= (totalPages - 1)) {
+    } else if (pageNumber >= totalPages - 1) {
       setNoMoreResults(true);
     }
   };
@@ -251,7 +246,10 @@ const WebListTravelPLan = (page) => {
       action(id); // Perform the action (bookmark or unbookmark) if logged in
     } else {
       openPopup1(); // Show login prompt if not logged in
-      localStorage.setItem("customPath", `list-travelplan/${destination}/${state}/${country}`); // Save intended action path
+      localStorage.setItem(
+        "customPath",
+        `list-travelplan/${destination}/${state}/${country}`,
+      ); // Save intended action path
     }
   };
 
@@ -286,7 +284,7 @@ const WebListTravelPLan = (page) => {
         };
         const response = await axios.post(
           `https://halaltravel.ai/gpt/location`,
-          requestData
+          requestData,
         );
         setIsLoadingg(false);
         setDataBlogAI(response.data);
@@ -313,16 +311,15 @@ const WebListTravelPLan = (page) => {
 
   const isItineraryBookmarked = (userItineraryId) => {
     return bookmarkedItineraries.some(
-      (item) => Number(item.itineraryId) === Number(userItineraryId)
+      (item) => Number(item.itineraryId) === Number(userItineraryId),
     );
   };
 
   const isBlogBookmarked = (blogId) => {
     return bookmarkedBlogs.some(
-      (item) => Number(item.blogId) === Number(blogId)
+      (item) => Number(item.blogId) === Number(blogId),
     );
   };
-
 
   // const isBlogBookmarked = (blogId) => {
   //   return bookmarkedBlogs.some(
@@ -354,7 +351,7 @@ const WebListTravelPLan = (page) => {
             headers: {
               "Content-Type": "application/json",
             },
-          }
+          },
         );
 
         if (response.status === 200) {
@@ -367,7 +364,7 @@ const WebListTravelPLan = (page) => {
           }, 5000);
           //showSuccess();
           fetchDataBlogAI(userItineraryId);
-          console.log("success")
+          console.log("success");
         } else {
           console.error("Error bookmarking itinerary");
         }
@@ -379,12 +376,10 @@ const WebListTravelPLan = (page) => {
       // Handle network errors or other errors here
       console.error("Error:", error);
     }
-
   };
 
   const handleBlogBookmarkClick = async (blogId) => {
     try {
-
       const data = await fetchBlogContent(blogId);
       setBlogTitle(data.blogContent.blogTitle);
 
@@ -396,7 +391,7 @@ const WebListTravelPLan = (page) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       if (response.status === 200) {
         console.log(" bookmarking blog");
@@ -421,7 +416,7 @@ const WebListTravelPLan = (page) => {
 
   const handleBlogUnsaveClick = async (blogId) => {
     const bookmark = bookmarkedBlogs.find(
-      (item) => Number(item.blogId) === Number(blogId)
+      (item) => Number(item.blogId) === Number(blogId),
     );
 
     if (!bookmark) {
@@ -436,12 +431,12 @@ const WebListTravelPLan = (page) => {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (response.status === 200 || response.status === 204) {
         setBookmarkedBlogs((current) =>
-          current.filter((item) => item.bookmarkId !== bookmark.bookmarkId)
+          current.filter((item) => item.bookmarkId !== bookmark.bookmarkId),
         );
         setShowBlogSuccessMessage(true);
         setBlogSuccessMessageType("unsaved");
@@ -450,18 +445,20 @@ const WebListTravelPLan = (page) => {
           setShowSuccessMessage(false);
         }, 5000);
       } else {
-        console.error("Failed to delete blog bookmark with status:", response.status);
+        console.error(
+          "Failed to delete blog bookmark with status:",
+          response.status,
+        );
       }
     } catch (error) {
       console.error("Error while deleting blog bookmark:", error);
     }
   };
 
-
   const handleUnsaveClick = async (itineraryId) => {
     // Find the bookmark entry for the current itinerary to get its bookmarkId
     const bookmark = bookmarkedItineraries.find(
-      (item) => Number(item.itineraryId) === Number(itineraryId)
+      (item) => Number(item.itineraryId) === Number(itineraryId),
     );
 
     if (!bookmark) {
@@ -477,7 +474,7 @@ const WebListTravelPLan = (page) => {
             "Content-Type": "application/json",
             // Include authorization headers if required
           },
-        }
+        },
       );
 
       if (response.status === 200 || response.status === 204) {
@@ -485,7 +482,7 @@ const WebListTravelPLan = (page) => {
         // Update the state to reflect the deletion
 
         setBookmarkedItineraries((current) =>
-          current.filter((item) => item.bookmarkId !== bookmark.bookmarkId)
+          current.filter((item) => item.bookmarkId !== bookmark.bookmarkId),
         );
         setSuccessMessageType("unsaved");
         setShowSuccessMessage(true);
@@ -497,14 +494,13 @@ const WebListTravelPLan = (page) => {
       } else {
         console.error(
           "Failed to delete bookmark with status:",
-          response.status
+          response.status,
         );
       }
     } catch (error) {
       console.error("Error while deleting bookmark:", error);
     }
   };
-
 
   const handleTravelPlanClick = (creatorId, itineraryId, title) => {
     const encodedTitle = encodeURIComponent(title);
@@ -543,18 +539,17 @@ const WebListTravelPLan = (page) => {
 
   const closeContentSetting = () => {
     setIsShowContentSetting(false);
-  }
+  };
 
   const backContentSetting = () => {
     setIsShowContentSetting(false);
     setshowModalItinerary(true);
-  }
+  };
 
   const backShowAI = () => {
     setIsShowAI(false);
     setshowModalItinerary(true);
-  }
-
+  };
 
   // * Navigation *
   function handleNavigate() {
@@ -569,7 +564,6 @@ const WebListTravelPLan = (page) => {
 
   return (
     <>
-
       <LoginPage
         isOpen={isPopup1Open}
         openPopup2={openPopup2}
@@ -604,7 +598,7 @@ const WebListTravelPLan = (page) => {
             </strong>{" "}
           </div>
           <div className="message-line">
-            <a href="/my-travelplan">My Travel Plan</a>.
+            <a href="/legacy/my-travelplan">My Travel Plan</a>.
           </div>
         </div>
       )}
@@ -631,13 +625,16 @@ const WebListTravelPLan = (page) => {
             </strong>{" "}
           </div>
           <div className="message-line">
-            <a href="/my-travelplan">My Bookmarked Blogs</a>.
+            <a href="/legacy/my-travelplan">My Bookmarked Blogs</a>.
           </div>
         </div>
       )}
 
       <column className="mx-[60px]  w-[25%] sm:hidden lg:block mb-8">
-        <div ref={targetDivRef} className="justify-end text-end items-end sm:p-5 lg:p-0 sm:px-5 sm:py-4 lg:py-0 grid sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 md:gap-[30px] lg:gap-6 ">
+        <div
+          ref={targetDivRef}
+          className="justify-end text-end items-end sm:p-5 lg:p-0 sm:px-5 sm:py-4 lg:py-0 grid sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 md:gap-[30px] lg:gap-6 "
+        >
           {/* add ai */}
           <div className="mt-[60px] ">
             <text className="text-[#031151] font-bold text-[14px] ">
@@ -645,16 +642,19 @@ const WebListTravelPLan = (page) => {
             </text>
             <div className="mt-4">
               <text className="text-black font-normal text-[14px] ">
-                {totalElements} Recommended itineraries by experienced guides and fellow travelers
+                {totalElements} Recommended itineraries by experienced guides
+                and fellow travelers
               </text>
             </div>
             <row>
               <div className={`tooltip ${showTooltip ? "show" : ""}`}>
-                <span onClick={() => setshowModalItinerary(true)} className="tooltip-message common-pointer">
-                  Click Here to Discover More 
+                <span
+                  onClick={() => setshowModalItinerary(true)}
+                  className="tooltip-message common-pointer"
+                >
+                  Click Here to Discover More
                 </span>
-                <button className="close-btn" onClick={handleClose}>
-                </button>
+                <button className="close-btn" onClick={handleClose}></button>
               </div>
               <div className="plus-float" onClick={toggleTooltip}>
                 {showTooltip ? (
@@ -664,7 +664,6 @@ const WebListTravelPLan = (page) => {
                 )}
               </div>
             </row>
-
           </div>
           {/* <div
           ref={targetDivRef}
@@ -683,7 +682,7 @@ const WebListTravelPLan = (page) => {
 
           {showModalItinerary ? (
             <>
-              <div className="fixed bg-gray-50 xs:top-[10vh] lg:top-0 rounded-3xl cursor-pointer text-center justify-center shadow-3xl items-center lg:mx-[400px] lg:my-[50px] flex-nowrap overflow-x-hidden overflow-y-auto scrollbar-hide inset-0 z-50 outline-none focus:outline-none" >
+              <div className="fixed bg-gray-50 xs:top-[10vh] lg:top-0 rounded-3xl cursor-pointer text-center justify-center shadow-3xl items-center lg:mx-[400px] lg:my-[50px] flex-nowrap overflow-x-hidden overflow-y-auto scrollbar-hide inset-0 z-50 outline-none focus:outline-none">
                 {/*Content*/}
 
                 <Column className="sm:w-[100%] sm:h-[100%] lg:w-[100%] lg:h-fit">
@@ -704,8 +703,7 @@ const WebListTravelPLan = (page) => {
                       onClick={() => {
                         setIsShowAI(true);
                         setshowModalItinerary(false);
-                      }
-                      }
+                      }}
                     >
                       <div>Generate with AI</div>
                       <div className="items-end justify-between text-end ">
@@ -727,8 +725,10 @@ const WebListTravelPLan = (page) => {
                     </button>
                   </p> */}
                   <p className="px-4 text-center py-1">
-                    <button className="sm:w-[600px] lg:w-[300px] hover:bg-[#4eb6b1f8] inline-flex gap-1 items-center justify-between sm:text-[28px] lg:text-xs border border-[#00A19A] bg-[#00A19A] text-white rounded-lg px-3 py-3"
-                      onClick={handleNavigate}>
+                    <button
+                      className="sm:w-[600px] lg:w-[300px] hover:bg-[#4eb6b1f8] inline-flex gap-1 items-center justify-between sm:text-[28px] lg:text-xs border border-[#00A19A] bg-[#00A19A] text-white rounded-lg px-3 py-3"
+                      onClick={handleNavigate}
+                    >
                       Create my own
                       <AiOutlineDoubleRight className="sm:w-10 sm:h-10 lg:w-5 lg:h-5" />
                     </button>
@@ -746,7 +746,15 @@ const WebListTravelPLan = (page) => {
             backCreateYourOwn={backContentSetting}
           />
 
-          {isShowAI && <ShowAI openPopup1={openPopup1} closePopup1={closePopup1} closeShowAI={closeShowAI} showAI={isShowAI} backShowAI={backShowAI}/>}
+          {isShowAI && (
+            <ShowAI
+              openPopup1={openPopup1}
+              closePopup1={closePopup1}
+              closeShowAI={closeShowAI}
+              showAI={isShowAI}
+              backShowAI={backShowAI}
+            />
+          )}
 
           {isLoading2 ? (
             <>
@@ -828,45 +836,55 @@ const WebListTravelPLan = (page) => {
           ) : (
             <>
               {results.map((result, index) => (
-                <div className="bg-white md:w-full md:h-[630px] lg:w-full lg:h-[360px] 2xl:h-[420px] border shadow-lg rounded-lg hover:scale-105 duration-300" key={index}>
+                <div
+                  className="bg-white md:w-full md:h-[630px] lg:w-full lg:h-[360px] 2xl:h-[420px] border shadow-lg rounded-lg hover:scale-105 duration-300"
+                  key={index}
+                >
                   <div className="relative">
                     <button
                       className="absolute top-2 right-2 cursor-pointer"
                       onClick={() =>
                         loginStatus(
                           result.id,
-                          result.type === 'Blog'
+                          result.type === "Blog"
                             ? isBlogBookmarked(result.id)
                               ? handleBlogUnsaveClick(result.id)
                               : handleBlogBookmarkClick(result.id)
                             : isItineraryBookmarked(result.id)
                               ? handleUnsaveClick(result.id)
-                              : handleBookmarkClick(result.id)
+                              : handleBookmarkClick(result.id),
                         )
                       }
                     >
                       <Icon
                         path={mdiBookmarkOutline}
                         className={`sm:w-[60px] sm:h-[60px] lg:w-[30px] lg:h-[30px]
-                          ${result.type === 'Blog'
-                            ? isBlogBookmarked(result.id)
-                              ? "text-[#FFFFFF] bg-teal-700"
-                              : "text-[#00A19A] bg-[#FFFFFF]"
-                            : isItineraryBookmarked(result.id)
-                              ? "text-[#FFFFFF] bg-teal-700"
-                              : "text-[#00A19A] bg-[#FFFFFF]"
+                          ${
+                            result.type === "Blog"
+                              ? isBlogBookmarked(result.id)
+                                ? "text-[#FFFFFF] bg-teal-700"
+                                : "text-[#00A19A] bg-[#FFFFFF]"
+                              : isItineraryBookmarked(result.id)
+                                ? "text-[#FFFFFF] bg-teal-700"
+                                : "text-[#00A19A] bg-[#FFFFFF]"
                           } w-fit h-fit p-1 rounded-full common-pointer`}
                       />
                     </button>
                     <img
-                      src={result.type === 'Blog' ? `${result.coverImage}` : `https://halaltravel.ai/hv/api/chatgpt/user/itinerary/coverimage/${result.coverImage}`}
+                      src={
+                        result.type === "Blog"
+                          ? `${result.coverImage}`
+                          : `https://halaltravel.ai/hv/api/chatgpt/user/itinerary/coverimage/${result.coverImage}`
+                      }
                       alt={result.alt}
                       className="w-full sm:h-[350px] lg:h-[200px] 2xl:h-[220px] object-cover sm:rounded-t-lg lg:rounded-t-lg"
                     />
-                    <span className={`absolute top-2.5 left-0 ${result.type === 'Blog' ? 'bg-[#192579] lg:w-[22%]' : 'bg-teal-700 lg:w-[30%]'}  lg:h-[15%] shadow-lg sm:rounded-tl-2xl sm:rounded-tr-3xl sm:rounded-br-3xl lg:rounded-tl-none lg:rounded-tr-xl lg:rounded-br-xl cursor-pointer`}>
+                    <span
+                      className={`absolute top-2.5 left-0 ${result.type === "Blog" ? "bg-[#192579] lg:w-[22%]" : "bg-teal-700 lg:w-[30%]"}  lg:h-[15%] shadow-lg sm:rounded-tl-2xl sm:rounded-tr-3xl sm:rounded-br-3xl lg:rounded-tl-none lg:rounded-tr-xl lg:rounded-br-xl cursor-pointer`}
+                    >
                       <div className="flex flex-col justify-center items-center h-full">
                         <span className="sm:text-[25px] lg:text-[12px] text-white">
-                          {result.type === 'Blog' ? 'Blog' : 'Travel Plan'}
+                          {result.type === "Blog" ? "Blog" : "Travel Plan"}
                         </span>
                       </div>
                     </span>
@@ -875,9 +893,13 @@ const WebListTravelPLan = (page) => {
                   <div
                     className="items-center sm:p-6 lg:p-3 common-pointer"
                     onClick={() =>
-                      result.type === 'Blog'
+                      result.type === "Blog"
                         ? handleReadMore(result.id, result.title, result.userId)
-                        : handleTravelPlanClick(result.userId, result.id, result.title)
+                        : handleTravelPlanClick(
+                            result.userId,
+                            result.id,
+                            result.title,
+                          )
                     }
                   >
                     <Row>
@@ -898,16 +920,12 @@ const WebListTravelPLan = (page) => {
                           : result.title}
                       </p>
                     </Row>
-                    <p
-                      className="ml-3 mt-1 w-fit md:text-[25px] lg:text-[12px] lg:h-[40px] 2xl:h-[75px] md:h-[20px] lg:block md:hidden"
-                    >
+                    <p className="ml-3 mt-1 w-fit md:text-[25px] lg:text-[12px] lg:h-[40px] 2xl:h-[75px] md:h-[20px] lg:block md:hidden">
                       {result.description.length > 65
                         ? `${result.description.substring(0, 65)}...`
                         : result.description}
                     </p>
-                    <p
-                      className="ml-3 mt-1 w-fit md:text-[23px] lg:text-[12px] lg:h-[40px] md:h-[70px] lg:hidden md:block"
-                    >
+                    <p className="ml-3 mt-1 w-fit md:text-[23px] lg:text-[12px] lg:h-[40px] md:h-[70px] lg:hidden md:block">
                       {result.description.length > 60
                         ? `${result.description.substring(0, 60)}...`
                         : result.description}
@@ -990,12 +1008,20 @@ const WebListTravelPLan = (page) => {
                       </div>
 
                       <div className="state truncate items-center">
-                        {result.destination && result.destination.length > 0 && result.destination[0].state ? (
+                        {result.destination &&
+                        result.destination.length > 0 &&
+                        result.destination[0].state ? (
                           <span className="flex items-center sm:text-[22px] xl:text-[11px] lg:text-[11px] font-medium">
                             <FaMapMarkerAlt className="inline-block mr-1" />
-                            {result.destination[0].state.replace("Federal Territory of ", "").length > 9
+                            {result.destination[0].state.replace(
+                              "Federal Territory of ",
+                              "",
+                            ).length > 9
                               ? `${result.destination[0].state.replace("Federal Territory of ", "").substring(0, 9)}...`
-                              : result.destination[0].state.replace("Federal Territory of ", "")}
+                              : result.destination[0].state.replace(
+                                  "Federal Territory of ",
+                                  "",
+                                )}
                           </span>
                         ) : (
                           <>
@@ -1008,7 +1034,6 @@ const WebListTravelPLan = (page) => {
                           </>
                         )}
                       </div>
-
                     </div>
 
                     <div className="justify-between ml-2 mr-3 lg:mt-[0px] md:mt-[25px] flex lg:mb-0 md:mb-1">
@@ -1069,19 +1094,25 @@ const WebListTravelPLan = (page) => {
               {results.length > 0 && (
                 <>
                   <Row className="w-[100%] justify-between ">
-                    <Icon className="ml-2 common-pointer w-[35%] h-10  font-normal"
-                      path={mdiArrowLeft} size={1}
-                      onClick={handlePreviousPage} />
+                    <Icon
+                      className="ml-2 common-pointer w-[35%] h-10  font-normal"
+                      path={mdiArrowLeft}
+                      size={1}
+                      onClick={handlePreviousPage}
+                    />
 
-                    <Icon className="mr-2 common-pointer w-[35%] h-10  font-normal "
-                      path={mdiArrowRight} size={1}
-                      onClick={handleNextPage} />
+                    <Icon
+                      className="mr-2 common-pointer w-[35%] h-10  font-normal "
+                      path={mdiArrowRight}
+                      size={1}
+                      onClick={handleNextPage}
+                    />
                   </Row>
                   <div className="justify-center items-center text-center mt-[10px]">
                     <button
                       className="rounded-[15px] w-[35%] h-10 border shadow-sm border-black font-normal"
                       onClick={handleLoadMore}
-                    //disabled={currentPage >= totalPages || isLoadingg}
+                      //disabled={currentPage >= totalPages || isLoadingg}
                     >
                       {isLoadingg ? "Loading..." : "Show More"}
                     </button>
@@ -1093,15 +1124,12 @@ const WebListTravelPLan = (page) => {
                   )}
                 </>
               )}
-
-
             </>
           )}
         </div>
       </column>
     </>
   );
-
 };
 
 export default WebListTravelPLan;

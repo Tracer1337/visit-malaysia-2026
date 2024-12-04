@@ -2,7 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { RatingBar } from "components/RatingBar/index";
 import { Row, Text, Button, Img, ButtonMp } from "components";
 import { mdiBookmark, mdiDotsHorizontal, mdiCircleSmall } from "@mdi/js";
-import { data, fetchItineraryBookmark, fetchBlogData, fetchProductData, fetchItineraryDestination, fetchItineraryDetails, fetchTravelPlan } from "data/data";
+import {
+  data,
+  fetchItineraryBookmark,
+  fetchBlogData,
+  fetchProductData,
+  fetchItineraryDestination,
+  fetchItineraryDetails,
+  fetchTravelPlan,
+} from "data/data";
 import Icon from "@mdi/react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import ThreeDotSaveBlog from "components/ThreeDotSaveBlog/index";
@@ -10,10 +18,9 @@ import { useNavigate } from "react-router";
 import "./message.css";
 import "./LoadingSpinner3.css";
 import axios from "axios";
-import { AiOutlineDoubleRight } from 'react-icons/ai';
+import { AiOutlineDoubleRight } from "react-icons/ai";
 
 const BlogSavedContent = () => {
-
   const [nav3, setNav3] = useState(false);
   const [blogContent, setBlogContent] = useState([]);
   const [travelPlanAll, setTravelPlanAll] = useState([]);
@@ -21,15 +28,15 @@ const BlogSavedContent = () => {
   const tokenType = localStorage.getItem("tokenType");
   const userId = localStorage.getItem("userId");
   const [isBlog, setIsBlog] = useState(false);
-  const [title, setTitle] = useState('');
-  const [blogId, setBlogId] = useState('');
+  const [title, setTitle] = useState("");
+  const [blogId, setBlogId] = useState("");
   const navigate = useNavigate();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isLoadingg, setIsLoadingg] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const baseURL = window.location.origin;
-  console.log("baseUrl: ", baseURL)
+  console.log("baseUrl: ", baseURL);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -60,7 +67,7 @@ const BlogSavedContent = () => {
         // All steps completed successfully
         setIsLoadingg(false);
       } catch (error) {
-        console.error('Error during loading:', error);
+        console.error("Error during loading:", error);
         setIsLoadingg(true);
       }
     };
@@ -69,7 +76,7 @@ const BlogSavedContent = () => {
   }, []);
 
   const simulateAsyncAction = () => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(resolve, 6000); // Simulate a delay (replace with your actual async action)
     });
   };
@@ -113,7 +120,7 @@ const BlogSavedContent = () => {
       try {
         console.log("Fetching data...");
         const response = await axios.get(
-          `https://halaltravel.ai/ht/api/blog/bookmark/${userId}?pageNumber=1&pageSize=5&sortBy=Id&sortDir=asc`
+          `https://halaltravel.ai/ht/api/blog/bookmark/${userId}?pageNumber=1&pageSize=5&sortBy=Id&sortDir=asc`,
         );
         console.log("Data fetched successfully:", response.data);
         const blogBookmark = response.data.content.map((element) => ({
@@ -132,8 +139,7 @@ const BlogSavedContent = () => {
           interests: element.interests,
           state: element.locations[0].state, // Assuming 'locations' is an array and we're accessing the first element
           userId: element.createdBy,
-           // Assuming 'createdBy' contains the user ID
-
+          // Assuming 'createdBy' contains the user ID
         }));
 
         scrollToTop();
@@ -152,7 +158,10 @@ const BlogSavedContent = () => {
         // Log specific error details
         if (error.response) {
           // Server responded with a status code outside of 2xx range
-          console.error("Server responded with error status:", error.response.status);
+          console.error(
+            "Server responded with error status:",
+            error.response.status,
+          );
           console.error("Error data:", error.response.data);
         } else if (error.request) {
           // The request was made but no response was received
@@ -201,7 +210,7 @@ const BlogSavedContent = () => {
           itineraryDetails,
           userItineraryActivity,
           travelPlanId,
-          userId
+          userId,
         },
       });
       setIsLoadingg(false);
@@ -232,13 +241,13 @@ const BlogSavedContent = () => {
         <div className="success-message">
           <div className="message-line">
             Blog unsaved from your bookmark
-            <button onClick={hideSuccess} className="close-button">X</button>
+            <button onClick={hideSuccess} className="close-button">
+              X
+            </button>
           </div>
+          <div className="message-line">{title} have been unsaved from </div>
           <div className="message-line">
-            {title} have been unsaved from {' '}
-          </div>
-          <div className="message-line">
-            <a href="/my-travelplan">My Travel Plan</a>.
+            <a href="/legacy/my-travelplan">My Travel Plan</a>.
           </div>
         </div>
       )}
@@ -266,14 +275,18 @@ const BlogSavedContent = () => {
               className="loader-container3 md:block lg:hidden "
             >
               <div className="loader md:block lg:hidden"></div>
-              <p className="loading-text md:block lg:hidden text-center ">{loadingTexts[loadingTextIndex]}</p>
+              <p className="loading-text md:block lg:hidden text-center ">
+                {loadingTexts[loadingTextIndex]}
+              </p>
             </div>
             <div
               id="loading-container"
               className="loader-container3 lg:block md:hidden"
             >
               <div className="loader lg:block md:hidden"></div>
-              <p className="loading-text lg:block md:hidden text-center">{loadingTexts[loadingTextIndex]}</p>
+              <p className="loading-text lg:block md:hidden text-center">
+                {loadingTexts[loadingTextIndex]}
+              </p>
             </div>
           </>
         ) : (
@@ -291,8 +304,10 @@ const BlogSavedContent = () => {
                           title={data.title}
                           setBlogContent={setBlogContent}
                           setShowSuccessMessage={setShowSuccessMessage}
-
-                          blogLink={baseURL + `/blog-display/${data.userId}/${data.id}/${encodeURIComponent(data.title)}`}
+                          blogLink={
+                            baseURL +
+                            `/blog-display/${data.userId}/${data.id}/${encodeURIComponent(data.title)}`
+                          }
                         />
                       </button>
                       <img
@@ -308,7 +323,6 @@ const BlogSavedContent = () => {
                         handleReadMore(data.id, data.title, userId)
                       }
                     >
-
                       <Row>
                         <p
                           className="ml-3 justify-center font-bold w-fit md:text-[28px] lg:text-[14px] lg:block md:hidden"
@@ -328,16 +342,12 @@ const BlogSavedContent = () => {
                         </p>
                       </Row>
 
-                      <p
-                        className="ml-3 mt-1 w-fit md:text-[25px] lg:text-[12px] lg:h-[40px] 2xl:h-[75px] md:h-[20px] lg:block md:hidden"
-                      >
+                      <p className="ml-3 mt-1 w-fit md:text-[25px] lg:text-[12px] lg:h-[40px] 2xl:h-[75px] md:h-[20px] lg:block md:hidden">
                         {data.summary.length > 65
                           ? `${data.summary.substring(0, 65)}...`
                           : data.summary}
                       </p>
-                      <p
-                        className="ml-3 mt-1 w-fit md:text-[23px] lg:text-[12px] lg:h-[40px] md:h-[70px] lg:hidden md:block"
-                      >
+                      <p className="ml-3 mt-1 w-fit md:text-[23px] lg:text-[12px] lg:h-[40px] md:h-[70px] lg:hidden md:block">
                         {data.summary.length > 60
                           ? `${data.summary.substring(0, 60)}...`
                           : data.summary}
@@ -425,9 +435,13 @@ const BlogSavedContent = () => {
                           {data.state && data.state.length > 0 && data.state ? (
                             <span className="flex items-center sm:text-[22px] xl:text-[11px] lg:text-[11px] font-medium">
                               <FaMapMarkerAlt className="inline-block mr-1" />
-                              {data.state.replace("Federal Territory of ", "").length > 9
+                              {data.state.replace("Federal Territory of ", "")
+                                .length > 9
                                 ? `${data.state.replace("Federal Territory of ", "").substring(0, 9)}...`
-                                : data.state.replace("Federal Territory of ", "")}
+                                : data.state.replace(
+                                    "Federal Territory of ",
+                                    "",
+                                  )}
                             </span>
                           ) : (
                             <>
@@ -440,10 +454,7 @@ const BlogSavedContent = () => {
                             </>
                           )}
                         </div>
-
                       </div>
-
-
 
                       <div className="justify-between ml-2 mr-3 lg:mt-[0px] md:mt-[25px] flex lg:mb-0 md:mb-1">
                         <div className="">
@@ -465,16 +476,12 @@ const BlogSavedContent = () => {
                             console.log("originalBy:", data.originalBy);
                             return data.originalBy ? (
                               <>
-                                <span
-                                  className="lg:text-[12px] md:text-[24px] italic text-[#000000] lg:block md:hidden"
-                                >
+                                <span className="lg:text-[12px] md:text-[24px] italic text-[#000000] lg:block md:hidden">
                                   {data.originalBy.length > 20
                                     ? data.originalBy.substring(0, 20) + "..." // Display first 20 characters and add ellipsis
                                     : data.originalBy}
                                 </span>
-                                <span
-                                  className="lg:text-[12px] md:text-[24px] italic text-[#000000] md:block lg:hidden"
-                                >
+                                <span className="lg:text-[12px] md:text-[24px] italic text-[#000000] md:block lg:hidden">
                                   {data.originalBy.length > 18
                                     ? data.originalBy.substring(0, 18) + "..." // Display first 18 characters and add ellipsis
                                     : data.originalBy}
@@ -482,86 +489,76 @@ const BlogSavedContent = () => {
                               </>
                             ) : (
                               <>
-                                <span
-                                  className="lg:text-[12px] md:text-[24px] italic text-[#000000] lg:block md:hidden"
-                                >
+                                <span className="lg:text-[12px] md:text-[24px] italic text-[#000000] lg:block md:hidden">
                                   {" "}
                                 </span>
-                                <span
-                                  className="lg:text-[12px] md:text-[24px] italic text-[#000000] md:block lg:hidden"
-                                >
+                                <span className="lg:text-[12px] md:text-[24px] italic text-[#000000] md:block lg:hidden">
                                   {" "}
                                 </span>
                               </>
                             );
                           })()}
                         </div>
-
-
-
-
                       </div>
-
                     </div>
-
                   </div>
-
                 ))}
               </>
             )}
           </>
         )}
-      </div >
-      {
-        isLoadingg ? null : (
-          <>
-            <Row className="justify-end w-[100%]">
-              <text className="mt-6 md:text-[28px] lg:text-[14px] sm:pl-2 lg:pl-[5px]">
-                Page
-              </text>
-              <text className="mt-6 md:text-[28px] lg:text-[14px] sm:pl-2 lg:pl-[5px]">
-                {currentPage + 1}
-              </text>
-              <text className="mt-6 md:text-[28px] lg:text-[14px] sm:pl-2 lg:pl-[5px]">
-                of
-              </text>
-              <text className="mt-6 md:text-[28px] lg:text-[14px] sm:pl-2 lg:pl-[5px] sm:pr-6 lg:pr-[60px] ">
-                {totalPages}
-              </text>
-            </Row>
+      </div>
+      {isLoadingg ? null : (
+        <>
+          <Row className="justify-end w-[100%]">
+            <text className="mt-6 md:text-[28px] lg:text-[14px] sm:pl-2 lg:pl-[5px]">
+              Page
+            </text>
+            <text className="mt-6 md:text-[28px] lg:text-[14px] sm:pl-2 lg:pl-[5px]">
+              {currentPage + 1}
+            </text>
+            <text className="mt-6 md:text-[28px] lg:text-[14px] sm:pl-2 lg:pl-[5px]">
+              of
+            </text>
+            <text className="mt-6 md:text-[28px] lg:text-[14px] sm:pl-2 lg:pl-[5px] sm:pr-6 lg:pr-[60px] ">
+              {totalPages}
+            </text>
+          </Row>
 
-            <div className=" lg:mb-[100px] md:mb-[230px] md:hidden lg:block flex flex-row font-poppins items-start cursor-pointer justify-center ml-[0px] mt-[46px] w-[100%] h-[fit]">
-              <Img
-                className={`lg:mr-2 md:mr-6 lg:h-[13px] md:h-[35px] lg:mt-[20px] md:mt-[46px] lg:w-[15px] md:w-[35px]${currentPage > 0 ? "common-pointer" : "hidden"
-                  }`}
-                src="https://vm.epictravel.ai/images/img_arrowleftmp.svg"
-                onClick={() => handleArrowClick("left")}
-              />
-              {getPageButtonsRange().map((pageNumber) => (
-                <ButtonMp
-                  key={pageNumber}
-                  className={` shadow-lg flex lg:h-[50px] lg:w-[50px] md:h-[120px] md:w-[120px] common-pointer items-center justify-center ml-5 rounded-full text-center text-shadow-ts lg:text-[16px] md:text-[35px] tracking-[-0.30px] 
-                              ${currentPage === pageNumber
-                      ? " bg-cyan-700 text-white"
-                      : "bg-white text-gray-700"
-                    }`}
-                  size="txtPoppinsMedium20"
-                  onClick={() => setCurrentPage(pageNumber)}
-                >
-                  {pageNumber + 1}
-                </ButtonMp>
-              ))}
-              <Img
-                className={` lg:ml-7 md:ml-11 lg:h-[13px] md:h-[35px] lg:mt-[20px] md:mt-[46px] lg:w-[15px] md:w-[35px]${currentPage < totalPages ? "common-pointer" : "hidden"
-                  }`}
-                src="https://vm.epictravel.ai/images/img_arrowright_gray_700_01.svg"
-                alt="arrowright_One"
-                onClick={() => handleArrowClick("right")}
-              />
-            </div>
-          </>
-        )
-      }
+          <div className=" lg:mb-[100px] md:mb-[230px] md:hidden lg:block flex flex-row font-poppins items-start cursor-pointer justify-center ml-[0px] mt-[46px] w-[100%] h-[fit]">
+            <Img
+              className={`lg:mr-2 md:mr-6 lg:h-[13px] md:h-[35px] lg:mt-[20px] md:mt-[46px] lg:w-[15px] md:w-[35px]${
+                currentPage > 0 ? "common-pointer" : "hidden"
+              }`}
+              src="https://vm.epictravel.ai/images/img_arrowleftmp.svg"
+              onClick={() => handleArrowClick("left")}
+            />
+            {getPageButtonsRange().map((pageNumber) => (
+              <ButtonMp
+                key={pageNumber}
+                className={` shadow-lg flex lg:h-[50px] lg:w-[50px] md:h-[120px] md:w-[120px] common-pointer items-center justify-center ml-5 rounded-full text-center text-shadow-ts lg:text-[16px] md:text-[35px] tracking-[-0.30px] 
+                              ${
+                                currentPage === pageNumber
+                                  ? " bg-cyan-700 text-white"
+                                  : "bg-white text-gray-700"
+                              }`}
+                size="txtPoppinsMedium20"
+                onClick={() => setCurrentPage(pageNumber)}
+              >
+                {pageNumber + 1}
+              </ButtonMp>
+            ))}
+            <Img
+              className={` lg:ml-7 md:ml-11 lg:h-[13px] md:h-[35px] lg:mt-[20px] md:mt-[46px] lg:w-[15px] md:w-[35px]${
+                currentPage < totalPages ? "common-pointer" : "hidden"
+              }`}
+              src="https://vm.epictravel.ai/images/img_arrowright_gray_700_01.svg"
+              alt="arrowright_One"
+              onClick={() => handleArrowClick("right")}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };

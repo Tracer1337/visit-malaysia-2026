@@ -11,7 +11,6 @@ import GlobalConstant from "constant/global";
 // import useGoogleTranslateScript from "components/useGoogleTranslateScript/index2";
 import GoogleTranslate from "../GT/GoogleTranslate";
 
-
 const HeaderOTA = ({ openPopup1 }) => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -40,20 +39,22 @@ const HeaderOTA = ({ openPopup1 }) => {
   useEffect(() => {
     // Function to check if click is outside of dropdowns
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.dropdown-btn') && !event.target.closest('.dropdown-content')) {
+      if (
+        !event.target.closest(".dropdown-btn") &&
+        !event.target.closest(".dropdown-content")
+      ) {
         setNav1(false);
       }
     };
 
     // Add event listener
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     // Cleanup the event listener
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
 
   const toggleDropdown2 = () => {
     setNav1((prevState) => !prevState); // Toggles the state between true and false
@@ -73,7 +74,7 @@ const HeaderOTA = ({ openPopup1 }) => {
   // }
 
   useEffect(() => {
-    console.log('logo: ', GlobalConstant.LOGO)
+    console.log("logo: ", GlobalConstant.LOGO);
     if (isLoggedIn) {
       axios
         .get(`https://halaltravel.ai/ht/api/profile/${userId}`)
@@ -89,8 +90,7 @@ const HeaderOTA = ({ openPopup1 }) => {
           setCommissionUserId(commissionUserId);
           setLoading(false);
           setEmail(email);
-          setToken(localStorage.getItem('token'));
-
+          setToken(localStorage.getItem("token"));
         })
         .catch((error) => {
           setError(error);
@@ -128,7 +128,6 @@ const HeaderOTA = ({ openPopup1 }) => {
   //   window.location.reload();
   // };
 
-
   return (
     <header className="bg-white_A701 font-montserrat inline-flex md:flex-col flex-row p-2 items-center justify-center shadow-bs h-max w-full invisible lg:visible hidden lg:flex ">
       <Row className="row-1 w-full z-0 items-center justify-start p-2 gap-4">
@@ -153,7 +152,10 @@ const HeaderOTA = ({ openPopup1 }) => {
               PLAN A HOLIDAY
             </Text>
           </a>
-          <a href="#travelideas" className="text-center w-fit ml-9 underline-white">
+          <a
+            href="#travelideas"
+            className="text-center w-fit ml-9 underline-white"
+          >
             <Text
               className="font-montserrat text-[#008D36] text-cente r text-green_800 tracking-[-0.21px] w-auto"
               as="h7"
@@ -161,7 +163,6 @@ const HeaderOTA = ({ openPopup1 }) => {
             >
               TRAVEL IDEAS
             </Text>
-
           </a>
           {/* <div className="text-center w-fit ml-9">
             <Text
@@ -172,7 +173,10 @@ const HeaderOTA = ({ openPopup1 }) => {
               PROMOS
             </Text>
           </div> */}
-          <a href="/epic-creator-guide" className="text-center w-fit ml-9">
+          <a
+            href="/legacy/epic-creator-guide"
+            className="text-center w-fit ml-9"
+          >
             <Text
               className="font-montserrat text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
               as="h7"
@@ -182,7 +186,10 @@ const HeaderOTA = ({ openPopup1 }) => {
             </Text>
           </a>
           {isLoggedIn ? (
-            <a href={`/influencer-creator/${userId}`} className="text-center w-fit ml-9">
+            <a
+              href={`/legacy/influencer-creator/${userId}`}
+              className="text-center w-fit ml-9"
+            >
               <Text
                 className="font-montserrat text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
                 as="h7"
@@ -211,7 +218,7 @@ const HeaderOTA = ({ openPopup1 }) => {
                 <IoIosNotificationsOutline size={35} className="" />
               </div>
               <GoogleTranslate />
-              <div >
+              <div>
                 <button
                   className="dropdown-btn py-1 px-2 inline-flex border border-[#008D36] mx-2 text-[#008D36] rounded-full items-center"
                   id="dropdownNavbarLink"
@@ -243,8 +250,9 @@ const HeaderOTA = ({ openPopup1 }) => {
                 )}
                 <div
                   id="dropdownNavbar2"
-                  className={`dropdown-content z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-[250px] dark:bg-gray-700 dark:divide-gray-600 ${nav1 ? "" : "hidden"
-                    } absolute right-2`}
+                  className={`dropdown-content z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-[250px] dark:bg-gray-700 dark:divide-gray-600 ${
+                    nav1 ? "" : "hidden"
+                  } absolute right-2`}
                 >
                   <ul
                     class="py-2 text-sm text-left text-gray-700 dark:text-gray-400 "
@@ -275,7 +283,7 @@ const HeaderOTA = ({ openPopup1 }) => {
                     <hr></hr>
                     <li>
                       <a
-                        href="/profile"
+                        href="/legacy/profile"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Personal Info
@@ -283,7 +291,7 @@ const HeaderOTA = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/my-travelplan"
+                        href="/legacy/my-travelplan"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Travel Plan
@@ -291,8 +299,7 @@ const HeaderOTA = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-
-                        href={`/influencer-creator/${userId}`}
+                        href={`/legacy/influencer-creator/${userId}`}
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Storefront
@@ -300,7 +307,7 @@ const HeaderOTA = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/manage-content"
+                        href="/legacy/manage-content"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Social Posting
@@ -308,7 +315,7 @@ const HeaderOTA = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/edit-creator"
+                        href="/legacy/edit-creator"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Edit Storefront
@@ -316,7 +323,7 @@ const HeaderOTA = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/bus-ticket-info"
+                        href="/legacy/bus-ticket-info"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Bookings
@@ -324,7 +331,7 @@ const HeaderOTA = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/report-dashboard"
+                        href="/legacy/report-dashboard"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Report
@@ -333,16 +340,22 @@ const HeaderOTA = ({ openPopup1 }) => {
                     {commissionUserId && (
                       <li>
                         <a
-                          href={"https://affiliate.epictravel.ai/cmsadmin/jumpto_member_office.php?id=" + commissionUserId + "&token=" + token}
+                          href={
+                            "https://affiliate.epictravel.ai/cmsadmin/jumpto_member_office.php?id=" +
+                            commissionUserId +
+                            "&token=" +
+                            token
+                          }
                           class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         >
                           Affiliate Commission
                         </a>
-                      </li>)}
+                      </li>
+                    )}
                     <hr></hr>
                     <li>
                       <a
-                        href="/"
+                        href="/legacy/"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         onClick={handleSignOut}
                       >

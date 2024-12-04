@@ -5,8 +5,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Row } from "components/Row/index";
 import { FaTimes, FaCheck } from "react-icons/fa";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignupPage = ({ isOpen, closePopup2 }) => {
   const navigate = useNavigate();
@@ -65,7 +65,6 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
     if (Object.keys(validationErrors).length === 0) {
       // If no errors, submit the form
       submitForm(data);
-      
     }
   };
 
@@ -171,12 +170,12 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
               // Show error messages for invalid fields
               console.error(
                 "Fields validation failed:",
-                error.response.data.invalidFields
+                error.response.data.invalidFields,
               );
 
               // Check if there is a validation error for 'phoneNumber'
               const phoneNumberError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "phoneNumber"
+                (field) => field.fieldName === "phoneNumber",
               );
 
               if (
@@ -189,7 +188,7 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
 
               // Check if there is a validation error for 'firstName'
               const firstNameError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "firstName"
+                (field) => field.fieldName === "firstName",
               );
 
               if (
@@ -202,7 +201,7 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
 
               // Check if there is a validation error for 'lastName'
               const lastNameError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "lastName"
+                (field) => field.fieldName === "lastName",
               );
 
               if (
@@ -215,7 +214,7 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
 
               // Check if there is a validation error for 'password'
               const passwordError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "password"
+                (field) => field.fieldName === "password",
               );
 
               if (
@@ -228,7 +227,7 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
 
               // Check if there is a validation error for 'gender'
               const titleError = error.response.data.invalidFields.find(
-                (field) => field.fieldName === "title"
+                (field) => field.fieldName === "title",
               );
 
               if (
@@ -263,7 +262,6 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                   <Row>
                     <h1 class="w-[95%] text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                    
                       Create your account
                     </h1>
                     <FaTimes
@@ -277,48 +275,51 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
                     action="#"
                     onSubmit={handleSubmit}
                   >
-
                     <Row className="space-x-5 w-[100%]">
-                    <div className="w-[50%]">
-                      <label
-                        htmlFor="first_name"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        First Name
-                      </label>
-                      <input
-                        type="text"
-                        name="first_name"
-                        id="first_name"
-                        className="w-[100%] bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="First Name"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                      />
-                      {errors.firstName && (
-                        <div className="text-[#e63946]">{errors.firstName}</div>
-                      )}
-                    </div>
-                    <div className="w-[50%]">
-                      <label
-                        htmlFor="last_name"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        id="last_name"
-                        className="w-[100%] bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Last Name"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                      />
-                      {errors.lastName && (
-                        <div className="text-[#e63946]">{errors.lastName}</div>
-                      )}
-                    </div>
+                      <div className="w-[50%]">
+                        <label
+                          htmlFor="first_name"
+                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          First Name
+                        </label>
+                        <input
+                          type="text"
+                          name="first_name"
+                          id="first_name"
+                          className="w-[100%] bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          placeholder="First Name"
+                          value={firstName}
+                          onChange={(e) => setFirstName(e.target.value)}
+                        />
+                        {errors.firstName && (
+                          <div className="text-[#e63946]">
+                            {errors.firstName}
+                          </div>
+                        )}
+                      </div>
+                      <div className="w-[50%]">
+                        <label
+                          htmlFor="last_name"
+                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Last Name
+                        </label>
+                        <input
+                          type="text"
+                          name="last_name"
+                          id="last_name"
+                          className="w-[100%] bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          placeholder="Last Name"
+                          value={lastName}
+                          onChange={(e) => setLastName(e.target.value)}
+                        />
+                        {errors.lastName && (
+                          <div className="text-[#e63946]">
+                            {errors.lastName}
+                          </div>
+                        )}
+                      </div>
                     </Row>
                     <div>
                       <label
@@ -489,7 +490,7 @@ const SignupPage = ({ isOpen, closePopup2 }) => {
                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                       Already have an account?{" "}
                       <a
-                        href="/login"
+                        href="/legacy/login"
                         className="font-medium text-blue-600 hover:underline dark:text-primary-500"
                       >
                         Login here

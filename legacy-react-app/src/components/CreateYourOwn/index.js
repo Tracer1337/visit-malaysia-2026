@@ -10,13 +10,20 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Compressor from "@xkeshi/image-compressor";
 // import "./Popup2.css";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 import DatePicker from "react-datepicker";
 import { FiCalendar } from "react-icons/fi";
 import LoadingSpinner from "components/LoadingSpinner/index";
 
-const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOwn, activityId, image, closePopup44 }) => {
+const CreateYourOwn = ({
+  showCreateYourOwn,
+  closeCreateYourOwn,
+  backCreateYourOwn,
+  activityId,
+  image,
+  closePopup44,
+}) => {
   // const [showContentSetting, setShowContentSetting] = React.useState(false);
   // const location = useLocation();
   // const receivedData = location.state;
@@ -26,33 +33,32 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
   // const [isLoadingg, setIsLoadingg] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
   const userId = localStorage.getItem("userId");
-  const [cover_image, setCoverImage] = useState('');
+  const [cover_image, setCoverImage] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
   const chatgptId = useSelector((state) => state.data.itineraryId);
-  const [mode, setMode] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [days, setDays] = useState('');
+  const [mode, setMode] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [days, setDays] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [date, setDate] = useState(new Date());
   const minDate = new Date();
-  const [destination, setDestination] = useState('');
+  const [destination, setDestination] = useState("");
   const [successMessageType, setSuccessMessageType] = useState("added");
   const [newItinerary, setNewItinerary] = useState(null);
   const navigate = useNavigate();
   const { creatorId, itineraryId, itineraryTitle } = useParams();
 
-
   const resetForm = () => {
-    setTitle('');
-    setDays('');
+    setTitle("");
+    setDays("");
     setDate(new Date()); // Reset to current date or specific default date
-    setDescription('');
-    setCoverImage('');
+    setDescription("");
+    setCoverImage("");
     setIsLoading(false);
   };
 
-  console.log('COVER IMAGE:', cover_image);
+  console.log("COVER IMAGE:", cover_image);
 
   const handleCoverImageChange = async (event) => {
     const selectedFile = event.target.files[0];
@@ -60,14 +66,13 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
     if (selectedFile) {
       try {
         const compressedFile = await compressImage(selectedFile);
-        console.log('Compressed File:', compressedFile);
+        console.log("Compressed File:", compressedFile);
         setCoverImage(compressedFile);
       } catch (error) {
-        console.error('Error compressing image:', error);
+        console.error("Error compressing image:", error);
       }
     }
   };
-
 
   const compressImage = (file) => {
     return new Promise((resolve, reject) => {
@@ -102,18 +107,19 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
 
         compress();
       } else {
-        console.log('Image size is not greater than 1000 KB. No compression needed.');
+        console.log(
+          "Image size is not greater than 1000 KB. No compression needed.",
+        );
         resolve(file);
       }
     });
   };
 
-
   const handleImageRemove = (imageTypes) => {
     imageTypes.forEach((imageType) => {
       switch (imageType) {
-        case 'cover_image':
-          console.log('Removing Cover Image');
+        case "cover_image":
+          console.log("Removing Cover Image");
           setCoverImage(null);
           break;
         default:
@@ -123,12 +129,11 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
   };
 
   useEffect(() => {
-    console.log('cover_image state:', cover_image);
+    console.log("cover_image state:", cover_image);
   }, [cover_image]);
 
-
   useEffect(() => {
-    console.log('Activity ID in AddtoContentNew:', activityId);
+    console.log("Activity ID in AddtoContentNew:", activityId);
   }, [activityId]);
 
   const handleTitleChange = (event) => {
@@ -140,19 +145,20 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
   };
 
   function formatDate(dateStr) {
-    const date = new Date(dateStr);  // Convert string to Date object
-    const day = ('0' + date.getDate()).slice(-2);  // Get day and pad with zero if needed
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);  // Get month, add 1 as months are zero-indexed, and pad
-    const year = date.getFullYear();  // Get full year
-    return `${day}/${month}/${year}`;  // Format date in DD/MM/YYYY format
+    const date = new Date(dateStr); // Convert string to Date object
+    const day = ("0" + date.getDate()).slice(-2); // Get day and pad with zero if needed
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Get month, add 1 as months are zero-indexed, and pad
+    const year = date.getFullYear(); // Get full year
+    return `${day}/${month}/${year}`; // Format date in DD/MM/YYYY format
   }
 
   const handleCreateYourOwn1 = async () => {
-
     // Validation - Check if title, days, or date are null/empty
     if (!title || !days || !date) {
       // Show an error message to the user
-      alert('Please fill in all required fields: Title, Number of Days, and Date.');
+      alert(
+        "Please fill in all required fields: Title, Number of Days, and Date.",
+      );
       return; // Stop the function execution if validation fails
     }
 
@@ -169,7 +175,11 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
       const date = new Date(dateStr);
 
       // Convert the date object to the ISO string and adjust to UTC
-      const isoDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()).toISOString();
+      const isoDate = new Date(
+        date.getUTCFullYear(),
+        date.getUTCMonth(),
+        date.getUTCDate(),
+      ).toISOString();
 
       return isoDate;
     }
@@ -182,24 +192,28 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
       location: destination,
       startDate: convertToISO(date),
       day: days,
-      cyo: true
+      cyo: true,
     };
 
     console.log("ZZData to pass: ", dataToPass, requestItinerary);
     // Store data
     // localStorage.setItem('cyo', 'true');
-    navigate(`/itinerary-save/${userId}/712/${encodeTitle(title)}/editableView`, { state: dataToPass });
+    navigate(
+      `/itinerary-save/${userId}/712/${encodeTitle(title)}/editableView`,
+      { state: dataToPass },
+    );
     // navigate(`/itinerary-save/9/712/Title%20of%20Itinerary%208/editableView/cyo`, { state: dataToPass });
 
     console.log("REQUESTTT: ", requestItinerary, " image: ", cover_image);
   };
 
   const handleCreateYourOwn = async () => {
-
     // Validation - Check if title, days, or date are null/empty
     if (!title || !days || !date) {
       // Show an error message to the user
-      alert('Please fill in all required fields: Title, Number of Days, and Date.');
+      alert(
+        "Please fill in all required fields: Title, Number of Days, and Date.",
+      );
       return; // Stop the function execution if validation fails
     }
 
@@ -217,61 +231,68 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
 
     console.log("XXREQUESTTT: ", requestItinerary, " image: ", cover_image);
 
-
     const json = JSON.stringify(requestItinerary);
-    const blob = new Blob([json], { type: 'application/json' });
+    const blob = new Blob([json], { type: "application/json" });
 
-    formData.append('request_itinerary', blob);
+    formData.append("request_itinerary", blob);
 
     if (cover_image) {
-      formData.append('cover_image', cover_image);
+      formData.append("cover_image", cover_image);
+    } else {
+      formData.append("cover_image", new File([], "empty.jpg"));
     }
-    else {
-      formData.append('cover_image', new File([], 'empty.jpg'));
-    }
-
 
     try {
-      const response = await axios.post('https://halaltravel.ai/ht/api/chatgpt/user/itinerary-noai/save', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      const response = await axios.post(
+        "https://halaltravel.ai/ht/api/chatgpt/user/itinerary-noai/save",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
 
-      console.log('XXformData:', formData);
-      console.log('XXNew itinerary created:', response.data);
+      console.log("XXformData:", formData);
+      console.log("XXNew itinerary created:", response.data);
       // setNewItinerary(response.data);
 
       if (response.status === 200) {
-        console.log('XXItinerary created successfully:', formData);
+        console.log("XXItinerary created successfully:", formData);
 
         // Extract the itineraryId from the response
         const itineraryId = response.data.user_itinerary_id;
 
         // Second API call to update status
-        const updateStatusResponse = await axios.post(`https://halaltravel.ai/hv/api/chatgpt/user/itinerary/updatestatus`, {
-          userId: userId,
-          itineraryId,
-          status: 'DRAFT',
-        });
+        const updateStatusResponse = await axios.post(
+          `https://halaltravel.ai/hv/api/chatgpt/user/itinerary/updatestatus`,
+          {
+            userId: userId,
+            itineraryId,
+            status: "DRAFT",
+          },
+        );
 
         if (updateStatusResponse.status === 200) {
-          console.log('API call to update status successful');
+          console.log("API call to update status successful");
           closeCreateYourOwn();
-          toast.success('Travel plan successfully created', {
+          toast.success("Travel plan successfully created", {
             autoClose: 1500,
-            position: 'bottom-center',
+            position: "bottom-center",
             closeButton: false,
-            className: 'toast-message'
+            className: "toast-message",
           });
-
 
           function convertToISO(dateStr) {
             // Parse the input date string to a Date object
             const date = new Date(dateStr);
 
             // Convert the date object to the ISO string and adjust to UTC
-            const isoDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()).toISOString();
+            const isoDate = new Date(
+              date.getUTCFullYear(),
+              date.getUTCMonth(),
+              date.getUTCDate(),
+            ).toISOString();
 
             return isoDate;
           }
@@ -284,12 +305,15 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
             location: destination,
             startDate: convertToISO(date),
             day: days,
-            cyo: true
+            cyo: true,
           };
 
           console.log("ZZData to pass: ", dataToPass, requestItinerary);
 
-          navigate(`/itinerary-save/${userId}/${itineraryId}/${encodeTitle(title)}/editableView`, { state: dataToPass });
+          navigate(
+            `/itinerary-save/${userId}/${itineraryId}/${encodeTitle(title)}/editableView`,
+            { state: dataToPass },
+          );
 
           // const dataToPass = {
           //   location: destination
@@ -297,50 +321,51 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
           // // navigate(`/itinerary-save/${userId}/${itineraryId}/${itineraryTitle}/editableView`, { state: dataToPass });
           // navigate(`/itinerary-save/9/711/Title%20of%20Itinerary/editableView`, { state: dataToPass });
         } else {
-          console.error('Error: API call to update status failed');
+          console.error("Error: API call to update status failed");
         }
-
       } else {
-        console.error('Error saving itinerary:', response.data.message);
+        console.error("Error saving itinerary:", response.data.message);
       }
-
     } catch (error) {
       if (error.response) {
-        console.error('Error response data:', error.response.data);
-        console.error('Error response status:', error.response.status);
-        console.error('Error response headers:', error.response.headers);
+        console.error("Error response data:", error.response.data);
+        console.error("Error response status:", error.response.status);
+        console.error("Error response headers:", error.response.headers);
       } else if (error.request) {
-        console.error('Error request data:', error.request);
+        console.error("Error request data:", error.request);
       } else {
-        console.error('Error message:', error.message);
+        console.error("Error message:", error.message);
       }
-      console.error('Error config:', error.config);
+      console.error("Error config:", error.config);
 
-      toast.error("Unexpected error occurred while creating itinerary. Please try again.", {
-        autoClose: 2000,
-        position: 'top-right',
-        closeButton: true,
-        className: "xs:top-40 lg:top-20 toast-message",
-      });
+      toast.error(
+        "Unexpected error occurred while creating itinerary. Please try again.",
+        {
+          autoClose: 2000,
+          position: "top-right",
+          closeButton: true,
+          className: "xs:top-40 lg:top-20 toast-message",
+        },
+      );
     } finally {
-      setIsLoading(false);  // Ensure loading state is reset after all operations
+      setIsLoading(false); // Ensure loading state is reset after all operations
     }
   };
 
   const handleIconClick = () => {
-    console.log('AiOutlinePlus icon clicked');
-    console.log('cover_image', cover_image);
-    document.getElementById('coverImg').click();
+    console.log("AiOutlinePlus icon clicked");
+    console.log("cover_image", cover_image);
+    document.getElementById("coverImg").click();
   };
   const handleNavigateTravelPlan = () => {
     if (newItinerary) {
       const encodedTitle = encodeURIComponent(title);
-      window.location.href = `/itinerary-save/${userId}/${newItinerary.id}/${encodedTitle}`;
+      window.location.href = `/legacy/itinerary-save/${userId}/${newItinerary.id}/${encodedTitle}`;
     }
   };
 
   useEffect(() => {
-    console.log('newItinerary:', newItinerary);
+    console.log("newItinerary:", newItinerary);
   }, [newItinerary]);
 
   return (
@@ -349,11 +374,8 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
         <div className="success-message">
           <div className="message-line">
             Activity{" "}
-            <strong>
-              {successMessageType === "added" ? "added to" : ""}
-            </strong>{" "}
-            your{" "}
-            <a href="/my-travelplan"> Travel Plan</a>.
+            <strong>{successMessageType === "added" ? "added to" : ""}</strong>{" "}
+            your <a href="/legacy/my-travelplan"> Travel Plan</a>.
             <button
               onClick={() => setShowSuccessMessage(false)}
               className="close-button"
@@ -368,9 +390,7 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
         <>
           {/* <div className="font-montserrat bg-gray-50 xs:top-[10vh] xs:bottom-[10vh] lg:top-0 lg:bottom-0 rounded-3xl cursor-pointer justify-center shadow-3xl items-center lg:mx-[400px] lg:my-[20px] flex-nowrap overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"> */}
           <div className="font-sans bg-gray-50 xs:top-40 lg:top-0 rounded-3xl cursor-pointer justify-center shadow-3xl items-center lg:mx-[400px] lg:my-[50px] flex-nowrap overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-
             <Column className="sm:py-[50px] sm:w-[100%] sm:h-[100%] lg:py-[10px] lg:w-[100%] lg:h-[100%] bg-gray-50">
-
               <div className="bg-gray-50 w-[full] lg:mx-[0px] lg:my-[0px] max-h-[80vh] flex flex-col ">
                 {/*Content title*/}
                 <div className=" flex mx-8 items-center">
@@ -386,8 +406,8 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                       // onClick={() => setShowContentSetting(false)}
                       // onClick={closeCreateYourOwn}
                       onClick={() => {
-                        resetForm();        // First, reset the form
-                        closeCreateYourOwn();  // Then, close the form or perform other closing actions
+                        resetForm(); // First, reset the form
+                        closeCreateYourOwn(); // Then, close the form or perform other closing actions
                       }}
                     />
                   </button>
@@ -452,7 +472,10 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                           Date: *
                         </label>
                         <div className="sm:block lg:hidden items-center flex justify-start p-4 gap-4 border border-[#D3D3D3] bg-white_A700 rounded-[5px] sm:h-24 lg:h-9 hover:outline-blue-500/75">
-                          <FiCalendar size={30} className="ml-2 text-[#111928]" />
+                          <FiCalendar
+                            size={30}
+                            className="ml-2 text-[#111928]"
+                          />
                           <input
                             type="date"
                             id="myDate"
@@ -477,7 +500,10 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                           Date: *
                         </label>
                         <div className="sm:hidden md:hidden lg:block xl:block 2xl:block bg-white_A700 flex flex-row gap-[5px] items-center border border-[#D3D3D3] rounded-[5px] w-[100%] lg:h-9">
-                          <FiCalendar size={20} className="ml-2 text-[#111928]" />
+                          <FiCalendar
+                            size={20}
+                            className="ml-2 text-[#111928]"
+                          />
                           <DatePicker
                             className="font-normal font-montserrat not-italic p-[0] lg:text-xs text-black placeholder:required text-slate_700 w-[100%]"
                             wrapClassName="w-[100%] "
@@ -494,7 +520,6 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                         </div>
                       </div>
                     </div>
-
                   </Row>
 
                   <div className="mt-4 mx-8 ">
@@ -515,7 +540,7 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                       value={description}
                       onChange={handleDescriptionChange}
 
-                    // title="E.g. "
+                      // title="E.g. "
                     ></textarea>
                     <div className="">
                       <text className="flex justify-end sm:text-[26px] lg:text-xs">
@@ -539,14 +564,16 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                                 className="absolute top-3 right-5 p-1 xs:w-[65px] xs:h-[65px] lg:w-[25px] lg:h-[25px] bg-[#808080] rounded-full text-white shadow-md"
                                 style={{
                                   padding: 0,
-                                  borderRadius: '50%',
+                                  borderRadius: "50%",
                                   // width: '25px',
                                   // height: '25px',
-                                  display: 'flex',
-                                  justifyContent: 'center',
-                                  alignItems: 'center',
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
                                 }}
-                                onClick={() => handleImageRemove(['cover_image'])}
+                                onClick={() =>
+                                  handleImageRemove(["cover_image"])
+                                }
                                 title="Remove image"
                               >
                                 X
@@ -554,11 +581,13 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                             )}
                             {!cover_image ? (
                               <div>
-                                <p className="text-center text-[#9A9A9A] sm:text-[28px] lg:text-[14px] font-normal mt-5">Add cover image</p>
+                                <p className="text-center text-[#9A9A9A] sm:text-[28px] lg:text-[14px] font-normal mt-5">
+                                  Add cover image
+                                </p>
                                 <label
                                   htmlFor="coverImg"
                                   className="bg-[#EDEDED] inline-flex items-center justify-center font-medium sm:w-[40px] sm:h-[40px] lg:w-[22px] lg:h-[22px] rounded-full mb-5"
-                                // onClick={handleIconClick}
+                                  // onClick={handleIconClick}
                                 >
                                   <AiOutlinePlus className="lg:h-[22px] lg:w-[22px] sm:h-[38px] sm:w-[38px] text-center text-black " />
                                   <input
@@ -589,7 +618,6 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
 
                 {/* Footer */}
                 <div className="flex justify-between xs:bottom-20 lg:bottom-0 ">
-                  
                   <Row className="flex-1 justify-end mx-8 xs:space-x-5 lg:space-x-3 ">
                     <div className=" text-right">
                       <button
@@ -597,8 +625,8 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                         //onClick={handleSaveButtonClick}
                         disabled={isLoading}
                         onClick={() => {
-                          resetForm();        // First, reset the form
-                          backCreateYourOwn();  // Then, close the form or perform other closing actions
+                          resetForm(); // First, reset the form
+                          backCreateYourOwn(); // Then, close the form or perform other closing actions
                         }}
                       >
                         {/* {isLoadingg && (
@@ -628,11 +656,9 @@ const CreateYourOwn = ({ showCreateYourOwn, closeCreateYourOwn, backCreateYourOw
                     </div>
                   </Row>
                 </div>
-
               </div>
-
             </Column>
-          </div >
+          </div>
 
           <div className="opacity-70 fixed inset-0 z-40 bg-black"></div>
         </>

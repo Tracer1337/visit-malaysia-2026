@@ -11,11 +11,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Compressor from "@xkeshi/image-compressor";
 import { IoAdd } from "react-icons/io5";
 import Result from "../../../../node_modules/postcss/lib/result";
-import { fetchItineraryDetails, fetchItineraryDestination } from 'data/data';
-import { useParams } from 'react-router-dom';
+import { fetchItineraryDetails, fetchItineraryDestination } from "data/data";
+import { useParams } from "react-router-dom";
 import "./Popup2.css";
 import { useNavigate } from "react-router";
-
 
 const AddtoContentOld = ({
   showAddtoContentOld,
@@ -36,7 +35,7 @@ const AddtoContentOld = ({
   const [cover_image, setCoverImage] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
   const chatgptId = useSelector((state) => state.data.itineraryId);
-  const [mode, setMode] = useState('');
+  const [mode, setMode] = useState("");
   const [coverImageFile, setCoverImageFile] = useState(null);
   const [travelPlan, setTravelPlan] = useState([]);
   const [error, setError] = useState("");
@@ -45,18 +44,16 @@ const AddtoContentOld = ({
   const navigate = useNavigate();
   const [selectedItinerary, setSelectedItinerary] = useState(null);
   const [isLoadingTravelPlan, setIsLoadingTravelPlan] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredPlans, setFilteredPlans] = useState([]);
-  
+
   //const [selectedActivityId, setSelectedActivityId] = useState(activityId);
 
   useEffect(() => {
-    console.log('Activity ID in AddtoContentOld:', activityId);
+    console.log("Activity ID in AddtoContentOld:", activityId);
   }, [activityId]);
 
-
   // console.log("activity_id1", activityId);
-
 
   const handleClick = () => {
     // Set activityId in parent component's state
@@ -67,14 +64,12 @@ const AddtoContentOld = ({
     closePopup44();
   };
 
-
   const handleExistItinerary = async (itinerary) => {
-
-    setMode('exist');
+    setMode("exist");
     setSelectedItinerary(itinerary);
     const formData = new FormData();
     const request_itinerary = {
-      mode: 'exist',
+      mode: "exist",
       activity_id: activityId,
       user_itinerary_id: itinerary.id,
       chatgpt_id: 0,
@@ -86,57 +81,64 @@ const AddtoContentOld = ({
     console.log("title", itinerary.title);
 
     const json = JSON.stringify(request_itinerary);
-    const blob = new Blob([json], { type: 'application/json' });
-    formData.append('request_itinerary', blob);
-    formData.append('cover_image', coverImageFile);
+    const blob = new Blob([json], { type: "application/json" });
+    formData.append("request_itinerary", blob);
+    formData.append("cover_image", coverImageFile);
     try {
-      const response = await axios.post('https://halaltravel.ai/ht/api/planner/user/itinerary/activity/saveTemp', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      console.log('Existing itinerary created:', response.data);
+      const response = await axios.post(
+        "https://halaltravel.ai/ht/api/planner/user/itinerary/activity/saveTemp",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
+      console.log("Existing itinerary created:", response.data);
       // Handle success
       closePopup44();
       setShowSuccessMessage(true);
-      setSuccessMessageType('added');
+      setSuccessMessageType("added");
       setTimeout(() => {
         setShowSuccessMessage(false);
       }, 5000);
     } catch (error) {
       if (error.response) {
-        console.error('Error response data:', error.response.data);
-        console.error('Error response status:', error.response.status);
-        console.error('Error response headers:', error.response.headers);
+        console.error("Error response data:", error.response.data);
+        console.error("Error response status:", error.response.status);
+        console.error("Error response headers:", error.response.headers);
       } else if (error.request) {
-        console.error('Error request data:', error.request);
+        console.error("Error request data:", error.request);
       } else {
-        console.error('Error message:', error.message);
+        console.error("Error message:", error.message);
       }
-      console.error('Error config:', error.config);
+      console.error("Error config:", error.config);
     }
   };
   const handleNavigateTravelPlan = () => {
     if (selectedItinerary) {
       const encodedTitle = encodeURIComponent(selectedItinerary.title);
-      window.location.href = `/itinerary/${userId}/${selectedItinerary.id}/${encodedTitle}`;
+      window.location.href = `/legacy/itinerary/${userId}/${selectedItinerary.id}/${encodedTitle}`;
     }
   };
   useEffect(() => {
     const fetchData = async () => {
       setIsLoadingTravelPlan(true);
       try {
-        const response = await axios.get(`https://halaltravel.ai/hv/api/chatgpt/user/itinerary/listcover/${userId}`);
+        const response = await axios.get(
+          `https://halaltravel.ai/hv/api/chatgpt/user/itinerary/listcover/${userId}`,
+        );
         // setTravelPlan(response.data);
-        const filteredData = response.data.filter(item => item.status === "DRAFT" || item.status === "PUBLISHED");
+        const filteredData = response.data.filter(
+          (item) => item.status === "DRAFT" || item.status === "PUBLISHED",
+        );
         setTravelPlan(filteredData);
         console.log("List Travel Plan: ", filteredData);
 
         setIsLoadingTravelPlan(false);
-
       } catch (error) {
         setError(error);
-        console.error('Error fetching travel plan:', error);
+        console.error("Error fetching travel plan:", error);
 
         setIsLoadingTravelPlan(false);
       }
@@ -147,28 +149,25 @@ const AddtoContentOld = ({
 
   // console.log("title", selectedItinerary.title);
   useEffect(() => {
-    console.log('selectedItinerary:', selectedItinerary);
+    console.log("selectedItinerary:", selectedItinerary);
   }, [selectedItinerary]);
-
 
   // Filter Travel Plan based on title
   useEffect(() => {
     setIsLoadingTravelPlan(true);
-    
+
     // Filter travel plans based on the search query
-    const filtered = travelPlan.filter(plan =>
-      plan.title.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = travelPlan.filter((plan) =>
+      plan.title.toLowerCase().includes(searchQuery.toLowerCase()),
     );
     setFilteredPlans(filtered);
 
     setIsLoadingTravelPlan(false);
-
   }, [searchQuery, travelPlan]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
 
   return (
     <>
@@ -176,13 +175,15 @@ const AddtoContentOld = ({
         <div className="success-message">
           <div className="message-line">
             Activity{" "}
-            <strong>
-              {successMessageType === "added" ? "added to" : ""}
-            </strong>{" "}
+            <strong>{successMessageType === "added" ? "added to" : ""}</strong>{" "}
             your{" "}
-            <a onClick={handleNavigateTravelPlan} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+            <a
+              onClick={handleNavigateTravelPlan}
+              style={{ cursor: "pointer", textDecoration: "underline" }}
+            >
               {selectedItinerary?.title}
-            </a>.
+            </a>
+            .
             <button
               onClick={() => setShowSuccessMessage(false)}
               className="close-button"
@@ -194,7 +195,6 @@ const AddtoContentOld = ({
       )}
       {showAddtoContentOld ? (
         <>
-
           <div className="font-montserrat bg-gray-50 xs:top-[10vh] xs:bottom-[10vh] lg:top-0 lg:bottom-0 rounded-3xl cursor-pointer justify-center shadow-3xl items-center lg:mx-[400px] lg:my-[20px] flex-nowrap overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             {/*Content title*/}
             <Column className="sm:py-[50px] sm:w-[100%] sm:h-[100%] lg:py-[10px] lg:w-[100%] lg:h-fit">
@@ -215,10 +215,7 @@ const AddtoContentOld = ({
               {/*Content*/}
               <div className="h-[100%]">
                 <div className="mt-4 mx-8">
-
-
                   <div className="relative flex items-center">
-
                     {/* <input
                       className="placeholder-[#9A9A9A] rounded bg-white border border-[#D3D3D3] text-gray-900 sm:text-[26px] lg:text-xs block sm:h-24 lg:h-9 w-[100%] pl-5"
                       type="text"
@@ -250,10 +247,8 @@ const AddtoContentOld = ({
                         clipRule="evenodd"
                       />
                     </svg>
-
                   </div>
                 </div>
-
 
                 <div className="mx-8 my-6 lg:space-y-3 md:space-y-6 overflow-y-auto lg:h-[50vh] xs:h-[60vh] ">
                   {isLoading ? (
@@ -263,14 +258,16 @@ const AddtoContentOld = ({
                     </div>
                   ) : filteredPlans.length === 0 ? (
                     <div className="flex items-center text-center justify-center mt-3">
-                      No itineraries found. <br /> Create a new one to get started!
+                      No itineraries found. <br /> Create a new one to get
+                      started!
                     </div>
                   ) : (
                     filteredPlans.map((result, index) => (
                       <div
                         key={result.id}
                         onClick={() => handleExistItinerary(result)}
-                        className="bg-[#F5F5F5] lg:h-[25vh] md:h-[23vh] w-full">
+                        className="bg-[#F5F5F5] lg:h-[25vh] md:h-[23vh] w-full"
+                      >
                         <Row className="">
                           <img
                             src={`https://halaltravel.ai/hv/api/chatgpt/user/itinerary/coverimage/${result.coverImage}`}
@@ -290,8 +287,6 @@ const AddtoContentOld = ({
                     ))
                   )}
                 </div>
-
-
 
                 <div className="absolute inset-x-0 bottom-0">
                   <hr className=""></hr>

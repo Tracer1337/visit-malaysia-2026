@@ -1,71 +1,74 @@
-import React, { useState, useRef } from 'react'
-import axios from 'axios';
-import HeaderOTA from 'components/Header/HeaderOTA/index';
-import App from 'pages/Influencer/App/index';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import './editcreator.css';
-import { ImFacebook2, ImFacebook, ImTwitter, ImInstagram } from 'react-icons/im';
-import { FaTwitterSquare, FaInstagram, FaTiktok } from 'react-icons/fa';
-import { TfiYoutube } from 'react-icons/tfi';
-import { IoShare } from 'react-icons/io5';
-import HeaderOTAAdmin from 'components/Header/HeaderOTAAdmin/index';
-import LoadingSpinner from 'components/LoadingSpinner/index';
-import { useEffect } from 'react';
-import { Modal, initTE } from 'tw-elements';
-import { Line } from 'components/Line/index';
-import { useAuth } from 'AuthContext';
+import React, { useState, useRef } from "react";
+import axios from "axios";
+import HeaderOTA from "components/Header/HeaderOTA/index";
+import App from "pages/Influencer/App/index";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import "./editcreator.css";
+import {
+  ImFacebook2,
+  ImFacebook,
+  ImTwitter,
+  ImInstagram,
+} from "react-icons/im";
+import { FaTwitterSquare, FaInstagram, FaTiktok } from "react-icons/fa";
+import { TfiYoutube } from "react-icons/tfi";
+import { IoShare } from "react-icons/io5";
+import HeaderOTAAdmin from "components/Header/HeaderOTAAdmin/index";
+import LoadingSpinner from "components/LoadingSpinner/index";
+import { useEffect } from "react";
+import { Modal, initTE } from "tw-elements";
+import { Line } from "components/Line/index";
+import { useAuth } from "AuthContext";
 import LoginPage from "components/Login/index";
 import SignupPage from "components/SignUp/index";
-import HeaderOTAMobile from 'components/Header/HeaderOTAMobile/index';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from '../../../../node_modules/react-router-dom/index';
+import HeaderOTAMobile from "components/Header/HeaderOTAMobile/index";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "../../../../node_modules/react-router-dom/index";
 
 // Initialize tw-elements
 initTE({ Modal });
 
 const EditCreator = () => {
-
-  const [name, setName] = useState('');
-  const [keywords, setKeywords] = useState('');
-  const [targetAudience, setTargetAudience] = useState('');
-  const [language, setLanguage] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [keywords, setKeywords] = useState("");
+  const [targetAudience, setTargetAudience] = useState("");
+  const [language, setLanguage] = useState("");
+  const [description, setDescription] = useState("");
   const [showSavedText, setShowSavedText] = useState(false);
-  const [generatedDescription, setGeneratedDescription] = useState('');
+  const [generatedDescription, setGeneratedDescription] = useState("");
   const editorRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const { setIsLoggedIn } = useAuth();
   const [isModalOpen, setModalOpen] = useState(false);
   const [isErrorOpen, setErrorOpen] = useState(false);
 
+  const [logoImagePath, setLogoImagePath] = useState("");
+  const [headerImagePath, setHeaderImagePath] = useState("");
+  const [profileImagePath, setProfileImagePath] = useState("");
 
-  const [logoImagePath, setLogoImagePath] = useState('');
-  const [headerImagePath, setHeaderImagePath] = useState('');
-  const [profileImagePath, setProfileImagePath] = useState('');
-
-  const [logoImage, setLogoImage] = useState('');
-  const [headerImage, setHeaderImage] = useState('');
-  const [profileImage, setProfileImage] = useState('');
+  const [logoImage, setLogoImage] = useState("");
+  const [headerImage, setHeaderImage] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   const [profileData, setProfileData] = useState({
-    bio: '',
-    instagram: '',
-    tiktok: '',
-    twitter: '',
-    facebook: '',
-    youtube: '',
-    username: '',
-    email: '',
+    bio: "",
+    instagram: "",
+    tiktok: "",
+    twitter: "",
+    facebook: "",
+    youtube: "",
+    username: "",
+    email: "",
   });
 
   const [headerImageExists, setHeaderImageExists] = useState(true);
   const [profileImageExists, setProfileImageExists] = useState(true);
-  const defaultHeaderImageUrl = 'images/default_header.jpg';
-  const defaultProfileImageUrl = 'images/default_profile.jpg';
+  const defaultHeaderImageUrl = "images/default_header.jpg";
+  const defaultProfileImageUrl = "images/default_profile.jpg";
 
-  const [activeSection, setActiveSection] = useState('generate'); // Default to 'upcoming'
+  const [activeSection, setActiveSection] = useState("generate"); // Default to 'upcoming'
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
@@ -106,22 +109,20 @@ const EditCreator = () => {
       const fileSizeInBytes = selectedFile.size;
       const fileSizeInKB = fileSizeInBytes / 1024; // File size in KB
 
-      const allowedTypes = ['image/jpeg', 'image/png']; // Allowed image types
+      const allowedTypes = ["image/jpeg", "image/png"]; // Allowed image types
       const maxSizeKB = 1024; // Maximum file size in KB (1 MB)
 
       if (allowedTypes.includes(fileType)) {
         if (fileSizeInKB > maxSizeKB) {
-
           // Clear the input value to allow selecting the same file again
           event.target.value = null;
 
           toast.error("Image file size exceeds 1 MB.", {
             autoClose: 2000,
-            position: 'top-right',
+            position: "top-right",
             closeButton: false,
             className: "xs:top-40 lg:top-20 toast-message",
           });
-
         } else {
           console.log(`File type: ${fileType}`);
           console.log(`File size: ${fileSizeInKB} KB`);
@@ -135,13 +136,12 @@ const EditCreator = () => {
 
         toast.error("Invalid file type. Please select a valid image file.", {
           autoClose: 2000,
-          position: 'top-right',
+          position: "top-right",
           closeButton: false,
           className: "xs:top-40 lg:top-20 toast-message",
         });
       }
     }
-
   };
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -154,22 +154,20 @@ const EditCreator = () => {
       const fileSizeInBytes = selectedFile.size;
       const fileSizeInKB = fileSizeInBytes / 1024; // File size in KB
 
-      const allowedTypes = ['image/jpeg', 'image/png']; // Allowed image types
+      const allowedTypes = ["image/jpeg", "image/png"]; // Allowed image types
       const maxSizeKB = 1024; // Maximum file size in KB (1 MB)
 
       if (allowedTypes.includes(fileType)) {
         if (fileSizeInKB > maxSizeKB) {
-
           // Clear the input value to allow selecting the same file again
           event.target.value = null;
 
           toast.error("File size exceeds 1 MB.", {
             autoClose: 2000,
-            position: 'top-right',
+            position: "top-right",
             closeButton: false,
             className: "xs:top-40 lg:top-20 toast-message",
           });
-
         } else {
           console.log(`File type: ${fileType}`);
           console.log(`File size: ${fileSizeInKB} KB`);
@@ -183,7 +181,7 @@ const EditCreator = () => {
 
         toast.error("Invalid file type. Please select a valid image file.", {
           autoClose: 2000,
-          position: 'top-right',
+          position: "top-right",
           closeButton: false,
           className: "xs:top-40 lg:top-20 toast-message",
         });
@@ -204,25 +202,25 @@ const EditCreator = () => {
   const handleImageRemove = (imageTypes) => {
     imageTypes.forEach((imageType) => {
       switch (imageType) {
-        case 'logoImage':
+        case "logoImage":
           setLogoImage(null);
           break;
-        case 'logoImagePath':
+        case "logoImagePath":
           setLogoImagePath(null);
           break;
-        case 'headerImage':
+        case "headerImage":
           setHeaderImage(null);
           setHeaderImageExists(false);
           break;
-        case 'headerImagePath':
+        case "headerImagePath":
           setHeaderImagePath(null);
           setHeaderImageExists(false);
           break;
-        case 'profileImage':
+        case "profileImage":
           setProfileImage(null);
           setProfileImageExists(false);
           break;
-        case 'profileImagePath':
+        case "profileImagePath":
           setProfileImagePath(null);
           setProfileImageExists(false);
           break;
@@ -236,8 +234,9 @@ const EditCreator = () => {
 
   useEffect(() => {
     // Fetch the current user's data from the database and populate the form fields
-    axios.get(`https://halaltravel.ai/ht/api/profile/${userId}`)
-      .then(response => {
+    axios
+      .get(`https://halaltravel.ai/ht/api/profile/${userId}`)
+      .then((response) => {
         const data = response.data;
         const logoImage = data.logoImage;
         const headerImage = data.headerImage;
@@ -257,14 +256,14 @@ const EditCreator = () => {
         setHeaderImagePath(headerImage);
         setProfileImagePath(profileImage);
         setDescription(bio);
-        console.log('-------------', data.profileImage);
+        console.log("-------------", data.profileImage);
       })
-      .catch(error => {
-        console.error('Error fetching profile data:', error);
+      .catch((error) => {
+        console.error("Error fetching profile data:", error);
       });
   }, [userId]);
 
-  const handleInputChange = e => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProfileData({
       ...profileData,
@@ -272,11 +271,11 @@ const EditCreator = () => {
     });
   };
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const [isLoading1, setIsLoading1] = useState(false);
 
   const clearErrorMessage = () => {
-    setErrorMessage('');
+    setErrorMessage("");
   };
 
   const handleSubmit = async () => {
@@ -290,57 +289,68 @@ const EditCreator = () => {
 
     const json = JSON.stringify(profileData);
     const blob = new Blob([json], {
-      type: 'application/json'
+      type: "application/json",
     });
     const formData = new FormData();
     // formData.append('logoImage', logoImage);
-    formData.append('headerImage', headerImage);
-    formData.append('profileImage', profileImage);
-    formData.append('profileData', blob);
+    formData.append("headerImage", headerImage);
+    formData.append("profileImage", profileImage);
+    formData.append("profileData", blob);
 
     const token = localStorage.getItem("token");
     const tokenType = localStorage.getItem("tokenType");
     const userId = localStorage.getItem("userId");
 
-    if (profileData.username != '') {
+    if (profileData.username != "") {
       try {
-        await axios.post(`https://halaltravel.ai/ht/api/profile/${userId}`, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data',
+        await axios.post(
+          `https://halaltravel.ai/ht/api/profile/${userId}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
           },
-        });
+        );
 
-        console.log('Profile updated successfully:', formData);
+        console.log("Profile updated successfully:", formData);
         toggleModal();
       } catch (error) {
-        console.log('Error updating profile:', error);
+        console.log("Error updating profile:", error);
 
         toggleError();
-
       }
     } else {
       toast.error("Please fill in the username.", {
         autoClose: 2000,
-        position: 'top-right',
+        position: "top-right",
         closeButton: false,
         className: "xs:top-40 lg:top-20 toast-message",
       });
 
       setIsLoading1(false);
     }
-
   };
 
-  console.log('[ name:', name, 'keywords: ', keywords, 'target_audience:', targetAudience,
-    'language:', language, ']')
+  console.log(
+    "[ name:",
+    name,
+    "keywords: ",
+    keywords,
+    "target_audience:",
+    targetAudience,
+    "language:",
+    language,
+    "]",
+  );
 
-  console.log('errorMessage: ', errorMessage);
+  console.log("errorMessage: ", errorMessage);
 
   const generateProfileDescription = async () => {
     // Check if any of the required fields is empty
     if (!name || !keywords || !targetAudience || !language) {
-      alert('Please fill in all fields');
+      alert("Please fill in all fields");
       return;
     }
     setIsLoading(true);
@@ -352,9 +362,12 @@ const EditCreator = () => {
     };
 
     try {
-      const response = await axios.post('https://halaltravel.ai/gpt/creator', payload);
+      const response = await axios.post(
+        "https://halaltravel.ai/gpt/creator",
+        payload,
+      );
       // const generatedDescription = response.data.replace(/(<([^>]+)>)/gi, '');
-      const generatedDescription = response.data.replace(/<\/?[^>]+(>|$)/g, '');
+      const generatedDescription = response.data.replace(/<\/?[^>]+(>|$)/g, "");
       setDescription(generatedDescription);
       setProfileData((prevData) => ({
         ...prevData,
@@ -374,7 +387,7 @@ const EditCreator = () => {
     setDescription(data);
     setProfileData((prevData) => ({
       ...prevData,
-      bio: data
+      bio: data,
     }));
     console.log(data);
   };
@@ -387,7 +400,6 @@ const EditCreator = () => {
 
     return () => clearTimeout(loadingDelay);
   }, []);
-
 
   const toggleModal = () => {
     setIsLoading1(false);
@@ -412,12 +424,10 @@ const EditCreator = () => {
       // You can add your size validation logic here
       if (fileSizeInKB > 1024) {
         // Display an error message or take appropriate action
-        console.log('File size exceeds 1 MB.');
+        console.log("File size exceeds 1 MB.");
       }
     }
   }
-
-
 
   const renderHeaderImage = () => {
     if (headerImagePath || headerImage) {
@@ -427,23 +437,31 @@ const EditCreator = () => {
             className="absolute top-2 right-2 p-1 bg-[#808080] rounded-full text-white"
             style={{
               padding: 0,
-              borderRadius: '50%',
-              width: '25px',
-              height: '25px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              borderRadius: "50%",
+              width: "25px",
+              height: "25px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
-            onClick={() => handleImageRemove(['headerImagePath', 'headerImage'])}
+            onClick={() =>
+              handleImageRemove(["headerImagePath", "headerImage"])
+            }
           >
             X
           </button>
 
           <img
-            src={headerImage ? URL.createObjectURL(headerImage) : headerImagePath}
+            src={
+              headerImage ? URL.createObjectURL(headerImage) : headerImagePath
+            }
             alt="Header"
             className="max-w-full max-h-full m-auto"
-            style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+            style={{
+              maxHeight: "100%",
+              maxWidth: "100%",
+              objectFit: "contain",
+            }}
           />
         </div>
       );
@@ -453,7 +471,7 @@ const EditCreator = () => {
           src={defaultHeaderImageUrl}
           alt="Default Header"
           className="max-w-full max-h-full m-auto"
-          style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+          style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
         />
       );
     }
@@ -471,9 +489,7 @@ const EditCreator = () => {
     setOverlayOpen(false);
   };
 
-
   const navigate = useNavigate();
-
 
   // useEffect(() => {
   //   const handleBeforeUnload = (event) => {
@@ -521,19 +537,26 @@ const EditCreator = () => {
   //   };
   // }, []);
 
-
   return (
-    <div className='bg-[#E9EDED] flex flex-col font-montserrat mx-auto w-full'>
-
-      <div className='fixed w-full' style={{ zIndex: 2 }}>
-        <HeaderOTAAdmin openPopup1={openPopup1} className="fixed invisible lg:visible" />
-        <LoginPage isOpen={isPopup1Open} openPopup2={openPopup2} closePopup1={closePopup1} />
+    <div className="bg-[#E9EDED] flex flex-col font-montserrat mx-auto w-full">
+      <div className="fixed w-full" style={{ zIndex: 2 }}>
+        <HeaderOTAAdmin
+          openPopup1={openPopup1}
+          className="fixed invisible lg:visible"
+        />
+        <LoginPage
+          isOpen={isPopup1Open}
+          openPopup2={openPopup2}
+          closePopup1={closePopup1}
+        />
         <SignupPage isOpen={isPopup2Open} closePopup2={closePopup2} />
         <HeaderOTAMobile openPopup1={openPopup1} />
       </div>
 
-      <div className='flex flex-direction' style={{ paddingTop: '92px', zIndex: 1 }}>
-
+      <div
+        className="flex flex-direction"
+        style={{ paddingTop: "92px", zIndex: 1 }}
+      >
         {/* {showPopup && (
           <div className="popup">
             <div className="popup-content">
@@ -547,7 +570,7 @@ const EditCreator = () => {
         )} */}
 
         {/* Button to open the overlay */}
-        <div className='fixed xs:mt-[10%] lg:mt-[1%]' style={{ zIndex: 1 }}>
+        <div className="fixed xs:mt-[10%] lg:mt-[1%]" style={{ zIndex: 1 }}>
           {/* <button
             className='bg-[#00A19A] text-black font-medium px-8 py-4 text-sm items-center mb-3 shadow-xl rounded-r-lg'
             onClick={openOverlay}
@@ -555,8 +578,11 @@ const EditCreator = () => {
             Go Back to Edit
           </button> */}
           <button
-            className='bg-[#00A19A] text-white font-medium xs:px-7 xs:py-3 lg:px-3 lg:py-2 xs:text-[37px] lg:text-[14px] items-center mb-3 border border-y-white border-r-white border-l-[#00A19A] xs:rounded-r-full lg:rounded-r-full flex items-center'
-            style={{boxShadow: 'rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px'}}
+            className="bg-[#00A19A] text-white font-medium xs:px-7 xs:py-3 lg:px-3 lg:py-2 xs:text-[37px] lg:text-[14px] items-center mb-3 border border-y-white border-r-white border-l-[#00A19A] xs:rounded-r-full lg:rounded-r-full flex items-center"
+            style={{
+              boxShadow:
+                "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
+            }}
             onClick={openOverlay}
           >
             Edit
@@ -585,12 +611,10 @@ const EditCreator = () => {
           ></div>
         )} */}
 
-
         {/* Overlay */}
         {isOverlayOpen && (
           <>
-            <div className="relative" >
-
+            <div className="relative">
               {/* Semi-transparent black backdrop */}
               <div
                 className="fixed xs:top-[160px] lg:top-[92px] left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)] "
@@ -599,13 +623,16 @@ const EditCreator = () => {
               ></div>
 
               {/* Edit section */}
-              <div className='xs:top-[160px] lg:top-[92px] xs:w-[100%] lg:w-[500px] h-auto bg-[#D3DDDC] overflow-y-scroll overlay shadow-xl'>
-
+              <div className="xs:top-[160px] lg:top-[92px] xs:w-[100%] lg:w-[500px] h-auto bg-[#D3DDDC] overflow-y-scroll overlay shadow-xl">
                 <div className="flex justify-end mt-[2%]">
                   <button
-                    className='fixed bg-[#00A19A] text-white font-medium xs:px-5 xs:py-3 lg:px-3 lg:py-2 xs:text-[37px] lg:text-[14px] items-center mb-3 border border-y-white border-l-white border-r-[#00A19A] xs:rounded-l-full lg:rounded-l-full flex items-center group'
+                    className="fixed bg-[#00A19A] text-white font-medium xs:px-5 xs:py-3 lg:px-3 lg:py-2 xs:text-[37px] lg:text-[14px] items-center mb-3 border border-y-white border-l-white border-r-[#00A19A] xs:rounded-l-full lg:rounded-l-full flex items-center group"
                     onClick={closeOverlay}
-                    style={{ zIndex: 1, boxShadow: 'rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px' }}
+                    style={{
+                      zIndex: 1,
+                      boxShadow:
+                        "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
+                    }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -628,18 +655,17 @@ const EditCreator = () => {
                   </button>
                 </div>
 
-
                 {/* logo */}
-                <div className='xs:px-10 lg:px-2'>
-                  <div className='xs:mt-10 lg:mt-0 p-4'>
-                    <div className='justify-center items-center text-center my-2 bg-[#00A19A] shadow-md'>
-                      <button
-                        className='text-white text-center font-bold xs:px-8 xs:py-5 lg:px-5 lg:py-3 xs:text-[37px] lg:text-[17px] items-center'
-                      >
+                <div className="xs:px-10 lg:px-2">
+                  <div className="xs:mt-10 lg:mt-0 p-4">
+                    <div className="justify-center items-center text-center my-2 bg-[#00A19A] shadow-md">
+                      <button className="text-white text-center font-bold xs:px-8 xs:py-5 lg:px-5 lg:py-3 xs:text-[37px] lg:text-[17px] items-center">
                         <span>Edit Your Storefront</span>
                       </button>
                     </div>
-                    <span className='xs:text-[24px] lg:text-[12px] text-[#ED5951]'>* Required fields.</span>
+                    <span className="xs:text-[24px] lg:text-[12px] text-[#ED5951]">
+                      * Required fields.
+                    </span>
 
                     {/* <p className='font-bold'>Logo Image</p>
                     <label htmlFor="dropzone-file">
@@ -692,117 +718,156 @@ const EditCreator = () => {
                       )}
                     </div>  */}
                     {/* </label> */}
-
                   </div>
 
-
                   {/* header */}
-                  <div className='p-4'>
-                    <p className='font-bold mb-3 xs:text-[30px] lg:text-[14px]'>Header Image</p>
-                    <label for="dropzone-file" >
-                      <div className='w-full border border-[#A0A0A0] border-dashed text-center justify-center items-center  h-30'>
+                  <div className="p-4">
+                    <p className="font-bold mb-3 xs:text-[30px] lg:text-[14px]">
+                      Header Image
+                    </p>
+                    <label for="dropzone-file">
+                      <div className="w-full border border-[#A0A0A0] border-dashed text-center justify-center items-center  h-30">
                         {/* Conditional rendering */}
-                        {(headerImagePath || headerImage) ? (
+                        {headerImagePath || headerImage ? (
                           <div className="relative">
                             <button
                               className="absolute top-2 right-2 p-1 bg-[#808080] rounded-full text-white xs:w-[70px] lg:w-[25px] xs:h-[70px] lg:h-[25px] xs:text-[37px] lg:text-[14px] shadow-3xl font-medium"
                               style={{
                                 padding: 0,
-                                borderRadius: '50%',
+                                borderRadius: "50%",
                                 // width: '25px',
                                 // height: '25px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
                               }}
-                              onClick={() => handleImageRemove(['headerImagePath', 'headerImage'])}
+                              onClick={() =>
+                                handleImageRemove([
+                                  "headerImagePath",
+                                  "headerImage",
+                                ])
+                              }
                             >
                               X
                             </button>
 
                             <img
-                              src={headerImage ? URL.createObjectURL(headerImage) : headerImagePath}
+                              src={
+                                headerImage
+                                  ? URL.createObjectURL(headerImage)
+                                  : headerImagePath
+                              }
                               alt="Header"
                               className="max-w-full max-h-full m-auto"
-                              style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+                              style={{
+                                maxHeight: "100%",
+                                maxWidth: "100%",
+                                objectFit: "contain",
+                              }}
                             />
                           </div>
                         ) : (
-
-                          <div className='overflow-hidden relative xs:px-7 xs:py-5 lg:px-5 lg:py-1'>
+                          <div className="overflow-hidden relative xs:px-7 xs:py-5 lg:px-5 lg:py-1">
                             <button
-                              className='bg-[#00A19A] text-white text-center font-medium xs:px-7 xs:py-3 lg:px-5 lg:py-1 rounded-lg xs:text-[26px] lg:text-[10px] items-center xs:mb-10 lg:mb-3'
-                              onClick={() => document.getElementById('headerImageInput').click()} // Trigger the input click
-                              style={{ marginTop: '20px' }}
+                              className="bg-[#00A19A] text-white text-center font-medium xs:px-7 xs:py-3 lg:px-5 lg:py-1 rounded-lg xs:text-[26px] lg:text-[10px] items-center xs:mb-10 lg:mb-3"
+                              onClick={() =>
+                                document
+                                  .getElementById("headerImageInput")
+                                  .click()
+                              } // Trigger the input click
+                              style={{ marginTop: "20px" }}
                             >
                               {/* <span>Select Image</span> */}
-                              <span>{headerImagePath ? 'Change Image' : 'Select Image'}</span>
+                              <span>
+                                {headerImagePath
+                                  ? "Change Image"
+                                  : "Select Image"}
+                              </span>
                             </button>
 
-                            <p className='text-center xs:text-[30px] lg:text-[14px]'>File should be .jpeg/.png and less than 1 Mb</p>
+                            <p className="text-center xs:text-[30px] lg:text-[14px]">
+                              File should be .jpeg/.png and less than 1 Mb
+                            </p>
                             <input
                               id="headerImageInput"
                               type="file"
                               className="hidden"
                               onChange={handleHeaderImageChange}
                             />
-
                           </div>
-
                         )}
-
                       </div>
-
-
                     </label>
-
                   </div>
 
-
                   {/* profile */}
-                  <div className='p-4'>
-                    <p className='font-bold mb-3 xs:text-[30px] lg:text-[14px]'>Profile Image</p>
+                  <div className="p-4">
+                    <p className="font-bold mb-3 xs:text-[30px] lg:text-[14px]">
+                      Profile Image
+                    </p>
                     <label for="dropzone-file">
-
-                      <div className='w-full border border-[#A0A0A0] border-dashed text-center justify-center items-center h-30'>
+                      <div className="w-full border border-[#A0A0A0] border-dashed text-center justify-center items-center h-30">
                         {/* Conditional rendering */}
-                        {(profileImagePath || profileImage) ? (
+                        {profileImagePath || profileImage ? (
                           <div className="relative">
                             <button
                               className="absolute top-2 right-2 p-1 bg-[#808080] rounded-full text-white xs:w-[70px] lg:w-[25px] xs:h-[70px] lg:h-[25px] xs:text-[37px] lg:text-[14px] shadow-3xl font-medium"
                               style={{
                                 padding: 0,
-                                borderRadius: '50%',
+                                borderRadius: "50%",
                                 // width: '25px',
                                 // height: '25px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
                               }}
-                              onClick={() => handleImageRemove(['profileImagePath', 'profileImage'])}
+                              onClick={() =>
+                                handleImageRemove([
+                                  "profileImagePath",
+                                  "profileImage",
+                                ])
+                              }
                             >
                               X
                             </button>
 
                             <img
-                              src={profileImage ? URL.createObjectURL(profileImage) : profileImagePath}
+                              src={
+                                profileImage
+                                  ? URL.createObjectURL(profileImage)
+                                  : profileImagePath
+                              }
                               alt="Profile"
                               className="max-w-full max-h-full m-auto"
-                              style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+                              style={{
+                                maxHeight: "100%",
+                                maxWidth: "100%",
+                                objectFit: "contain",
+                              }}
                             />
                           </div>
                         ) : (
-                          <div className='overflow-hidden relative xs:px-7 xs:py-5 lg:px-5 lg:py-1'>
+                          <div className="overflow-hidden relative xs:px-7 xs:py-5 lg:px-5 lg:py-1">
                             <button
-                              className='bg-[#00A19A] text-white text-center font-medium xs:px-7 xs:py-3 lg:px-5 lg:py-1 rounded-lg xs:text-[26px] lg:text-[10px] items-center xs:mb-10 lg:mb-3'
-                              onClick={() => document.getElementById('profileImageInput').click()} // Trigger the input click
-                              style={{ marginTop: '20px' }}
+                              className="bg-[#00A19A] text-white text-center font-medium xs:px-7 xs:py-3 lg:px-5 lg:py-1 rounded-lg xs:text-[26px] lg:text-[10px] items-center xs:mb-10 lg:mb-3"
+                              onClick={() =>
+                                document
+                                  .getElementById("profileImageInput")
+                                  .click()
+                              } // Trigger the input click
+                              style={{ marginTop: "20px" }}
                             >
                               {/* <span>Select Image</span> */}
-                              <span>{profileImagePath ? 'Change Image' : 'Select Image'}</span>
+                              <span>
+                                {profileImagePath
+                                  ? "Change Image"
+                                  : "Select Image"}
+                              </span>
                             </button>
 
-                            <p className='text-center xs:text-[30px] lg:text-[14px]'>File should be .jpeg/.png and less than 1 Mb</p>
+                            <p className="text-center xs:text-[30px] lg:text-[14px]">
+                              File should be .jpeg/.png and less than 1 Mb
+                            </p>
                             <input
                               id="profileImageInput"
                               type="file"
@@ -816,28 +881,32 @@ const EditCreator = () => {
                   </div>
 
                   {/* profile setting */}
-                  <div className='p-4'>
-                    <p className='font-bold xs:text-[30px] lg:text-[14px] xs:mt-16 lg:mt-4'>Profile Setting Accounts:</p>
-                    <div className='mt-4'>
-                      <span className='font-medium xs:text-[30px] lg:text-[14px]'>
-                        Username <span className='text-[#ED5951]'>*</span>
+                  <div className="p-4">
+                    <p className="font-bold xs:text-[30px] lg:text-[14px] xs:mt-16 lg:mt-4">
+                      Profile Setting Accounts:
+                    </p>
+                    <div className="mt-4">
+                      <span className="font-medium xs:text-[30px] lg:text-[14px]">
+                        Username <span className="text-[#ED5951]">*</span>
                       </span>
                       <input
-                        type='text'
-                        placeholder='eg: user_nick'
-                        className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1'
-                        name='username'
+                        type="text"
+                        placeholder="eg: user_nick"
+                        className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1"
+                        name="username"
                         value={profileData.username}
                         onChange={handleInputChange}
                       ></input>
                     </div>
-                    <div className='xs:mt-8 lg:mt-4'>
-                      <span className='font-medium xs:text-[30px] lg:text-[14px]'>Email Address</span>
+                    <div className="xs:mt-8 lg:mt-4">
+                      <span className="font-medium xs:text-[30px] lg:text-[14px]">
+                        Email Address
+                      </span>
                       <input
-                        type='email'
-                        placeholder='testing@gmail.com'
-                        className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1'
-                        name='email'
+                        type="email"
+                        placeholder="testing@gmail.com"
+                        className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1"
+                        name="email"
                         value={profileData.email}
                         onChange={handleInputChange}
                         disabled
@@ -845,92 +914,121 @@ const EditCreator = () => {
                     </div>
                   </div>
 
-
                   {/* details */}
                   <form>
-                    <div className='p-4 xs:mt-16 lg:mt-4 '>
+                    <div className="p-4 xs:mt-16 lg:mt-4 ">
                       {/* <label for='name' className='font-bold xs:text-[30px] lg:text-[14px]'>Generate Your Bio:</label> */}
-                      <label for='name' className='font-bold xs:text-[30px] lg:text-[14px]'>Bio:</label>
+                      <label
+                        for="name"
+                        className="font-bold xs:text-[30px] lg:text-[14px]"
+                      >
+                        Bio:
+                      </label>
                       <div className="grid grid-cols-2 xs:text-[30px] lg:text-[14px] mt-4 bg-gray-100 border-2 border-gray-100 border-b-[#939191] ">
                         <text
-                          className={`flex items-center border-2 ${activeSection === 'generate' ? 'border-gray-100 border-b-[#00A19A] text-[#00A19A]' : 'text-[#939191] border-none'}
+                          className={`flex items-center border-2 ${activeSection === "generate" ? "border-gray-100 border-b-[#00A19A] text-[#00A19A]" : "text-[#939191] border-none"}
                             p-2 md:py-8 lg:py-2 common-pointer font-medium`}
-                          onClick={() => handleSectionClick('generate')}
+                          onClick={() => handleSectionClick("generate")}
                         >
                           GENERATE BIO
                         </text>
                         <text
-                          className={`flex items-center border-2 ${activeSection === 'own' ? 'border-gray-100 border-b-[#00A19A] text-[#00A19A]' : 'text-[#939191] border-none'}
+                          className={`flex items-center border-2 ${activeSection === "own" ? "border-gray-100 border-b-[#00A19A] text-[#00A19A]" : "text-[#939191] border-none"}
                             p-2 py-4 common-pointer font-medium`}
-                          onClick={() => handleSectionClick('own')}
+                          onClick={() => handleSectionClick("own")}
                         >
                           CREATE YOUR OWN BIO
                         </text>
                       </div>
 
-                      <div className=' bg-gray-100 border border-none'>
-                        {activeSection === 'generate' && (
-                          <div className='p-5 md:px-10 lg:px-5'>
-                            <div className='xs:mt-5 lg:mt-3'>
-                              <label for='name' className='font-medium xs:text-[30px] lg:text-[14px]'>1. Enter your name</label>
+                      <div className=" bg-gray-100 border border-none">
+                        {activeSection === "generate" && (
+                          <div className="p-5 md:px-10 lg:px-5">
+                            <div className="xs:mt-5 lg:mt-3">
+                              <label
+                                for="name"
+                                className="font-medium xs:text-[30px] lg:text-[14px]"
+                              >
+                                1. Enter your name
+                              </label>
                               <input
-                                type='text'
+                                type="text"
                                 id="name"
-                                placeholder='Your Name'
-                                className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border shadow-md md:mt-2 lg:mt-1'
+                                placeholder="Your Name"
+                                className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border shadow-md md:mt-2 lg:mt-1"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
                               />
                             </div>
-                            <div className='xs:mt-8 lg:mt-4'>
-                              <label for='keywords' className='font-medium xs:text-[30px] lg:text-[14px]'>2. Enter keyword(s)</label>
+                            <div className="xs:mt-8 lg:mt-4">
+                              <label
+                                for="keywords"
+                                className="font-medium xs:text-[30px] lg:text-[14px]"
+                              >
+                                2. Enter keyword(s)
+                              </label>
                               <textarea
-                                type='text'
+                                type="text"
                                 id="keywords"
-                                className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full xs:h-40 lg:h-20 border shadow-md md:mt-2 lg:mt-1'
-                                placeholder='Add anything about yourself'
+                                className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full xs:h-40 lg:h-20 border shadow-md md:mt-2 lg:mt-1"
+                                placeholder="Add anything about yourself"
                                 value={keywords}
                                 onChange={(e) => setKeywords(e.target.value)}
                                 required
                               ></textarea>
                             </div>
-                            <div className='xs:mt-8 lg:mt-4'>
-                              <label for='target-audience' className='font-medium xs:text-[30px] lg:text-[14px]'>3. Enter your targets audience</label>
+                            <div className="xs:mt-8 lg:mt-4">
+                              <label
+                                for="target-audience"
+                                className="font-medium xs:text-[30px] lg:text-[14px]"
+                              >
+                                3. Enter your targets audience
+                              </label>
                               <textarea
-                                type='text'
+                                type="text"
                                 id="targetAudience"
-                                className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full xs:h-40 lg:h-20 border shadow-md md:mt-2 lg:mt-1'
-                                placeholder='For example, they can be fans of travel, people shopping for sports gear.'
+                                className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full xs:h-40 lg:h-20 border shadow-md md:mt-2 lg:mt-1"
+                                placeholder="For example, they can be fans of travel, people shopping for sports gear."
                                 value={targetAudience}
-                                onChange={(e) => setTargetAudience(e.target.value)}
+                                onChange={(e) =>
+                                  setTargetAudience(e.target.value)
+                                }
                                 required
                               ></textarea>
                             </div>
-                            <div className='xs:mt-8 lg:mt-4'>
-                              <label for='language' className='font-medium xs:text-[30px] lg:text-[14px]'>4. Select a language:</label>
+                            <div className="xs:mt-8 lg:mt-4">
+                              <label
+                                for="language"
+                                className="font-medium xs:text-[30px] lg:text-[14px]"
+                              >
+                                4. Select a language:
+                              </label>
                               <select
-                                id='languages'
-                                className='ml-5 xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 items-left border shadow-md'
+                                id="languages"
+                                className="ml-5 xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 items-left border shadow-md"
                                 value={language}
                                 onChange={(e) => setLanguage(e.target.value)}
                                 required
                               >
-                                <option value=''>Select</option>
-                                <option value='en'>English</option>
-                                <option value='ms'>Malay</option>
-                                <option value='zh-Hans'>Chinese Simplified</option>
-                                <option value='zh-Hant'>Chinese Tradition</option>
+                                <option value="">Select</option>
+                                <option value="en">English</option>
+                                <option value="ms">Malay</option>
+                                <option value="zh-Hans">
+                                  Chinese Simplified
+                                </option>
+                                <option value="zh-Hant">
+                                  Chinese Tradition
+                                </option>
                               </select>
                             </div>
-                            <div className='xs:mt-12 lg:mt-6 justify-center items-center text-center'>
+                            <div className="xs:mt-12 lg:mt-6 justify-center items-center text-center">
                               <button
-                                className='bg-[#00A19A] text-white font-medium focus:text-white xs:px-7 xs:py-3 lg:px-5 lg:py-2 xs:rounded-2xl lg:rounded-lg xs:text-[30px] lg:text-[14px] items-center shadow-xl'
-                                type='button'
+                                className="bg-[#00A19A] text-white font-medium focus:text-white xs:px-7 xs:py-3 lg:px-5 lg:py-2 xs:rounded-2xl lg:rounded-lg xs:text-[30px] lg:text-[14px] items-center shadow-xl"
+                                type="button"
                                 onClick={generateProfileDescription}
                               >
                                 <span>Generate</span>
-
                               </button>
                             </div>
 
@@ -953,7 +1051,7 @@ const EditCreator = () => {
                         value={description && profileData.bio}
                         onChange={handleTextAreaChange}
                         /> */}
-                        <div className='relative justify-center items-center text-center p-5 md:px-10 lg:px-5'>
+                        <div className="relative justify-center items-center text-center p-5 md:px-10 lg:px-5">
                           {isLoading && (
                             <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-[30%] md:mx-10 lg:mx-5 md:mt-10 lg:mt-5 md:mb-10 lg:mb-0 xs:h-[550px] lg:h-[200px] ">
                               <LoadingSpinner />
@@ -963,9 +1061,9 @@ const EditCreator = () => {
                             <textarea
                               type="text"
                               className="input-field text-black xs:h-[550px] lg:h-[200px] lg:text-[12px] xs:text-[28px] text-justify w-full border-2 focus:border-gray-500 xs:mb-10 lg:mb-0 border shadow-md"
-                              placeholder='Tell your audience about yourself'
-                              style={{ lineHeight: '1.5' }}
-                              name='description'
+                              placeholder="Tell your audience about yourself"
+                              style={{ lineHeight: "1.5" }}
+                              name="description"
                               value={description && profileData.bio}
                               onChange={handleTextAreaChange}
                             />
@@ -973,75 +1071,84 @@ const EditCreator = () => {
                         </div>
                         {/* <div className='xs:mt-4 lg:mt-0'><span className='xs:text-[28px] lg:text-[12px] text-gray-500' >*Navigate to the 'Preview' view to review your Bio.</span></div> */}
                       </div>
-
                     </div>
-
                   </form>
 
                   {/* social media */}
-                  <div className='p-4'>
-                    <p className='font-bold xs:text-[30px] lg:text-[14px] xs:mt-16 lg:mt-4'>Connect Social Accounts (Optional):</p>
-                    <div className='mt-4'>
-                      <span className='font-medium xs:text-[30px] lg:text-[14px]'>Instagram</span>
+                  <div className="p-4">
+                    <p className="font-bold xs:text-[30px] lg:text-[14px] xs:mt-16 lg:mt-4">
+                      Connect Social Accounts (Optional):
+                    </p>
+                    <div className="mt-4">
+                      <span className="font-medium xs:text-[30px] lg:text-[14px]">
+                        Instagram
+                      </span>
                       <input
-                        type='text'
-                        placeholder='https://instagram.com/#####'
-                        className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1'
-                        name='instagram'
+                        type="text"
+                        placeholder="https://instagram.com/#####"
+                        className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1"
+                        name="instagram"
                         value={profileData.instagram}
                         onChange={handleInputChange}
                       ></input>
                     </div>
-                    <div className='xs:mt-8 lg:mt-4'>
-                      <span className='font-medium xs:text-[30px] lg:text-[14px]'>Tiktok</span>
+                    <div className="xs:mt-8 lg:mt-4">
+                      <span className="font-medium xs:text-[30px] lg:text-[14px]">
+                        Tiktok
+                      </span>
                       <input
-                        type='text'
-                        placeholder='https://www.tiktok.com/#####'
-                        className='input-field text-black  xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1'
-                        name='tiktok'
+                        type="text"
+                        placeholder="https://www.tiktok.com/#####"
+                        className="input-field text-black  xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1"
+                        name="tiktok"
                         value={profileData.tiktok}
                         onChange={handleInputChange}
                       ></input>
                     </div>
-                    <div className='xs:mt-8 lg:mt-4'>
-                      <span className='font-medium xs:text-[30px] lg:text-[14px]'>Twitter</span>
+                    <div className="xs:mt-8 lg:mt-4">
+                      <span className="font-medium xs:text-[30px] lg:text-[14px]">
+                        Twitter
+                      </span>
                       <input
-                        type='text'
-                        placeholder='https://x.com/######'
-                        className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1'
-                        name='twitter'
+                        type="text"
+                        placeholder="https://x.com/######"
+                        className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1"
+                        name="twitter"
                         value={profileData.twitter}
                         onChange={handleInputChange}
                       ></input>
                     </div>
-                    <div className='xs:mt-8 lg:mt-4'>
-                      <span className='font-medium xs:text-[30px] lg:text-[14px]'>Facebook</span>
+                    <div className="xs:mt-8 lg:mt-4">
+                      <span className="font-medium xs:text-[30px] lg:text-[14px]">
+                        Facebook
+                      </span>
                       <input
-                        type='text'
-                        placeholder='https://www.facebook.com/######'
-                        className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1'
-                        name='facebook'
+                        type="text"
+                        placeholder="https://www.facebook.com/######"
+                        className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1"
+                        name="facebook"
                         value={profileData.facebook}
                         onChange={handleInputChange}
                       ></input>
                     </div>
-                    <div className='xs:mt-8 lg:mt-4'>
-                      <span className='font-medium xs:text-[30px] lg:text-[14px]'>Youtube</span>
+                    <div className="xs:mt-8 lg:mt-4">
+                      <span className="font-medium xs:text-[30px] lg:text-[14px]">
+                        Youtube
+                      </span>
                       <input
-                        type='text'
-                        placeholder='https://youtube.com/channel/####'
-                        className='input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1'
-                        name='youtube'
+                        type="text"
+                        placeholder="https://youtube.com/channel/####"
+                        className="input-field text-black xs:text-[28px] lg:text-[12px] xs:py-5 lg:py-1 w-full border-none shadow-md md:mt-2 lg:mt-1"
+                        name="youtube"
                         value={profileData.youtube}
                         onChange={handleInputChange}
                       ></input>
                     </div>
                   </div>
 
-
-                  <div className='xs:mt-20 lg:mt-10 justify-center items-center text-center mb-[20%]'>
+                  <div className="xs:mt-20 lg:mt-10 justify-center items-center text-center mb-[20%]">
                     <button
-                      className='bg-[#00A19A] text-white font-medium xs:px-10 xs:py-5 lg:px-5 lg:py-2 xs:rounded-3xl lg:rounded-xl xs:text-[32px] lg:text-[14px] items-center shadow-xl'
+                      className="bg-[#00A19A] text-white font-medium xs:px-10 xs:py-5 lg:px-5 lg:py-2 xs:rounded-3xl lg:rounded-xl xs:text-[32px] lg:text-[14px] items-center shadow-xl"
                       onClick={() => {
                         // toggleModal();
                         clearErrorMessage();
@@ -1056,10 +1163,7 @@ const EditCreator = () => {
                       </div>
                     )}
                   </div>
-
                 </div>
-
-
 
                 {isModalOpen && (
                   <div
@@ -1073,13 +1177,19 @@ const EditCreator = () => {
                       {/* Modal Content */}
                       <div className="p-4">
                         <h5 className="xs:text-[28px] lg:text-[18px] font-medium leading-normal text-gray-800">
-                          Profile has been successfully updated </h5>
+                          Profile has been successfully updated{" "}
+                        </h5>
                         {/* Add your modal content here */}
-                        <p className="xs:text-[24px] lg:text-[14px] text-gray-600">Go to
-                          <a  href={`/influencer-creator/${userId}`} className="text-black font-bold"> My Storefront
+                        <p className="xs:text-[24px] lg:text-[14px] text-gray-600">
+                          Go to
+                          <a
+                            href={`/legacy/influencer-creator/${userId}`}
+                            className="text-black font-bold"
+                          >
+                            {" "}
+                            My Storefront
                           </a>
                         </p>
-
                       </div>
 
                       {/* Modal Footer */}
@@ -1116,10 +1226,9 @@ const EditCreator = () => {
                         </h5>
                         {/* Add your modal content here */}
                         {/* <p className="text-sm text-gray-600">Go to
-                          <a href="/edit-creator" className="text-black font-bold"> My Storefront
+                          <a href="/legacy/edit-creator" className="text-black font-bold"> My Storefront
                           </a>
                         </p> */}
-
                       </div>
 
                       {/* Modal Footer */}
@@ -1135,85 +1244,97 @@ const EditCreator = () => {
                     </div>
                   </div>
                 )}
-
               </div>
             </div>
           </>
-
         )}
 
-
-        <div className='w-full px-32 xs:px-0 lg:px-20 xs:mt-[70px] lg:mt-0' >
+        <div className="w-full px-32 xs:px-0 lg:px-20 xs:mt-[70px] lg:mt-0">
           {headerImageExists ? (
             <>
               <img
                 src={headerImagePath ? headerImagePath : defaultHeaderImageUrl}
-                className='object-cover h-10 lg:w-[1822px] xs:w-[1822px] lg:h-[320px] xs:h-[550px]'
+                className="object-cover h-10 lg:w-[1822px] xs:w-[1822px] lg:h-[320px] xs:h-[550px]"
                 // style={{
                 //   width: '1822px',
                 //   height: '320px',
                 //   objectFit: 'cover',
                 // }}
-                alt="header" />
-              <div><hr className="border-b xs:border-gray-400 lg:xs:border-gray-300" /></div>
+                alt="header"
+              />
+              <div>
+                <hr className="border-b xs:border-gray-400 lg:xs:border-gray-300" />
+              </div>
             </>
           ) : (
             <>
               <img
                 // src={defaultHeaderImageUrl}
-                src={headerImage ? URL.createObjectURL(headerImage) : defaultHeaderImageUrl}
+                src={
+                  headerImage
+                    ? URL.createObjectURL(headerImage)
+                    : defaultHeaderImageUrl
+                }
                 alt="Default Header"
                 className="object-cover h-10  lg:w-[1822px] xs:w-[1822px] lg:h-[320px] xs:h-[550px]"
-              // style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
+                // style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
               />
-              <div><hr className="border-b xs:border-gray-400 lg:xs:border-gray-300" /></div>
+              <div>
+                <hr className="border-b xs:border-gray-400 lg:xs:border-gray-300" />
+              </div>
             </>
           )}
-          <div className='bg-white h-fit rounded-b-lg p-2 px-6'>
-            <div className='image-container px-4 absolute xs:top-[360px] xs:left-[] sm:top-[400px] sm:left-[30px] lg:top-[291px] lg:left-[90px]'>
+          <div className="bg-white h-fit rounded-b-lg p-2 px-6">
+            <div className="image-container px-4 absolute xs:top-[360px] xs:left-[] sm:top-[400px] sm:left-[30px] lg:top-[291px] lg:left-[90px]">
               {profileImageExists ? (
                 <img
-                  src={profileImagePath ? profileImagePath : defaultProfileImageUrl}
+                  src={
+                    profileImagePath ? profileImagePath : defaultProfileImageUrl
+                  }
                   alt="Profile"
-                  height='300px' width='300px'
+                  height="300px"
+                  width="300px"
                   style={{
-                    objectFit: 'cover', // Maintain aspect ratio and cover the entire container
+                    objectFit: "cover", // Maintain aspect ratio and cover the entire container
                   }}
-                  className='rounded-full lg:items-start z-10 drop-shadow-lg lg:w-[250px] xs:w-[600px] lg:h-[250px] xs:h-[600px] xs:items-center xs:ml-[140px] lg:ml-0' />
+                  className="rounded-full lg:items-start z-10 drop-shadow-lg lg:w-[250px] xs:w-[600px] lg:h-[250px] xs:h-[600px] xs:items-center xs:ml-[140px] lg:ml-0"
+                />
               ) : (
                 <img
                   // src={defaultProfileImageUrl}
-                  src={profileImage ? URL.createObjectURL(profileImage) : defaultProfileImageUrl}
+                  src={
+                    profileImage
+                      ? URL.createObjectURL(profileImage)
+                      : defaultProfileImageUrl
+                  }
                   alt="Default Profile"
-                  height='300px' width='300px'
+                  height="300px"
+                  width="300px"
                   style={{
-                    objectFit: 'cover', // Maintain aspect ratio and cover the entire container
+                    objectFit: "cover", // Maintain aspect ratio and cover the entire container
                   }}
-                  className='rounded-full lg:items-start z-10 drop-shadow-lg lg:w-[250px] xs:w-[600px] lg:h-[250px] xs:h-[600px] xs:items-center xs:ml-[140px] lg:ml-0'
+                  className="rounded-full lg:items-start z-10 drop-shadow-lg lg:w-[250px] xs:w-[600px] lg:h-[250px] xs:h-[600px] xs:items-center xs:ml-[140px] lg:ml-0"
                 />
               )}
-              <div className='inline-flex pl-[60px] space-x-2 py-2 mt-4'>
-              </div>
+              <div className="inline-flex pl-[60px] space-x-2 py-2 mt-4"></div>
             </div>
 
-            <div className='profile-description lg:pl-[300px] lg:text-left xs:text-center lg:pr-[45px] xs:px-6 py-2 w-[100%] text-gray-800 lg:mt-0 xs:mt-[240px]'>
-              <p className='font-bold lg:text-[20px] xs:text-[70px] text-gray lg:mt-0 xs:mt-8'>
-                {profileData.username ? profileData.username : 'username'}
+            <div className="profile-description lg:pl-[300px] lg:text-left xs:text-center lg:pr-[45px] xs:px-6 py-2 w-[100%] text-gray-800 lg:mt-0 xs:mt-[240px]">
+              <p className="font-bold lg:text-[20px] xs:text-[70px] text-gray lg:mt-0 xs:mt-8">
+                {profileData.username ? profileData.username : "username"}
               </p>
               <textarea
                 type="text"
                 className="xs:h-[550px] lg:h-[200px]  lg:text-[14px] xs:text-[45px] text-justify xs:mt-5 lg:mt-2 w-full border-1 focus:border-gray-100 xs:mb-10 lg:mb-0"
-                placeholder='Tell your audience about youself'
-                style={{ lineHeight: '1.5' }} // You can adjust the line height value
+                placeholder="Tell your audience about youself"
+                style={{ lineHeight: "1.5" }} // You can adjust the line height value
                 // value={description}
                 // onChange={handleTextAreaChange}
-                name='description'
+                name="description"
                 value={description && profileData.bio}
                 onChange={handleTextAreaChange}
                 disabled
-
               />
-
             </div>
           </div>
 
@@ -1223,23 +1344,30 @@ const EditCreator = () => {
 
           </div> */}
 
-          <div className='bg-white mt-3 w-full h-fit rounded-lg max-w-[1640px] m-auto mb-20' >
-
-            <div className='xs:p-10 lg:p-5 justify-center xs:text-[32px] lg:text-[14px] text-center' style={{ cursor: 'default' }}>
-              <span>
-                See the Full Storefront in&nbsp;
-              </span>
-              <a  href={`/influencer-creator/${userId}`} className='text-[#00A19A] font-bold hover:underline'>Storefront</a>
+          <div className="bg-white mt-3 w-full h-fit rounded-lg max-w-[1640px] m-auto mb-20">
+            <div
+              className="xs:p-10 lg:p-5 justify-center xs:text-[32px] lg:text-[14px] text-center"
+              style={{ cursor: "default" }}
+            >
+              <span>See the Full Storefront in&nbsp;</span>
+              <a
+                href={`/legacy/influencer-creator/${userId}`}
+                className="text-[#00A19A] font-bold hover:underline"
+              >
+                Storefront
+              </a>
             </div>
-
           </div>
 
           {!isOverlayOpen && (
             <div className="fixed bottom-8 left-1/2">
               <button
                 className="md:px-8 lg:px-4 md:py-4 lg:py-2 bg-[#00A19A] font-medium md:text-[32px] lg:text-[14px] text-[#FFFFFF] rounded-full hover:bg-[#939191]"
-                style={{ boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px',
-                transform: "translateX(-50%)"}}
+                style={{
+                  boxShadow:
+                    "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
+                  transform: "translateX(-50%)",
+                }}
                 onClick={() => {
                   // toggleModal();
                   clearErrorMessage();
@@ -1251,12 +1379,10 @@ const EditCreator = () => {
               </button>
             </div>
           )}
-
-
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default EditCreator;

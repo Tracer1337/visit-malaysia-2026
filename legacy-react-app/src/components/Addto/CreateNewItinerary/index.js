@@ -10,10 +10,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Compressor from "@xkeshi/image-compressor";
 // import "./Popup2.css";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
-const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, image, closePopup44 }) => {
+const CreateNewItinerary = ({
+  showCreateNewItinerary,
+  closePopup55,
+  activityId,
+  image,
+  closePopup44,
+}) => {
   // const [showContentSetting, setShowContentSetting] = React.useState(false);
   // const location = useLocation();
   // const receivedData = location.state;
@@ -23,20 +29,19 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
   const [isLoadingg, setIsLoadingg] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
   const userId = localStorage.getItem("userId");
-  const [cover_image, setCoverImage] = useState('');
+  const [cover_image, setCoverImage] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
   const chatgptId = useSelector((state) => state.data.itineraryId);
-  const [mode, setMode] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [days, setDays] = useState('');
+  const [mode, setMode] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [days, setDays] = useState("");
   const [successMessageType, setSuccessMessageType] = useState("added");
   const [newItinerary, setNewItinerary] = useState(null);
   const navigate = useNavigate();
   const { creatorId, itineraryId, itineraryTitle } = useParams();
 
-
-  console.log('COVER IMAGE:', cover_image);
+  console.log("COVER IMAGE:", cover_image);
 
   const handleCoverImageChange = async (event) => {
     const selectedFile = event.target.files[0];
@@ -44,14 +49,13 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
     if (selectedFile) {
       try {
         const compressedFile = await compressImage(selectedFile);
-        console.log('Compressed File:', compressedFile);
+        console.log("Compressed File:", compressedFile);
         setCoverImage(compressedFile);
       } catch (error) {
-        console.error('Error compressing image:', error);
+        console.error("Error compressing image:", error);
       }
     }
   };
-
 
   const compressImage = (file) => {
     return new Promise((resolve, reject) => {
@@ -86,18 +90,19 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
 
         compress();
       } else {
-        console.log('Image size is not greater than 1000 KB. No compression needed.');
+        console.log(
+          "Image size is not greater than 1000 KB. No compression needed.",
+        );
         resolve(file);
       }
     });
   };
 
-
   const handleImageRemove = (imageTypes) => {
     imageTypes.forEach((imageType) => {
       switch (imageType) {
-        case 'cover_image':
-          console.log('Removing Cover Image');
+        case "cover_image":
+          console.log("Removing Cover Image");
           setCoverImage(null);
           break;
         default:
@@ -107,17 +112,15 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
   };
 
   useEffect(() => {
-    console.log('cover_image state:', cover_image);
+    console.log("cover_image state:", cover_image);
   }, [cover_image]);
 
-
   useEffect(() => {
-    console.log('Activity ID in AddtoContentNew:', activityId);
+    console.log("Activity ID in AddtoContentNew:", activityId);
 
     setTitle("");
     setDays("");
     setDescription("");
-
   }, [showCreateNewItinerary]);
 
   const handleTitleChange = (event) => {
@@ -128,12 +131,11 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
     setDescription(event.target.value);
   };
 
-
   const handleCreateNewItinerary = async () => {
     const formData = new FormData();
 
     const requestItinerary = {
-      mode: 'new',
+      mode: "new",
       activity_id: activityId,
       chatgpt_id: 0,
       user_id: userId,
@@ -144,68 +146,67 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
 
     console.log("requestItinerary: ", requestItinerary);
     const json = JSON.stringify(requestItinerary);
-    const blob = new Blob([json], { type: 'application/json' });
+    const blob = new Blob([json], { type: "application/json" });
 
-    formData.append('request_itinerary', blob);
+    formData.append("request_itinerary", blob);
     // formData.append('cover_image', cover_image);
 
-
     if (cover_image) {
-      formData.append('cover_image', cover_image);
+      formData.append("cover_image", cover_image);
+    } else {
+      formData.append("cover_image", new File([], "empty.jpg"));
     }
-    else {
-      formData.append('cover_image', new File([], 'empty.jpg'));
-    }
-
-
 
     try {
-      const response = await axios.post('https://halaltravel.ai/ht/api/planner/user/itinerary/activity/saveTemp', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      const response = await axios.post(
+        "https://halaltravel.ai/ht/api/planner/user/itinerary/activity/saveTemp",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
+      );
 
-      console.log('New itinerary created:', response.data);
+      console.log("New itinerary created:", response.data);
       setNewItinerary(response.data);
 
       // Handle success
       closePopup55();
       // closePopup44();
       setShowSuccessMessage(true);
-      setSuccessMessageType('added');
+      setSuccessMessageType("added");
       setTimeout(() => {
         setShowSuccessMessage(false);
       }, 5000);
-
     } catch (error) {
       if (error.response) {
-        console.error('Error response data:', error.response.data);
-        console.error('Error response status:', error.response.status);
-        console.error('Error response headers:', error.response.headers);
+        console.error("Error response data:", error.response.data);
+        console.error("Error response status:", error.response.status);
+        console.error("Error response headers:", error.response.headers);
       } else if (error.request) {
-        console.error('Error request data:', error.request);
+        console.error("Error request data:", error.request);
       } else {
-        console.error('Error message:', error.message);
+        console.error("Error message:", error.message);
       }
-      console.error('Error config:', error.config);
+      console.error("Error config:", error.config);
     }
   };
 
   const handleIconClick = () => {
-    console.log('AiOutlinePlus icon clicked');
-    console.log('cover_image', cover_image);
-    document.getElementById('coverImg').click();
+    console.log("AiOutlinePlus icon clicked");
+    console.log("cover_image", cover_image);
+    document.getElementById("coverImg").click();
   };
   const handleNavigateTravelPlan = () => {
     if (newItinerary) {
       const encodedTitle = encodeURIComponent(title);
-      window.location.href = `/itinerary-save/${userId}/${newItinerary.id}/${encodedTitle}`;
+      window.location.href = `/legacy/itinerary-save/${userId}/${newItinerary.id}/${encodedTitle}`;
     }
   };
 
   useEffect(() => {
-    console.log('newItinerary:', newItinerary);
+    console.log("newItinerary:", newItinerary);
   }, [newItinerary]);
 
   return (
@@ -214,11 +215,9 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
         <div className="success-message">
           <div className="message-line">
             Activity{" "}
-            <strong>
-              {successMessageType === "added" ? "added to" : ""}
-            </strong>{" "}
-            your{" "} new itinerary in {" "}
-            <a href="/my-travelplan">Travel Plan</a>.
+            <strong>{successMessageType === "added" ? "added to" : ""}</strong>{" "}
+            your new itinerary in{" "}
+            <a href="/legacy/my-travelplan">Travel Plan</a>.
             <button
               onClick={() => setShowSuccessMessage(false)}
               className="close-button"
@@ -306,7 +305,6 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
                         </option>
                       ))}
                     </select>
-
                   </div>
                 </Row>
 
@@ -328,7 +326,7 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
                     value={description}
                     onChange={handleDescriptionChange}
 
-                  // title="E.g. "
+                    // title="E.g. "
                   ></textarea>
                   <div className="">
                     <text className="flex justify-end sm:text-[26px] lg:text-xs">
@@ -395,7 +393,6 @@ const CreateNewItinerary = ({ showCreateNewItinerary, closePopup55, activityId, 
                     </div>
                   </label>
                 </div> */}
-
 
                 <div className="absolute inset-x-0 bottom-0">
                   <hr className=""></hr>

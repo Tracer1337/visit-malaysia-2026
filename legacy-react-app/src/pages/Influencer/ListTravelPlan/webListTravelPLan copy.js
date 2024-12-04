@@ -31,7 +31,6 @@ import SignupPage from "components/SignUp/index";
 import ForgotPassword from "components/ForgotPass/index";
 import HeaderOTAAdmin from "components/Header/HeaderOTAAdmin/index";
 
-
 const WebListTravelPLan = (page) => {
   const [isShowAI, setIsShowAI] = useState(false);
   const [isLoadingg, setIsLoadingg] = useState(false);
@@ -53,7 +52,7 @@ const WebListTravelPLan = (page) => {
   const [showTooltip, setShowTooltip] = useState(true);
   const [bookmarkedItineraries, setBookmarkedItineraries] = useState([]);
   const userId = localStorage.getItem("userId");
-  const [pageNumber, setPageNumber] = useState(1); 
+  const [pageNumber, setPageNumber] = useState(1);
   const { destination, state, country } = useParams();
   const [dataBlogAI, setDataBlogAI] = useState([]);
   const [isPopup1Open, setIsPopup1Open] = useState(false);
@@ -75,7 +74,7 @@ const WebListTravelPLan = (page) => {
   const [isPopup3Open, setIsPopup3Open] = useState(false);
 
   const toggleTooltip = () => {
-    setShowTooltip(prevState => !prevState);
+    setShowTooltip((prevState) => !prevState);
   };
 
   function handleReadMore(blogId, blogTitle, userId) {
@@ -86,19 +85,19 @@ const WebListTravelPLan = (page) => {
   const fetchBookmarkedItineraries = async () => {
     try {
       const response = await axios.get(
-        `https://halaltravel.ai/hv/api/chatgpt/user/itinerary-bookmark/${userId}`
+        `https://halaltravel.ai/hv/api/chatgpt/user/itinerary-bookmark/${userId}`,
       );
       const data = response.data;
       setBookmarkedItineraries(
         data.map((bookmark) => ({
           itineraryId: bookmark.userItineraryId, // Ensure this matches your data structure
           bookmarkId: bookmark.id,
-        }))
+        })),
       );
 
       // Fetch logic...
       const isCurrentlyBookmarked = data.some(
-        (bookmark) => Number(bookmark.userItineraryId) === Number(itineraryId)
+        (bookmark) => Number(bookmark.userItineraryId) === Number(itineraryId),
       );
       setIsBookmarked(isCurrentlyBookmarked); // Make sure this logic correctly reflects the bookmark status
     } catch (error) {
@@ -111,13 +110,11 @@ const WebListTravelPLan = (page) => {
     fetchBookmarkedItineraries();
   }, [userId, itineraryId]);
 
-
   useEffect(() => {
     setIsLoadingg(true);
     // scrollToTop();
     // Define your API endpoint
-    const apiUrl =
-      `https://halaltravel.ai/ht/api/blog/srp?pageNumber=${pageNumber}&pageSize=5`;
+    const apiUrl = `https://halaltravel.ai/ht/api/blog/srp?pageNumber=${pageNumber}&pageSize=5`;
 
     // Create the request payload
     const requestData = {
@@ -142,8 +139,10 @@ const WebListTravelPLan = (page) => {
         // Assuming the array of items is under the 'data' property
         const items = data.content || [];
         const itemsAll = data || [];
-        const blogItems = items.filter(item => item.type === 'Blog');
-        const itineraryItems = items.filter(item => item.type === 'User Itinerary');
+        const blogItems = items.filter((item) => item.type === "Blog");
+        const itineraryItems = items.filter(
+          (item) => item.type === "User Itinerary",
+        );
 
         setBlogResults(blogItems);
         setItineraryResults(itineraryItems);
@@ -168,9 +167,7 @@ const WebListTravelPLan = (page) => {
     fetchData();
   }, [destination, state, country, dataSelected, pageNumber]);
 
-
-
-  console.log("totalPages", totalPages)
+  console.log("totalPages", totalPages);
 
   function loadMoreData() {
     if (results.length % 5 === 0) {
@@ -180,19 +177,19 @@ const WebListTravelPLan = (page) => {
   }
   //pagination show more button
   const handleLoadMore = () => {
-    if (pageNumber < (totalPages - 1) && !isLoadingg) {
-      setPageNumber(prevPage => prevPage + 1);
+    if (pageNumber < totalPages - 1 && !isLoadingg) {
+      setPageNumber((prevPage) => prevPage + 1);
       if (targetDivRef.current) {
         targetDivRef.current.scrollIntoView({ behavior: "smooth" });
       }
-    } else if (pageNumber >= (totalPages - 1)) {
+    } else if (pageNumber >= totalPages - 1) {
       setNoMoreResults(true);
     }
   };
 
   const handlePreviousPage = () => {
     if (pageNumber > 0) {
-      setPageNumber(prevPage => prevPage - 1);
+      setPageNumber((prevPage) => prevPage - 1);
       setNoMoreResults(false); // Reset noMoreResults when navigating back
       if (targetDivRef.current) {
         targetDivRef.current.scrollIntoView({ behavior: "smooth" });
@@ -201,12 +198,12 @@ const WebListTravelPLan = (page) => {
   };
 
   const handleNextPage = () => {
-    if (pageNumber < (totalPages - 1) && !isLoadingg) {
-      setPageNumber(prevPage => prevPage + 1);
+    if (pageNumber < totalPages - 1 && !isLoadingg) {
+      setPageNumber((prevPage) => prevPage + 1);
       if (targetDivRef.current) {
         targetDivRef.current.scrollIntoView({ behavior: "smooth" });
       }
-    } else if (pageNumber >= (totalPages - 1)) {
+    } else if (pageNumber >= totalPages - 1) {
       setNoMoreResults(true);
     }
   };
@@ -216,7 +213,10 @@ const WebListTravelPLan = (page) => {
       action(id); // Perform the action (bookmark or unbookmark) if logged in
     } else {
       openPopup1(); // Show login prompt if not logged in
-      localStorage.setItem("customPath", `list-travelplan/${destination}/${state}/${country}`); // Save intended action path
+      localStorage.setItem(
+        "customPath",
+        `list-travelplan/${destination}/${state}/${country}`,
+      ); // Save intended action path
     }
   };
 
@@ -250,7 +250,7 @@ const WebListTravelPLan = (page) => {
         };
         const response = await axios.post(
           `https://halaltravel.ai/gpt/location`,
-          requestData
+          requestData,
         );
         setIsLoadingg(false);
         setDataBlogAI(response.data);
@@ -277,7 +277,7 @@ const WebListTravelPLan = (page) => {
 
   const isItineraryBookmarked = (userItineraryId) => {
     return bookmarkedItineraries.some(
-      (item) => Number(item.itineraryId) === Number(userItineraryId)
+      (item) => Number(item.itineraryId) === Number(userItineraryId),
     );
   };
 
@@ -305,7 +305,7 @@ const WebListTravelPLan = (page) => {
             headers: {
               "Content-Type": "application/json",
             },
-          }
+          },
         );
 
         if (response.status === 200) {
@@ -318,7 +318,7 @@ const WebListTravelPLan = (page) => {
           }, 5000);
           //showSuccess();
           fetchDataBlogAI(userItineraryId);
-          console.log("success")
+          console.log("success");
         } else {
           console.error("Error bookmarking itinerary");
         }
@@ -330,12 +330,11 @@ const WebListTravelPLan = (page) => {
       // Handle network errors or other errors here
       console.error("Error:", error);
     }
-
   };
   const handleUnsaveClick = async (itineraryId) => {
     // Find the bookmark entry for the current itinerary to get its bookmarkId
     const bookmark = bookmarkedItineraries.find(
-      (item) => Number(item.itineraryId) === Number(itineraryId)
+      (item) => Number(item.itineraryId) === Number(itineraryId),
     );
 
     if (!bookmark) {
@@ -351,7 +350,7 @@ const WebListTravelPLan = (page) => {
             "Content-Type": "application/json",
             // Include authorization headers if required
           },
-        }
+        },
       );
 
       if (response.status === 200 || response.status === 204) {
@@ -359,7 +358,7 @@ const WebListTravelPLan = (page) => {
         // Update the state to reflect the deletion
 
         setBookmarkedItineraries((current) =>
-          current.filter((item) => item.bookmarkId !== bookmark.bookmarkId)
+          current.filter((item) => item.bookmarkId !== bookmark.bookmarkId),
         );
         setSuccessMessageType("unsaved");
         setShowSuccessMessage(true);
@@ -371,14 +370,13 @@ const WebListTravelPLan = (page) => {
       } else {
         console.error(
           "Failed to delete bookmark with status:",
-          response.status
+          response.status,
         );
       }
     } catch (error) {
       console.error("Error while deleting bookmark:", error);
     }
   };
-
 
   const handleTravelPlanClick = (creatorId, itineraryId, title) => {
     const encodedTitle = encodeURIComponent(title);
@@ -415,10 +413,8 @@ const WebListTravelPLan = (page) => {
     setIsPopup3Open(false);
   };
 
-
   return (
     <>
-
       <LoginPage
         isOpen={isPopup1Open}
         openPopup2={openPopup2}
@@ -453,13 +449,16 @@ const WebListTravelPLan = (page) => {
             </strong>{" "}
           </div>
           <div className="message-line">
-            <a href="/my-travelplan">My Travel Plan</a>.
+            <a href="/legacy/my-travelplan">My Travel Plan</a>.
           </div>
         </div>
       )}
 
       <column className="mx-[60px]  w-[25%] sm:hidden lg:block mb-8">
-        <div ref={targetDivRef} className="justify-end text-end items-end sm:p-5 lg:p-0 sm:px-5 sm:py-4 lg:py-0 grid sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 md:gap-[30px] lg:gap-6 ">
+        <div
+          ref={targetDivRef}
+          className="justify-end text-end items-end sm:p-5 lg:p-0 sm:px-5 sm:py-4 lg:py-0 grid sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 md:gap-[30px] lg:gap-6 "
+        >
           {/* add ai */}
           <div className="mt-[60px] ">
             <text className="text-[#031151] font-bold text-[14px] ">
@@ -467,16 +466,19 @@ const WebListTravelPLan = (page) => {
             </text>
             <div className="mt-4">
               <text className="text-black font-normal text-[14px] ">
-                {totalElements} Recommended itineraries by experienced guides and fellow travelers
+                {totalElements} Recommended itineraries by experienced guides
+                and fellow travelers
               </text>
             </div>
             <row>
               <div className={`tooltip ${showTooltip ? "show" : ""}`}>
-                <span onClick={() => setIsShowAI(true)} className="tooltip-message common-pointer">
+                <span
+                  onClick={() => setIsShowAI(true)}
+                  className="tooltip-message common-pointer"
+                >
                   Click Here to Discover More With AI
                 </span>
-                <button className="close-btn" onClick={handleClose}>
-                </button>
+                <button className="close-btn" onClick={handleClose}></button>
               </div>
               <div className="plus-float" onClick={toggleTooltip}>
                 {showTooltip ? (
@@ -486,7 +488,6 @@ const WebListTravelPLan = (page) => {
                 )}
               </div>
             </row>
-
           </div>
           {/* <div
           ref={targetDivRef}
@@ -502,7 +503,14 @@ const WebListTravelPLan = (page) => {
             Travel smarter with AI
           </p>
         </div> */}
-          {isShowAI && <ShowAI openPopup1={openPopup1} closePopup1={closePopup1} closeShowAI={closeShowAI} showAI={isShowAI} />}
+          {isShowAI && (
+            <ShowAI
+              openPopup1={openPopup1}
+              closePopup1={closePopup1}
+              closeShowAI={closeShowAI}
+              showAI={isShowAI}
+            />
+          )}
 
           {isLoading2 ? (
             <>
@@ -583,26 +591,27 @@ const WebListTravelPLan = (page) => {
             </>
           ) : (
             <>
-                {blogResults.map((results, index) => (
+              {blogResults.map((results, index) => (
                 <div className="bg-white md:w-full md:h-[630px] lg:w-full lg:h-[360px] 2xl:h-[420px] border shadow-lg rounded-lg hover:scale-105 duration-300">
                   <div className="relative" key={index}>
                     <button
                       className="absolute top-2 right-2 cursor-pointer"
-                    // onClick={() =>
-                    //   loginStatus(
-                    //     results.id,
-                    //     isItineraryBookmarked(results.id)
-                    //       ? handleUnsaveClick
-                    //       : handleBookmarkClick
-                    //   )
-                    // }
+                      // onClick={() =>
+                      //   loginStatus(
+                      //     results.id,
+                      //     isItineraryBookmarked(results.id)
+                      //       ? handleUnsaveClick
+                      //       : handleBookmarkClick
+                      //   )
+                      // }
                     >
                       <Icon
                         path={mdiBookmarkOutline}
-                        className={`sm:w-[60px] sm:h-[60px] lg:w-[30px] lg:h-[30px] ${isItineraryBookmarked(results.id)
+                        className={`sm:w-[60px] sm:h-[60px] lg:w-[30px] lg:h-[30px] ${
+                          isItineraryBookmarked(results.id)
                             ? "text-[#FFFFFF] bg-[#00A19A]"
                             : "text-[#00A19A] bg-[#FFFFFF]"
-                          } w-fit h-fit p-1 rounded-full common-pointer`}
+                        } w-fit h-fit p-1 rounded-full common-pointer`}
                       />
                     </button>
                     <img
@@ -621,7 +630,9 @@ const WebListTravelPLan = (page) => {
 
                   <div
                     className="items-center sm:p-6 lg:p-3 common-pointer"
-                    onClick={() => handleReadMore(results.id, results.title, results.userId)}
+                    onClick={() =>
+                      handleReadMore(results.id, results.title, results.userId)
+                    }
                   >
                     <Row>
                       <p
@@ -647,7 +658,7 @@ const WebListTravelPLan = (page) => {
                     </Row>
                     <p
                       className="ml-3 mt-1 w-fit md:text-[25px] lg:text-[12px] lg:h-[40px] 2xl:h-[75px] md:h-[20px] lg:block md:hidden"
-                    //   title={filteredFood.desc}
+                      //   title={filteredFood.desc}
                     >
                       {results.description.length > 65
                         ? `${results.description.substring(0, 65)}...`
@@ -657,7 +668,7 @@ const WebListTravelPLan = (page) => {
                     </p>
                     <p
                       className="ml-3 mt-1 w-fit md:text-[23px] lg:text-[12px] lg:h-[40px] md:h-[70px] lg:hidden md:block"
-                    //   title={filteredFood.desc}
+                      //   title={filteredFood.desc}
                     >
                       {results.description.length > 60
                         ? `${results.description.substring(0, 60)}...`
@@ -759,17 +770,22 @@ const WebListTravelPLan = (page) => {
                       {/* to display state */}
 
                       <div className="state truncate items-center ">
-                        {results.destination && results.destination.length > 0 && (
-                          <span className="flex items-center sm:text-[22px] xl:text-[11px] lg:text-[11px] font-medium">
-                            <FaMapMarkerAlt className="inline-block mr-1" />
-                            {results.destination[0].state.replace("Federal Territory of ", "").length > 9
-                              ? `${results.destination[0].state.replace("Federal Territory of ", "").substring(0, 9)}...`
-                              : results.destination[0].state.replace("Federal Territory of ", "")}
-                          </span>
-                        )}
+                        {results.destination &&
+                          results.destination.length > 0 && (
+                            <span className="flex items-center sm:text-[22px] xl:text-[11px] lg:text-[11px] font-medium">
+                              <FaMapMarkerAlt className="inline-block mr-1" />
+                              {results.destination[0].state.replace(
+                                "Federal Territory of ",
+                                "",
+                              ).length > 9
+                                ? `${results.destination[0].state.replace("Federal Territory of ", "").substring(0, 9)}...`
+                                : results.destination[0].state.replace(
+                                    "Federal Territory of ",
+                                    "",
+                                  )}
+                            </span>
+                          )}
                       </div>
-
-
 
                       {/* to display state and country */}
 
@@ -842,10 +858,8 @@ const WebListTravelPLan = (page) => {
                     </div>
                   </div>
                 </div>
-
-
               ))}
-            {itineraryResults.map((results, index) => (
+              {itineraryResults.map((results, index) => (
                 <div className="bg-white md:w-full md:h-[630px] lg:w-full lg:h-[360px] 2xl:h-[420px] border shadow-lg rounded-lg hover:scale-105 duration-300">
                   <div className="relative" key={index}>
                     <button
@@ -855,16 +869,17 @@ const WebListTravelPLan = (page) => {
                           results.id,
                           isItineraryBookmarked(results.id)
                             ? handleUnsaveClick
-                            : handleBookmarkClick
+                            : handleBookmarkClick,
                         )
                       }
                     >
                       <Icon
                         path={mdiBookmarkOutline}
-                        className={`sm:w-[60px] sm:h-[60px] lg:w-[30px] lg:h-[30px] ${isItineraryBookmarked(results.id)
+                        className={`sm:w-[60px] sm:h-[60px] lg:w-[30px] lg:h-[30px] ${
+                          isItineraryBookmarked(results.id)
                             ? "text-[#FFFFFF] bg-[#00A19A]"
                             : "text-[#00A19A] bg-[#FFFFFF]"
-                          } w-fit h-fit p-1 rounded-full common-pointer`}
+                        } w-fit h-fit p-1 rounded-full common-pointer`}
                       />
                     </button>
                     <img
@@ -887,7 +902,7 @@ const WebListTravelPLan = (page) => {
                       handleTravelPlanClick(
                         results.userId,
                         results.id,
-                        results.title
+                        results.title,
                       );
                     }}
                   >
@@ -915,7 +930,7 @@ const WebListTravelPLan = (page) => {
                     </Row>
                     <p
                       className="ml-3 mt-1 w-fit md:text-[25px] lg:text-[12px] lg:h-[40px] 2xl:h-[75px] md:h-[20px] lg:block md:hidden"
-                    //   title={filteredFood.desc}
+                      //   title={filteredFood.desc}
                     >
                       {results.description.length > 65
                         ? `${results.description.substring(0, 65)}...`
@@ -925,7 +940,7 @@ const WebListTravelPLan = (page) => {
                     </p>
                     <p
                       className="ml-3 mt-1 w-fit md:text-[23px] lg:text-[12px] lg:h-[40px] md:h-[70px] lg:hidden md:block"
-                    //   title={filteredFood.desc}
+                      //   title={filteredFood.desc}
                     >
                       {results.description.length > 60
                         ? `${results.description.substring(0, 60)}...`
@@ -1027,14 +1042,21 @@ const WebListTravelPLan = (page) => {
                       {/* to display state */}
 
                       <div className="state truncate items-center">
-                        {results.destination && results.destination.length > 0 && (
-                          <span className="flex items-center sm:text-[22px] xl:text-[11px] lg:text-[11px] font-medium">
-                            <FaMapMarkerAlt className="inline-block mr-1" />
-                            {results.destination[0].state.replace("Federal Territory of ", "").length > 9
-                              ? `${results.destination[0].state.replace("Federal Territory of ", "").substring(0, 9)}...`
-                              : results.destination[0].state.replace("Federal Territory of ", "")}
-                          </span>
-                        )}
+                        {results.destination &&
+                          results.destination.length > 0 && (
+                            <span className="flex items-center sm:text-[22px] xl:text-[11px] lg:text-[11px] font-medium">
+                              <FaMapMarkerAlt className="inline-block mr-1" />
+                              {results.destination[0].state.replace(
+                                "Federal Territory of ",
+                                "",
+                              ).length > 9
+                                ? `${results.destination[0].state.replace("Federal Territory of ", "").substring(0, 9)}...`
+                                : results.destination[0].state.replace(
+                                    "Federal Territory of ",
+                                    "",
+                                  )}
+                            </span>
+                          )}
                       </div>
 
                       {/* to display state and country */}
@@ -1108,28 +1130,30 @@ const WebListTravelPLan = (page) => {
                     </div>
                   </div>
                 </div>
-
-
               ))}
-          
-              
 
               {results.length > 0 && (
                 <>
                   <Row className="w-[100%] justify-between ">
-                    <Icon className="ml-2 common-pointer w-[35%] h-10  font-normal"
-                      path={mdiArrowLeft} size={1}
-                      onClick={handlePreviousPage} />
+                    <Icon
+                      className="ml-2 common-pointer w-[35%] h-10  font-normal"
+                      path={mdiArrowLeft}
+                      size={1}
+                      onClick={handlePreviousPage}
+                    />
 
-                    <Icon className="mr-2 common-pointer w-[35%] h-10  font-normal "
-                      path={mdiArrowRight} size={1}
-                      onClick={handleNextPage} />
+                    <Icon
+                      className="mr-2 common-pointer w-[35%] h-10  font-normal "
+                      path={mdiArrowRight}
+                      size={1}
+                      onClick={handleNextPage}
+                    />
                   </Row>
                   <div className="justify-center items-center text-center mt-[10px]">
                     <button
                       className="rounded-[15px] w-[35%] h-10 border shadow-sm border-black font-normal"
                       onClick={handleLoadMore}
-                    //disabled={currentPage >= totalPages || isLoadingg}
+                      //disabled={currentPage >= totalPages || isLoadingg}
                     >
                       {isLoadingg ? "Loading..." : "Show More"}
                     </button>
@@ -1141,15 +1165,12 @@ const WebListTravelPLan = (page) => {
                   )}
                 </>
               )}
-
-
             </>
           )}
         </div>
       </column>
     </>
   );
-
 };
 
 export default WebListTravelPLan;

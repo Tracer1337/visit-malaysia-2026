@@ -15,7 +15,6 @@ import { FaShoppingCart, FaThumbtack, FaTimes, FaCheck } from "react-icons/fa";
 import axios from "axios";
 import GlobalConstant from "constant/global";
 
-
 const Header = ({ openPopup1 }) => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -40,7 +39,7 @@ const Header = ({ openPopup1 }) => {
     // Clear the entire local storage
     localStorage.clear();
     isLoggedIn(false); // Update the isLoggedIn state
-    navigate("/")
+    navigate("/");
   };
 
   const toggleDropdown = () => {
@@ -168,7 +167,7 @@ const Header = ({ openPopup1 }) => {
           const data = response.data;
           const profileImage = data.profileImage;
           const userName = data.userName;
-          const email  = data.email;
+          const email = data.email;
 
           setProfileImagePath(profileImage);
           setUserName(userName);
@@ -197,12 +196,10 @@ const Header = ({ openPopup1 }) => {
           />
         </div>
 
-        
-
         {isLoggedIn ? (
           <>
- {/* navbar */}
- <div class="flex justify-items-end text-center items-center justify-start-end gap-2 w-[90%] ">
+            {/* navbar */}
+            <div class="flex justify-items-end text-center items-center justify-start-end gap-2 w-[90%] ">
               <div className="cursor-pointer text-center  w-fit m-4 ml-5">
                 <Text
                   className="font-montserrat text-[15px] text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
@@ -218,30 +215,62 @@ const Header = ({ openPopup1 }) => {
                   id="dropdownNavbarLink"
                   data-dropdown-toggle="dropdownNavbar"
                   className="flex items-center justify-between w-full py-2 pl-3 pr-4 font-montserrat text-[15px] text-[#008D36] rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                  onClick={toggleDropdown}>
+                  onClick={toggleDropdown}
+                >
                   Listing
-                  <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                  </svg></button>
+                  <svg
+                    class="w-2.5 h-2.5 ml-2.5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg>
+                </button>
                 {/* <!-- Dropdown menu --> */}
                 <div
                   id="dropdownNavbar"
-                  className={`z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ${nav ? "" : "hidden"
-                    } absolute`}
+                  className={`z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ${
+                    nav ? "" : "hidden"
+                  } absolute`}
                 >
-                  <ul class="py-2 text-sm text-left text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                  <ul
+                    class="py-2 text-sm text-left text-gray-700 dark:text-gray-400"
+                    aria-labelledby="dropdownLargeButton"
+                  >
                     <li>
-                      <a href="/property" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Acommodation</a>
+                      <a
+                        href="/legacy/property"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Acommodation
+                      </a>
                     </li>
                     <li>
-                      <a href="/flight" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Flight</a>
+                      <a
+                        href="/legacy/flight"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Flight
+                      </a>
                     </li>
                     <li>
-                      <a href="/tour" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Tour</a>
+                      <a
+                        href="/legacy/tour"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Tour
+                      </a>
                     </li>
                   </ul>
                 </div>
-
               </div>
               <div className="cursor-pointer text-center w-fit m-4">
                 <Text
@@ -258,30 +287,67 @@ const Header = ({ openPopup1 }) => {
                   id="dropdownNavbarLink3"
                   data-dropdown-toggle="dropdownNavbar3"
                   className="flex items-center justify-between w-full py-2 pl-3 pr-4 font-montserrat text-[15px] text-[#008D36] rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                  onClick={toggleDropdown3}>
+                  onClick={toggleDropdown3}
+                >
                   Marketplace
-                  <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                  <svg
+                    class="w-2.5 h-2.5 ml-2.5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 4 4 4-4"
+                    />
                   </svg>
                 </button>
                 {/* <!-- Dropdown menu --> */}
                 <div
                   id="dropdownNavbar3"
-                  className={`z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ${nav3 ? "" : "hidden"
-                    } absolute left-30 top-18`}
+                  className={`z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ${
+                    nav3 ? "" : "hidden"
+                  } absolute left-30 top-18`}
                 >
-                  <ul class="py-2 text-sm text-left text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                  <ul
+                    class="py-2 text-sm text-left text-gray-700 dark:text-gray-400"
+                    aria-labelledby="dropdownLargeButton"
+                  >
                     <li>
-                      <a href="/tour-marketplace" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Viator</a>
+                      <a
+                        href="/legacy/tour-marketplace"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Viator
+                      </a>
                     </li>
                     <li>
-                      <a href="/tour-marketplace2" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Epic</a>
+                      <a
+                        href="/legacy/tour-marketplace2"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Epic
+                      </a>
                     </li>
                     <li>
-                      <a href="/tour-marketplace3" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Flight & Transport</a>
+                      <a
+                        href="/legacy/tour-marketplace3"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Flight & Transport
+                      </a>
                     </li>
                     <li>
-                      <a href="/tour-marketplace4" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Deals</a>
+                      <a
+                        href="/legacy/tour-marketplace4"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        Deals
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -316,9 +382,8 @@ const Header = ({ openPopup1 }) => {
                   Manage User
                 </Text>
               </div>
-
             </div>
-          
+
             <div className="flex justify-end text-center items-center w-[30%] ">
               <div className="items-center justify-center">
                 <IoIosNotificationsOutline size={35} className="" />
@@ -330,7 +395,7 @@ const Header = ({ openPopup1 }) => {
                   data-dropdown-toggle="dropdownNavbar2"
                   onClick={toggleDropdown2}
                   onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
+                  onMouseLeave={handleMouseLeave}
                 >
                   <FiMenu className="mr-2" />
                   {/* {profileImage ? ( */}
@@ -349,10 +414,10 @@ const Header = ({ openPopup1 }) => {
                   )}
                 </button>
                 {showTooltip && (
-        <div className="font-semibold text-gray-300 uppercase absolute top-10 tooltip justify-items-end right-4 mt-8 py-1.5 px-3 bg-black rounded text-xs shadow">
-          {userName}
-        </div>
-      )}
+                  <div className="font-semibold text-gray-300 uppercase absolute top-10 tooltip justify-items-end right-4 mt-8 py-1.5 px-3 bg-black rounded text-xs shadow">
+                    {userName}
+                  </div>
+                )}
                 <div
                   id="dropdownNavbar2"
                   className={`z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-[250px] dark:bg-gray-700 dark:divide-gray-600 ${
@@ -366,32 +431,24 @@ const Header = ({ openPopup1 }) => {
                     <li>
                       {userName ? (
                         <>
-                        <text
-                          class="block px-4 pt-2 text-center font-semibold"
-                        >
-                          Hi, {userName}!
-                        </text>
-                        <text
-                         class="block px-4 pt-1 pb-3 text-center font-thin text-xs">
-                          {email}
+                          <text class="block px-4 pt-2 text-center font-semibold">
+                            Hi, {userName}!
+                          </text>
+                          <text class="block px-4 pt-1 pb-3 text-center font-thin text-xs">
+                            {email}
                           </text>
                         </>
-                      ) :( <>
-                      <text
-                        class="block px-4 pt-2 text-center font-semibold"
-                      >
-                        Hi, {userName}!
-                      </text>
-
-                      <text
-                         class="block px-4 pt-1 pb-3 text-center font-thin text-xs">
-                          {email}
+                      ) : (
+                        <>
+                          <text class="block px-4 pt-2 text-center font-semibold">
+                            Hi, {userName}!
                           </text>
 
-                    </>
-                  ) } 
-                  
-                      
+                          <text class="block px-4 pt-1 pb-3 text-center font-thin text-xs">
+                            {email}
+                          </text>
+                        </>
+                      )}
                     </li>
                     <hr></hr>
                     <li>
@@ -404,8 +461,7 @@ const Header = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href={`/influencer-creator/${userId}`}
-
+                        href={`/legacy/influencer-creator/${userId}`}
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         My Storefront
@@ -413,7 +469,7 @@ const Header = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/manage-content"
+                        href="/legacy/manage-content"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         My Social Posting
@@ -421,7 +477,7 @@ const Header = ({ openPopup1 }) => {
                     </li>
                     <li>
                       <a
-                        href="/edit-creator"
+                        href="/legacy/edit-creator"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         Edit Storefront
@@ -431,7 +487,7 @@ const Header = ({ openPopup1 }) => {
                     <hr></hr>
                     <li>
                       <a
-                        href="/"
+                        href="/legacy/"
                         class="block px-6 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                         onClick={handleSignOut}
                       >
@@ -444,71 +500,69 @@ const Header = ({ openPopup1 }) => {
             </div>
           </>
         ) : (
-
-            <>
+          <>
             <div class="flex justify-start text-center w-[70%] ">
-          <div className="text-center w-fit ">
-            <Text
-              className="font-montserrat text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
-              as="h7"
-              variant="h7"
-            >
-              PLAN A HOLIDAY
-            </Text>
-          </div>
-          <div className="text-center w-fit ml-9">
-            <Text
-              className="font-montserrat text-[#008D36] text-cente r text-green_800 tracking-[-0.21px] w-auto"
-              as="h7"
-              variant="h7"
-            >
-              TRAVEL IDEAS
-            </Text>
-          </div>
-          <div className="text-center w-fit ml-9">
-            <Text
-              className="font-montserrat text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
-              as="h7"
-              variant="h7"
-            >
-              PROMOS
-            </Text>
-          </div>
-          <div className="text-center w-fit ml-9">
-            <Text
-              className="font-montserrat text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
-              as="h7"
-              variant="h7"
-            >
-              CREATOR PROGRAM
-            </Text>
-          </div>
-          <div className="text-center w-fit ml-9">
-            <Text
-              className="font-montserrat text-[#008D36] text-center text-green_800  w-auto"
-              as="h7"
-              variant="h7"
-            >
-              RESOURCES
-            </Text>
-          </div>
-        </div>
-          <div className="flex justify-end text-center items-center w-[20%] ">
-            <Button
-              className="cursor-pointer bg-[#00a19a] text-white_A700 text-xs flex items-center justify-center min-w-[138px] h-[35px] md:ml-[0] ml-[20px] md:mt-0.5 w-auto font-medium"
-              shape="RoundedBorder6"
-              size="sm"
-              onClick={openPopup1}
-            >
-              Sign-in / Register
-            </Button>
-          </div>
+              <div className="text-center w-fit ">
+                <Text
+                  className="font-montserrat text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
+                  as="h7"
+                  variant="h7"
+                >
+                  PLAN A HOLIDAY
+                </Text>
+              </div>
+              <div className="text-center w-fit ml-9">
+                <Text
+                  className="font-montserrat text-[#008D36] text-cente r text-green_800 tracking-[-0.21px] w-auto"
+                  as="h7"
+                  variant="h7"
+                >
+                  TRAVEL IDEAS
+                </Text>
+              </div>
+              <div className="text-center w-fit ml-9">
+                <Text
+                  className="font-montserrat text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
+                  as="h7"
+                  variant="h7"
+                >
+                  PROMOS
+                </Text>
+              </div>
+              <div className="text-center w-fit ml-9">
+                <Text
+                  className="font-montserrat text-[#008D36] text-center text-green_800 tracking-[-0.21px] w-auto"
+                  as="h7"
+                  variant="h7"
+                >
+                  CREATOR PROGRAM
+                </Text>
+              </div>
+              <div className="text-center w-fit ml-9">
+                <Text
+                  className="font-montserrat text-[#008D36] text-center text-green_800  w-auto"
+                  as="h7"
+                  variant="h7"
+                >
+                  RESOURCES
+                </Text>
+              </div>
+            </div>
+            <div className="flex justify-end text-center items-center w-[20%] ">
+              <Button
+                className="cursor-pointer bg-[#00a19a] text-white_A700 text-xs flex items-center justify-center min-w-[138px] h-[35px] md:ml-[0] ml-[20px] md:mt-0.5 w-auto font-medium"
+                shape="RoundedBorder6"
+                size="sm"
+                onClick={openPopup1}
+              >
+                Sign-in / Register
+              </Button>
+            </div>
           </>
         )}
       </Row>
-
     </header>
   );
-}
+};
 
 export default Header;
