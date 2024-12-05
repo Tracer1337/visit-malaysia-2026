@@ -6,15 +6,13 @@ import {
   createElement,
   useContext,
   useEffect,
-  useState,
 } from 'react';
+import {
+  UseLocalStorageOptions,
+  useLocalStorage,
+} from '../hooks/useLocalStorage';
 import { useRouter } from '../i18n/routing';
-
-type User = {
-  firstname: string;
-  lastname: string;
-  email: string;
-};
+import { User, useAuthUser } from './user';
 
 type AuthPlaceholderContextType = {
   user: User | null;
@@ -36,30 +34,60 @@ export function useAuthPlaceholder() {
   return context;
 }
 
+const localStoragePassthroughOptions: UseLocalStorageOptions<string | null> = {
+  serializer: (value) => value ?? '',
+  deserializer: (value) => value,
+};
+
 export function AuthPlaceholderProvider({ children }: PropsWithChildren) {
   const router = useRouter();
 
-  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken, removeToken] = useLocalStorage<string | null>(
+    'token',
+    null,
+    localStoragePassthroughOptions,
+  );
+  const [, setTokenType, removeTokenType] = useLocalStorage<string | null>(
+    'tokenType',
+    null,
+    localStoragePassthroughOptions,
+  );
+  const [, setUserId, removeUserId] = useLocalStorage<number | null>(
+    'userId',
+    null,
+  );
+
+  const user = useAuthUser(token);
 
   useEffect(() => {
     router.push('/');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  useEffect(() => {
+    if (user) {
+      setUserId(user.id);
+    } else {
+      removeUserId();
+    }
+  }, [user, setUserId, removeUserId]);
+
+  const login = () => {
+    // The token should be fetched from an api
+    const token =
+      'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtZXJsaW4ubW9lbHRlckBnbWFpbC5jb20iLCJ1c2VySWQiOjUxNiwiaWF0IjoxNzMzMzM0NjU1fQ.LjcAnRuPZjFxPCp8N3DH5emGnOHOHCfgUYubiyJRDXTji6CoONmn7gft62308BTQzsUVm1SL0D2cH8GlTTI6NQ';
+    setToken(token);
+    setTokenType('Bearer');
+  };
+
+  const logout = () => {
+    removeToken();
+    removeTokenType();
+  };
+
   return createElement(
     AuthPlaceholderContext.Provider,
-    {
-      value: {
-        user,
-        login: () =>
-          setUser({
-            firstname: 'Rioneer',
-            lastname: 'Nizel',
-            email: 'rioneernizel@gmail.com',
-          }),
-        logout: () => setUser(null),
-      },
-    },
+    { value: { user, login, logout } },
     children,
   );
 }
